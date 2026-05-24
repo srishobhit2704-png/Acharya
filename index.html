@@ -1,213 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Acharya - Home Tutor & Learning Support</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acharya Home Tutors Lucknow</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f7fb;
-      color: #222;
-      line-height: 1.6;
-    }
-    header {
-      background: #1e3a8a;
-      color: white;
-      padding: 18px 8%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    header h1 { font-size: 28px; }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 10px;
-      font-weight: bold;
-    }
-    .hero {
-      padding: 70px 8%;
-      background: linear-gradient(135deg, #1e3a8a, #2563eb);
-      color: white;
-      text-align: center;
-    }
-    .hero h2 { font-size: 42px; margin-bottom: 15px; }
-    .hero p { font-size: 18px; margin-bottom: 25px; }
-    .btn {
-      display: inline-block;
-      background: #facc15;
-      color: #111;
-      padding: 12px 22px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      margin: 5px;
-    }
-    section { padding: 45px 8%; }
-    section h2 {
-      text-align: center;
-      margin-bottom: 25px;
-      color: #1e3a8a;
-      font-size: 30px;
-    }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 15px;
-    }
-    .card {
-      background: white;
-      padding: 18px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      font-weight: bold;
-    }
-    .about, .contact {
-      background: white;
-      border-radius: 14px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      padding: 25px;
-      max-width: 900px;
-      margin: auto;
-    }
-    form input, form select, form textarea {
-      width: 100%;
-      padding: 12px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
-    form button {
-      width: 100%;
-      padding: 13px;
-      background: #1e3a8a;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: bold;
-    }
-    footer {
-      background: #111827;
-      color: white;
-      text-align: center;
-      padding: 18px;
-      margin-top: 30px;
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:Arial,sans-serif;background:#f5f7fb;color:#222;line-height:1.6}
+    header{background:#1e3a8a;color:white;padding:15px 8%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+    .logo{font-size:26px;font-weight:bold}
+    nav{display:flex;gap:14px}
+    nav a{color:white;text-decoration:none;font-weight:bold}
+    .menu-btn{display:none;background:#facc15;border:none;padding:8px 12px;border-radius:6px;font-size:20px}
+    .hero{padding:70px 8%;text-align:center;background:linear-gradient(135deg,#1e3a8a,#2563eb);color:white}
+    .hero h1{font-size:42px;margin-bottom:12px}
+    .btn{display:inline-block;background:#facc15;color:#111;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:bold;margin:6px}
+    section{padding:45px 8%}
+    h2{text-align:center;color:#1e3a8a;margin-bottom:25px;font-size:30px}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px}
+    .card,.box{background:white;padding:18px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+    .card{text-align:center;font-weight:bold}
+    input,select,textarea{width:100%;padding:12px;margin:8px 0;border:1px solid #ccc;border-radius:8px}
+    button.submit{width:100%;padding:13px;background:#1e3a8a;color:white;border:none;border-radius:8px;font-weight:bold;font-size:16px}
+    footer{background:#111827;color:white;text-align:center;padding:18px}
+    @media(max-width:768px){
+      nav{display:none;flex-direction:column;background:#1e3a8a;position:absolute;top:60px;right:8%;padding:15px;border-radius:10px}
+      nav.show{display:flex}
+      .menu-btn{display:block}
+      .hero h1{font-size:30px}
     }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>Acharya</h1>
-  <nav>
-    <a href="#subjects">Subjects</a>
-    <a href="#activities">Activities</a>
-    <a href="#batches">New Batches</a>
-<a href="#worksheets">Worksheets</a>
-    <a href="#booking">Book Session</a>
+  <div class="logo">Acharya</div>
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <nav id="menu">
+    <a href="#find">Find Tutor</a>
+    <a href="#become">Become Tutor</a>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#booking">Book</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
 
 <div class="hero">
-  <h2>Best Home Tutor & Learning Support</h2>
-  <p>All subjects, activities, homework help, exam preparation and skill development at one place.</p>
-  <a class="btn" href="tel:9369072114">Call Now</a>
-  <a class="btn" href="https://wa.me/919369072114?text=Hello%20Acharya%2C%20I%20want%20to%20book%20a%20session
+  <h1>Acharya Home Tutors Lucknow</h1>
+  <p>Find tutors, book sessions, join new batches and get worksheets.</p>
+  <a class="btn" href="#find">Find Tutor</a>
+  <a class="btn" href="#become">Become a Tutor</a>
+  <a class="btn" href="https://wa.me/919369072114?text=Hello%20Acharya%2C%20I%20want%20to%20book%20a%20session">WhatsApp</a>
 </div>
 
-<section class="about-section">
-  <h2>About Acharya</h2>
-  <div class="about">
-    <p>
-      Acharya provides quality tutoring support for students with focus on concept clarity,
-      regular practice, doubt solving, exam preparation and overall development.
-    </p>
-  </div>
-</section>
-
-<section id="subjects">
-  <h2>Subjects We Offer</h2>
-  <div class="cards">
-    <div class="card">Mathematics</div>
-    <div class="card">Science</div>
-    <div class="card">English</div>
-    <div class="card">Hindi</div>
-    <div class="card">Social Science</div>
-    <div class="card">EVS</div>
-    <div class="card">Computer</div>
-    <div class="card">Sanskrit</div>
-    <div class="card">Physics</div>
-    <div class="card">Chemistry</div>
-    <div class="card">Biology</div>
-    <div class="card">History</div>
-    <div class="card">Geography</div>
-    <div class="card">Civics</div>
-    <div class="card">Economics</div>
-    <div class="card">Accounts</div>
-    <div class="card">Business Studies</div>
-    <div class="card">GK</div>
-    <div class="card">Reasoning</div>
-    <div class="card">Moral Science</div>
-  </div>
-</section>
-
-<section id="activities">
-  <h2>Activities & Skill Development</h2>
-  <div class="cards">
-    <div class="card">Drawing & Art</div>
-    <div class="card">Craft Activity</div>
-    <div class="card">Handwriting Improvement</div>
-    <div class="card">Spoken English</div>
-    <div class="card">Personality Development</div>
-    <div class="card">Abacus</div>
-    <div class="card">Yoga</div>
-    <div class="card">Dance Activity</div>
-    <div class="card">Music Activity</div>
-    <div class="card">Homework Help</div>
-    <div class="card">Exam Preparation</div>
-    <div class="card">Olympiad Preparation</div>
-  </div>
-</section>
-
-<section id="booking">
-  <h2>Book a Session</h2>
-  <div class="contact">
-    <form onsubmit="sendWhatsapp(event)">
-      <input type="text" placeholder="Student Name" required>
-      <input type="text" placeholder="Class / Grade" required>
-      <select required>
-        <option value="">Select Subject / Activity</option>
-        <option>All Subjects</option>
-        <option>Mathematics</option>
-        <option>Science</option>
-        <option>English</option>
-        <option>Hindi</option>
-        <option>Computer</option>
-        <option>Drawing & Art</option>
-        <option>Spoken English</option>
-        <option>Handwriting Improvement</option>
+<section id="find">
+  <h2>Find Tutor</h2>
+  <div class="box">
+    <form onsubmit="findTutor(event)">
+      <input id="findName" type="text" placeholder="Parent/Student Name" required>
+      <input id="findClass" type="text" placeholder="Class / Grade" required>
+      <select id="findSubject" required>
+        <option value="">Select Subject</option>
+        <option>All Subjects</option><option>Maths</option><option>Science</option><option>English</option>
+        <option>Physics</option><option>Chemistry</option><option>Biology</option><option>Accounts</option>
       </select>
-      <input type="tel" placeholder="Parent Mobile Number" required>
-      <textarea placeholder="Your message"></textarea>
-      <button type="submit">Submit Booking Request</button>
+      <input id="findArea" type="text" placeholder="Area / Location" required>
+      <input id="findPhone" type="tel" placeholder="Mobile Number" required>
+      <button class="submit" type="submit">Find Tutor on WhatsApp</button>
     </form>
   </div>
 </section>
+
+<section id="become">
+  <h2>Become a Tutor</h2>
+  <div class="box">
+    <form onsubmit="becomeTutor(event)">
+      <input id="tutorName" type="text" placeholder="Tutor Name" required>
+      <input id="tutorSubject" type="text" placeholder="Subjects You Teach" required>
+      <input id="tutorClass" type="text" placeholder="Classes You Teach" required>
+      <input id="tutorExp" type="text" placeholder="Experience" required>
+      <input id="tutorPhone" type="tel" placeholder="Mobile Number" required>
+      <textarea id="tutorMsg" placeholder="Address / Extra Details"></textarea>
+      <button class="submit" type="submit">Apply as Tutor</button>
+    </form>
+  </div>
+</section>
+
+<section id="dashboard">
+  <h2>Tutor Dashboard</h2>
+  <div class="cards">
+    <div class="card">Tutor Profile</div>
+    <div class="card">Update Profile</div>
+    <div class="card">View Student Requests</div>
+    <div class="card">Admin Approval</div>
+  </div>
+</section>
+
+
+
 <section id="batches">
   <h2>New Batches Launch</h2>
   <div class="cards">
-    <div class="card">Class 1 to 5 - Foundation Batch</div>
-    <div class="card">Class 6 to 8 - Concept Batch</div>
-    <div class="card">Class 9 to 10 - Board Preparation</div>
-    <div class="card">Class 11 to 12 - Subject Expert Batch</div>
-    <div class="card">Spoken English New Batch</div>
-    <div class="card">Handwriting Improvement Batch</div>
+    <div class="card">Class 1–5 Foundation Batch</div>
+    <div class="card">Class 6–8 Concept Batch</div>
+    <div class="card">Class 9–10 Board Batch</div>
+    <div class="card">Class 11–12 Expert Batch</div>
   </div>
 </section>
 
@@ -217,39 +114,59 @@
     <div class="card">Maths Worksheets</div>
     <div class="card">Science Worksheets</div>
     <div class="card">English Worksheets</div>
-    <div class="card">Hindi Worksheets</div>
-    <div class="card">Reasoning Worksheets</div>
     <div class="card">Olympiad Worksheets</div>
   </div>
 </section>
+
+<section id="booking">
+  <h2>Book a Session</h2>
+  <div class="box">
+    <form onsubmit="bookSession(event)">
+      <input id="bookName" type="text" placeholder="Student Name" required>
+      <input id="bookClass" type="text" placeholder="Class / Grade" required>
+      <input id="bookSubject" type="text" placeholder="Subject / Activity" required>
+      <input id="bookPhone" type="tel" placeholder="Parent Mobile Number" required>
+      <textarea id="bookMsg" placeholder="Message"></textarea>
+      <button class="submit" type="submit">Submit Booking Request</button>
+    </form>
+  </div>
+</section>
+
 <section id="contact">
   <h2>Contact Us</h2>
-  <div class="contact">
+  <div class="box">
     <p><b>Mobile / WhatsApp:</b> 9369072114</p>
     <p><b>Email:</b> srishobhit777@gmail.com</p>
-    <p><b>Service:</b> Home Tutor, Online Tutor, Activity Classes and Learning Support</p>
+    <p><b>Service:</b> Home Tutor, Online Tutor, Activity Classes and Worksheets</p>
   </div>
 </section>
 
 <footer>
-  <p>© 2026 Acharya. All Rights Reserved.</p>
+  <p>© 2026 Acharya Home Tutors Lucknow. All Rights Reserved.</p>
 </footer>
+
 <script>
-  function sendWhatsApp(event) {
-    event.preventDefault();
+function toggleMenu(){document.getElementById("menu").classList.toggle("show");}
 
-    let inputs = document.querySelectorAll("form input, form select, form textarea");
+function openWA(text){
+  window.open("https://wa.me/919369072114?text=" + encodeURIComponent(text), "_blank");
+}
 
-    let name = inputs[0].value;
-    let studentClass = inputs[1].value;
-    let subject = inputs[2].value;
-    let mobile = inputs[3].value;
-    let message = inputs[4].value;
+function findTutor(e){
+  e.preventDefault();
+  openWA(`Find Tutor Request\nName: ${findName.value}\nClass: ${findClass.value}\nSubject: ${findSubject.value}\nArea: ${findArea.value}\nMobile: ${findPhone.value}`);
+}
 
-    let text = `New Booking Request%0A%0AStudent Name: ${name}%0AClass: ${studentClass}%0ASubject/Activity: ${subject}%0AParent Mobile: ${mobile}%0AMessage: ${message}`;
+function becomeTutor(e){
+  e.preventDefault();
+  openWA(`Become a Tutor Request\nName: ${tutorName.value}\nSubjects: ${tutorSubject.value}\nClasses: ${tutorClass.value}\nExperience: ${tutorExp.value}\nMobile: ${tutorPhone.value}\nDetails: ${tutorMsg.value}`);
+}
 
-    window.open(`https://wa.me/919369072114?text=${text}`, "_blank");
-  }
+function bookSession(e){
+  e.preventDefault();
+  openWA(`New Booking Request\nStudent: ${bookName.value}\nClass: ${bookClass.value}\nSubject: ${bookSubject.value}\nMobile: ${bookPhone.value}\nMessage: ${bookMsg.value}`);
+}
 </script>
+
 </body>
 </html>
