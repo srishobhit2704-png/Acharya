@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acharya - Home Tutor & Learning Support</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #222;
+      line-height: 1.6;
+    }
+    header {
+      background: #1e3a8a;
+      color: white;
+      padding: 18px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    header h1 { font-size: 28px; }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+    }
+    .hero {
+      padding: 70px 8%;
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      color: white;
+      text-align: center;
+    }
+    .hero h2 { font-size: 42px; margin-bottom: 15px; }
+    .hero p { font-size: 18px; margin-bottom: 25px; }
+    .btn {
+      display: inline-block;
+      background: #facc15;
+      color: #111;
+      padding: 12px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 5px;
+    }
+    section { padding: 45px 8%; }
+    section h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #1e3a8a;
+      font-size: 30px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 15px;
+    }
+    .card {
+      background: white;
+      padding: 18px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      font-weight: bold;
+    }
+    .about, .contact {
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 25px;
+      max-width: 900px;
+      margin: auto;
+    }
+    form input, form select, form textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    form button {
+      width: 100%;
+      padding: 13px;
+      background: #1e3a8a;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    footer {
+      background: #111827;
+      color: white;
+      text-align: center;
+      padding: 18px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Acharya</h1>
+  <nav>
+    <a href="#subjects">Subjects</a>
+    <a href="#activities">Activities</a>
+    <a href="#batches">New Batches</a>
+<a href="#worksheets">Worksheets</a>
+    <a href="#booking">Book Session</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <h2>Best Home Tutor & Learning Support</h2>
+  <p>All subjects, activities, homework help, exam preparation and skill development at one place.</p>
+  <a class="btn" href="tel:9369072114">Call Now</a>
+  <a class="btn" href="https://wa.me/919369072114">WhatsApp</a>
+</div>
+
+<section class="about-section">
+  <h2>About Acharya</h2>
+  <div class="about">
+    <p>
+      Acharya provides quality tutoring support for students with focus on concept clarity,
+      regular practice, doubt solving, exam preparation and overall development.
+    </p>
+  </div>
+</section>
+
+<section id="subjects">
+  <h2>Subjects We Offer</h2>
+  <div class="cards">
+    <div class="card">Mathematics</div>
+    <div class="card">Science</div>
+    <div class="card">English</div>
+    <div class="card">Hindi</div>
+    <div class="card">Social Science</div>
+    <div class="card">EVS</div>
+    <div class="card">Computer</div>
+    <div class="card">Sanskrit</div>
+    <div class="card">Physics</div>
+    <div class="card">Chemistry</div>
+    <div class="card">Biology</div>
+    <div class="card">History</div>
+    <div class="card">Geography</div>
+    <div class="card">Civics</div>
+    <div class="card">Economics</div>
+    <div class="card">Accounts</div>
+    <div class="card">Business Studies</div>
+    <div class="card">GK</div>
+    <div class="card">Reasoning</div>
+    <div class="card">Moral Science</div>
+  </div>
+</section>
+
+<section id="activities">
+  <h2>Activities & Skill Development</h2>
+  <div class="cards">
+    <div class="card">Drawing & Art</div>
+    <div class="card">Craft Activity</div>
+    <div class="card">Handwriting Improvement</div>
+    <div class="card">Spoken English</div>
+    <div class="card">Personality Development</div>
+    <div class="card">Abacus</div>
+    <div class="card">Yoga</div>
+    <div class="card">Dance Activity</div>
+    <div class="card">Music Activity</div>
+    <div class="card">Homework Help</div>
+    <div class="card">Exam Preparation</div>
+    <div class="card">Olympiad Preparation</div>
+  </div>
+</section>
+
+<section id="booking">
+  <h2>Book a Session</h2>
+  <div class="contact">
+    <form onsubmit="sendWhatsapp(event)">
+      <input type="text" placeholder="Student Name" required>
+      <input type="text" placeholder="Class / Grade" required>
+      <select required>
+        <option value="">Select Subject / Activity</option>
+        <option>All Subjects</option>
+        <option>Mathematics</option>
+        <option>Science</option>
+        <option>English</option>
+        <option>Hindi</option>
+        <option>Computer</option>
+        <option>Drawing & Art</option>
+        <option>Spoken English</option>
+        <option>Handwriting Improvement</option>
+      </select>
+      <input type="tel" placeholder="Parent Mobile Number" required>
+      <textarea placeholder="Your message"></textarea>
+      <button type="submit">Submit Booking Request</button>
+    </form>
+  </div>
+</section>
+<section id="batches">
+  <h2>New Batches Launch</h2>
+  <div class="cards">
+    <div class="card">Class 1 to 5 - Foundation Batch</div>
+    <div class="card">Class 6 to 8 - Concept Batch</div>
+    <div class="card">Class 9 to 10 - Board Preparation</div>
+    <div class="card">Class 11 to 12 - Subject Expert Batch</div>
+    <div class="card">Spoken English New Batch</div>
+    <div class="card">Handwriting Improvement Batch</div>
+  </div>
+</section>
+
+<section id="worksheets">
+  <h2>Worksheets</h2>
+  <div class="cards">
+    <div class="card">Maths Worksheets</div>
+    <div class="card">Science Worksheets</div>
+    <div class="card">English Worksheets</div>
+    <div class="card">Hindi Worksheets</div>
+    <div class="card">Reasoning Worksheets</div>
+    <div class="card">Olympiad Worksheets</div>
+  </div>
+</section>
+<section id="contact">
+  <h2>Contact Us</h2>
+  <div class="contact">
+    <p><b>Mobile / WhatsApp:</b> 9369072114</p>
+    <p><b>Email:</b> srishobhit777@gmail.com</p>
+    <p><b>Service:</b> Home Tutor, Online Tutor, Activity Classes and Learning Support</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Acharya. All Rights Reserved.</p>
+</footer>
+<script>
+  function sendWhatsApp(event) {
+    event.preventDefault();
+
+    let inputs = document.querySelectorAll("form input, form select, form textarea");
+
+    let name = inputs[0].value;
+    let studentClass = inputs[1].value;
+    let subject = inputs[2].value;
+    let mobile = inputs[3].value;
+    let message = inputs[4].value;
+
+    let text = `New Booking Request%0A%0AStudent Name: ${name}%0AClass: ${studentClass}%0ASubject/Activity: ${subject}%0AParent Mobile: ${mobile}%0AMessage: ${message}`;
+
+    window.open(`https://wa.me/919369072114?text=${text}`, "_blank");
+  }
+</script>
+</body>
+</html>
