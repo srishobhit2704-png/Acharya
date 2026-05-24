@@ -1,61 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Acharya</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Contact - Acharya Home Tutors</title>
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
-<header>
-  <div class="logo">Acharya</div>
-
-  <button class="menu-btn" onclick="toggleMenu()">☰</button>
-
-  <nav id="nav">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="teachers.html">Teachers</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="teachers.html">Teachers</a>
+  <a href="contact.html">Contact</a>
+</nav>
 
 <section>
-  <h2>Book Free Demo</h2>
+  <h1>Contact Acharya Home Tutors</h1>
+  <p>For home tuition, demo class, or tutor enquiry, contact us below.</p>
 
-  <form action="https://formsubmit.co/YOUR_EMAIL@gmail.com" method="POST">
+  <div class="cards">
+    <div class="card">
+      <h3>Call Us</h3>
+      <p><strong>Mobile:</strong> 9369072114</p>
+      <a class="btn" href="tel:9369072114">Call Now</a>
+    </div>
 
-    <input type="text" name="name" placeholder="Parent Name" required>
+    <div class="card">
+      <h3>WhatsApp</h3>
+      <p>Message us directly on WhatsApp.</p>
+      <a class="btn" href="https://wa.me/919369072114">WhatsApp Now</a>
+    </div>
 
-    <input type="tel" name="phone" placeholder="Phone Number" required>
-
-    <input type="text" name="class" placeholder="Student Class" required>
-
-    <input type="text" name="subject" placeholder="Required Subject" required>
-
-    <textarea name="message" rows="5" placeholder="Your Requirement"></textarea>
-
-    <button class="submit">Submit Enquiry</button>
-  </form>
-
-  <div class="contact-box">
-    <h3>Call Us</h3>
-    <p>9369072114</p>
-
-    <h3>WhatsApp</h3>
-    <p>
-      <a href="https://wa.me/919369072114">
-        Chat on WhatsApp
-      </a>
-    </p>
+    <div class="card">
+      <h3>Email</h3>
+      <p><strong>Email:</strong> srishobhit777@gmail.com</p>
+      <a class="btn" href="mailto:srishobhit777@gmail.com">Send Email</a>
+    </div>
   </div>
+</section>
+
+<section>
+  <h2>Send Enquiry</h2>
+
+  <form action="https://formsubmit.co/srishobhit777@gmail.com" method="POST">
+    <input type="hidden" name="_subject" value="New enquiry from Acharya Website">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="false">
+
+    <input type="text" name="Name" placeholder="Your Name" required>
+    <input type="tel" name="Phone" placeholder="Mobile Number" required>
+    <input type="email" name="Email" placeholder="Email Address">
+    <input type="text" name="Class" placeholder="Class / Subject">
+    <textarea name="Message" placeholder="Write your message" rows="5" required></textarea>
+
+    <button type="submit">Submit Enquiry</button>
+  </form>
 </section>
 
 <footer>
   <p>© 2026 Acharya Home Tutors Lucknow</p>
+  <p>Call: 9369072114 | Email: srishobhit777@gmail.com</p>
 </footer>
 
-<script src="script.js"></script>
+<script src="./script.js"></script>
 </body>
 </html>
