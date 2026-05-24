@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta <name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Apply - Acharya</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">Acharya</div>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+  <nav id="nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="teachers.html">Teachers</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section>
+  <h2>Teacher Registration</h2>
+
+  <form action="https://formsubmit.co/YOUR_EMAIL@gmail.com" method="POST">
+
+    <input type="text" name="name" placeholder="Full Name" required>
+
+    <input type="tel" name="phone" placeholder="Phone Number" required>
+
+    <input type="text" name="subject" placeholder="Subjects You Teach" required>
+
+    <input type="text" name="area" placeholder="Area in Lucknow" required>
+
+    <select name="experience">
+      <option>Teaching Experience</option>
+      <option>0-1 Year</option>
+      <option>1-3 Years</option>
+      <option>3-5 Years</option>
+      <option>5+ Years</option>
+    </select>
+
+    <textarea name="message" rows="5" placeholder="Tell us about yourself"></textarea>
+
+    <button class="submit">Apply Now</button>
+  </form>
+</section>
+
+<footer>
+  <p>© 2026 Acharya Home Tutors Lucknow</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
