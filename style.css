@@ -1,283 +1,122 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acharya Home Tutors Lucknow</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(180deg, #f4f7ff, #eef7ff);
-  color: #222;
-}
+<header class="top-header">
+  <div class="logo">A</div>
+  <a href="contact.html" class="login-btn">Apply / Enquiry</a>
+</header>
 
-.topbar {
-  height: 85px;
-  background: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 22px;
-  box-shadow: 0 3px 14px rgba(0,0,0,0.08);
-  position: sticky;
-  top: 0;
-  z-index: 20;
-}
+<nav class="navbar">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="teachers.html">Teachers</a>
+  <a href="contact.html">Contact</a>
+</nav>
 
-.menu {
-  font-size: 34px;
-  color: #111;
-}
+<section class="hero-banner">
+  <div class="hero-text">
+    <p>FREE WORKSHEET</p>
+    <h1>Maths & Science Practice Sheets</h1>
+    <h2>Class 6 to 10 Students</h2>
+    <a href="contact.html">Get Worksheet</a>
+  </div>
+</section>
 
-.logo {
-  width: 58px;
-  height: 58px;
-  background: #111;
-  color: #fff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 34px;
-  font-weight: bold;
-  border: 3px solid #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-}
+<div class="dots">
+  <span class="active"></span><span></span><span></span><span></span><span></span>
+</div>
 
-.login-btn {
-  background: #5b45d9;
-  color: #fff;
-  text-decoration: none;
-  padding: 14px 28px;
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: bold;
-}
+<section class="intro">
+  <h1>Lucknow's <span>Trusted & Affordable</span><br>Home Tuition Platform</h1>
+  <p>Find experienced tutors for school, board exams, JEE, NEET and homework support.</p>
+  <a href="contact.html" class="main-btn">Get Started</a>
+</section>
 
-.nav {
-  background: #101827;
-  text-align: center;
-  padding: 12px;
-}
+<section class="features">
+  <div class="feature-card">
+    <h2>Daily Practice</h2>
+    <p>Worksheets and regular study support</p>
+  </div>
+  <div class="feature-card">
+    <h2>Expert Tutors</h2>
+    <p>Experienced teachers for all subjects</p>
+  </div>
+  <div class="feature-card">
+    <h2>1-to-1 Tuition</h2>
+    <p>Personal attention at your home</p>
+  </div>
+  <div class="feature-card">
+    <h2>Demo Class</h2>
+    <p>Try before final confirmation</p>
+  </div>
+</section>
 
-.nav a {
-  color: white;
-  text-decoration: none;
-  margin: 0 12px;
-  font-weight: bold;
-}
+<section class="categories">
+  <h2>Exam Categories</h2>
+  <p>Choose the class or exam you are preparing for</p>
 
-.banner {
-  background: linear-gradient(120deg, #061b3a, #0b4ea2);
-  color: white;
-  padding: 45px 18px;
-  text-align: center;
-}
+  <div class="category-card">
+    <h3>School Boards</h3>
+    <div>
+      <span>CBSE</span>
+      <span>ICSE</span>
+      <span>UP Board</span>
+    </div>
+    <a href="contact.html">Explore Category →</a>
+  </div>
 
-.banner h1 {
-  color: #ffd400;
-  font-size: 34px;
-  letter-spacing: 1px;
-  margin-bottom: 8px;
-}
+  <div class="category-card">
+    <h3>JEE Preparation</h3>
+    <div>
+      <span>Class 11</span>
+      <span>Class 12</span>
+      <span>Dropper</span>
+    </div>
+    <a href="contact.html">Explore Category →</a>
+  </div>
 
-.banner p {
-  font-size: 19px;
-  margin-bottom: 18px;
-}
+  <div class="category-card">
+    <h3>NEET Preparation</h3>
+    <div>
+      <span>Physics</span>
+      <span>Chemistry</span>
+      <span>Biology</span>
+    </div>
+    <a href="contact.html">Explore Category →</a>
+  </div>
 
-.banner-box {
-  max-width: 650px;
-  margin: 0 auto 22px;
-  border: 1px solid rgba(255,255,255,0.45);
-  border-radius: 18px;
-  padding: 16px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  background: rgba(255,255,255,0.08);
-}
+  <div class="category-card">
+    <h3>Pre Foundation</h3>
+    <div>
+      <span>Class 6</span>
+      <span>Class 7</span>
+      <span>Class 8</span>
+      <span>Class 9</span>
+      <span>Class 10</span>
+    </div>
+    <a href="contact.html">Explore Category →</a>
+  </div>
+</section>
 
-.banner-box span {
-  font-size: 15px;
-}
+<section class="reviews">
+  <h2>Student & Parent Reviews</h2>
+  <div class="review-card">"Very professional teachers and excellent support."</div>
+  <div class="review-card">"My child's marks improved within 2 months."</div>
+</section>
 
-.yellow-btn {
-  background: #ffd400;
-  color: #111;
-  padding: 12px 30px;
-  border-radius: 25px;
-  text-decoration: none;
-  font-weight: bold;
-  display: inline-block;
-}
+<footer>
+  <p>© 2026 Acharya Home Tutors Lucknow</p>
+  <p>Call: 9369072114 | Email: srishobhit777@gmail.com</p>
+</footer>
 
-.hero {
-  text-align: center;
-  padding: 55px 22px;
-  background: linear-gradient(135deg, #ffffff, #f2f0ff);
-}
+<a href="https://wa.me/919369072114" class="floating-whatsapp">☎</a>
 
-.hero h2 {
-  font-size: 30px;
-  line-height: 1.4;
-}
-
-.hero span {
-  color: #5b45d9;
-}
-
-.hero p {
-  font-size: 18px;
-  margin: 18px 0 25px;
-}
-
-.main-btn {
-  display: inline-block;
-  background: #5b45d9;
-  color: white;
-  text-decoration: none;
-  padding: 16px 45px;
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.stats {
-  background: white;
-  margin: 25px;
-  padding: 28px 12px;
-  border-radius: 14px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
-  text-align: center;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
-}
-
-.icon {
-  font-size: 34px;
-}
-
-.stat-card h3 {
-  font-size: 20px;
-  margin-top: 8px;
-}
-
-.stat-card p {
-  font-size: 15px;
-  color: #555;
-  margin-top: 5px;
-}
-
-.category-section {
-  padding: 30px 25px;
-}
-
-.category-section h2 {
-  text-align: center;
-  font-size: 31px;
-  margin-bottom: 10px;
-}
-
-.category-section > p {
-  text-align: center;
-  font-size: 18px;
-  margin-bottom: 25px;
-}
-
-.category-card {
-  background: white;
-  padding: 26px;
-  margin-bottom: 18px;
-  border-radius: 14px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-  position: relative;
-  overflow: hidden;
-}
-
-.category-card::after {
-  content: "🎒";
-  position: absolute;
-  right: 25px;
-  top: 35px;
-  font-size: 52px;
-  opacity: 0.25;
-}
-
-.category-card h3 {
-  font-size: 28px;
-  margin-bottom: 18px;
-}
-
-.tags span {
-  display: inline-block;
-  border: 1px solid #ddd;
-  padding: 9px 22px;
-  border-radius: 20px;
-  margin: 6px 5px;
-  background: #fff;
-}
-
-.category-card a {
-  display: inline-block;
-  margin-top: 18px;
-  color: #111;
-  font-size: 20px;
-  text-decoration: none;
-}
-
-.apply-box {
-  text-align: center;
-  background: #eef2ff;
-  margin: 25px;
-  padding: 35px 20px;
-  border-radius: 16px;
-}
-
-.apply-box h2 {
-  font-size: 28px;
-  margin-bottom: 10px;
-}
-
-.apply-box p {
-  margin-bottom: 20px;
-}
-
-footer {
-  background: #111827;
-  color: white;
-  text-align: center;
-  padding: 25px;
-  margin-top: 30px;
-}
-
-.floating-call {
-  position: fixed;
-  right: 22px;
-  bottom: 25px;
-  background: #5b45d9;
-  color: white;
-  width: 62px;
-  height: 62px;
-  border-radius: 50%;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
-  box-shadow: 0 5px 18px rgba(0,0,0,0.25);
-}
-
-@media (min-width: 768px) {
-  .stats {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .banner h1 {
-    font-size: 48px;
-  }
-
-  .hero h2 {
-    font-size: 42px;
-  }
-}
+</body>
+</html>
