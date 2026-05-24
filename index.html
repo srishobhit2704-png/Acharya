@@ -39,7 +39,7 @@
   <nav id="menu">
     <a href="#find">Find Tutor</a>
     <a href="#become">Become Tutor</a>
-    <a href="#dashboard">Dashboard</a>
+    <a href="tutor-dashboard.html">Dashboard</a>
     <a href="#booking">Book</a>
     <a href="#contact">Contact</a>
   </nav>
@@ -56,9 +56,10 @@
 <section id="find">
   <h2>Find Tutor</h2>
   <div class="box">
-    <form onsubmit="findTutor(event)">
+    <form action="tutor-upload.html"
       <input id="findName" type="text" placeholder="Parent/Student Name" required>
       <input id="findClass" type="text" placeholder="Class / Grade" required>
+      <input id="findSchool" type="text" placeholder="School Name" required>
       <select id="findSubject" required>
         <option value="">Select Subject</option>
         <option>All Subjects</option><option>Maths</option><option>Science</option><option>English</option>
@@ -118,20 +119,6 @@
   </div>
 </section>
 
-<section id="booking">
-  <h2>Book a Session</h2>
-  <div class="box">
-    <form onsubmit="bookSession(event)">
-      <input id="bookName" type="text" placeholder="Student Name" required>
-      <input id="bookClass" type="text" placeholder="Class / Grade" required>
-      <input id="bookSubject" type="text" placeholder="Subject / Activity" required>
-      <input id="bookPhone" type="tel" placeholder="Parent Mobile Number" required>
-      <textarea id="bookMsg" placeholder="Message"></textarea>
-      <button class="submit" type="submit">Submit Booking Request</button>
-    </form>
-  </div>
-</section>
-
 <section id="contact">
   <h2>Contact Us</h2>
   <div class="box">
@@ -155,11 +142,6 @@ function openWA(text){
 function findTutor(e){
   e.preventDefault();
   openWA(`Find Tutor Request\nName: ${findName.value}\nClass: ${findClass.value}\nSubject: ${findSubject.value}\nArea: ${findArea.value}\nMobile: ${findPhone.value}`);
-}
-
-function becomeTutor(e){
-  e.preventDefault();
-  openWA(`Become a Tutor Request\nName: ${tutorName.value}\nSubjects: ${tutorSubject.value}\nClasses: ${tutorClass.value}\nExperience: ${tutorExp.value}\nMobile: ${tutorPhone.value}\nDetails: ${tutorMsg.value}`);
 }
 
 function bookSession(e){
