@@ -837,7 +837,7 @@
                 `💬 *About:* ${about || 'N/A'}%0A%0A` +
                 `I want to join Acharya as a tutor.`;
 
-            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
+            window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text), "_blank");
             showToast('Redirecting to WhatsApp...');
             e.target.reset();
         }
