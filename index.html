@@ -56,8 +56,43 @@
         .top-bar .yt:hover { background: #ff0000; }
         .top-bar .li:hover { background: #0077b5; }
         .top-bar .ig:hover { background: #e4405f; }
+.subjects-box label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 14px;
+    border-bottom: 1px solid #1b3a5c;
+}
 
-        /* ========== SIDEBAR ========== */
+.subjects-box input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.subjects-box {
+    .subjects-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.subjects-box input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    flex-shrink: 0;
+}
+.subjects-box label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 0;
+}
+        
+/* ========== SIDEBAR ========== */
         .sidebar {
             position: fixed;
             left: 0;
