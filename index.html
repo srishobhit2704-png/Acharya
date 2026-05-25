@@ -1,621 +1,857 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acharya - Find Your Perfect Tutor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <title>Acharya Home Tutors Lucknow</title>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a1628;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-  <meta name="description"
-    content="Best Home Tuition in Lucknow for Class 1 to 12, CBSE, ICSE, JEE & NEET."/>
+        /* ========== TOP BAR ========== */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: #0d1b2a;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 20px;
+            z-index: 1000;
+            border-bottom: 1px solid #1b3a5c;
+            gap: 15px;
+        }
 
-  <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+        .top-bar a {
+            color: #fff;
+            font-size: 20px;
+            transition: all 0.3s;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
 
-  <style>
+        .top-bar a:hover {
+            transform: scale(1.2);
+        }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial, sans-serif;
-}
+        .top-bar .yt:hover { background: #ff0000; }
+        .top-bar .li:hover { background: #0077b5; }
+        .top-bar .ig:hover { background: #e4405f; }
 
-body{
-  background:#f5f7fb;
-  color:#222;
-}
+        /* ========== SIDEBAR ========== */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 50px;
+            width: 220px;
+            height: calc(100vh - 50px);
+            background: #0d1b2a;
+            border-right: 1px solid #1b3a5c;
+            padding: 20px 0;
+            z-index: 999;
+            transition: transform 0.3s;
+        }
 
-/* HEADER */
+        .sidebar .logo {
+            text-align: center;
+            padding: 0 20px 20px;
+            border-bottom: 1px solid #1b3a5c;
+            margin-bottom: 10px;
+        }
 
-header{
-  background:#0f172a;
-  color:white;
-  padding:15px 7%;
-  position:sticky;
-  top:0;
-  z-index:1000;
-}
+        .sidebar .logo h1 {
+            font-size: 28px;
+            background: linear-gradient(135deg, #00d4ff, #7b2cbf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
 
-.navbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
+        .sidebar .logo p {
+            font-size: 11px;
+            color: #8899a6;
+            margin-top: 2px;
+        }
 
-.logo{
-  font-size:28px;
-  font-weight:bold;
-  color:#38bdf8;
-}
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 14px 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #b0c4de;
+            font-size: 15px;
+            gap: 12px;
+        }
 
-nav ul{
-  display:flex;
-  list-style:none;
-  gap:25px;
-}
+        .nav-item:hover, .nav-item.active {
+            background: #1b3a5c;
+            color: #fff;
+            border-left: 3px solid #00d4ff;
+        }
 
-nav ul li a{
-  color:white;
-  text-decoration:none;
-  font-size:16px;
-}
+        .nav-item i {
+            width: 22px;
+            text-align: center;
+        }
 
-.menu-toggle{
-  display:none;
-  font-size:28px;
-  cursor:pointer;
-}
+        /* ========== MAIN CONTENT ========== */
+        .main-content {
+            margin-left: 220px;
+            margin-top: 50px;
+            padding: 30px;
+            min-height: calc(100vh - 50px);
+        }
 
-/* HERO */
+        .section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
 
-.hero{
-  padding:70px 7%;
-  background:linear-gradient(to right,#0f172a,#1e293b);
-  color:white;
-  text-align:center;
-}
+        .section.active {
+            display: block;
+        }
 
-.hero h1{
-  font-size:50px;
-  margin-bottom:20px;
-}
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-.hero p{
-  font-size:20px;
-  margin-bottom:30px;
-}
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+        }
 
-.hero-buttons{
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  flex-wrap:wrap;
-}
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #00d4ff, #7b2cbf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-.btn{
-  padding:14px 28px;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
-  font-size:16px;
-  text-decoration:none;
-  transition:0.3s;
-}
+        .hero p {
+            font-size: 18px;
+            color: #8899a6;
+            margin-bottom: 40px;
+        }
 
-.primary-btn{
-  background:#38bdf8;
-  color:white;
-}
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
 
-.secondary-btn{
-  background:white;
-  color:#0f172a;
-}
+        .card {
+            background: #0d1b2a;
+            border: 1px solid #1b3a5c;
+            border-radius: 16px;
+            padding: 35px 30px;
+            width: 320px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
 
-.btn:hover{
-  transform:translateY(-3px);
-}
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,212,255,0.1), transparent);
+            transition: left 0.5s;
+        }
 
-/* SEARCH */
+        .card:hover::before {
+            left: 100%;
+        }
 
-.search-box{
-  background:white;
-  padding:30px;
-  width:90%;
-  max-width:1000px;
-  margin:-40px auto 50px;
-  border-radius:20px;
-  box-shadow:0 5px 20px rgba(0,0,0,0.1);
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #00d4ff;
+            box-shadow: 0 10px 40px rgba(0,212,255,0.15);
+        }
 
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  gap:20px;
-}
+        .card-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+        }
 
-.search-box input,
-.search-box select{
-  padding:15px;
-  border:1px solid #ddd;
-  border-radius:10px;
-}
+        .card-find .card-icon { background: rgba(0,212,255,0.15); color: #00d4ff; }
+        .card-become .card-icon { background: rgba(123,44,191,0.15); color: #7b2cbf; }
+        .card-worksheet .card-icon { background: rgba(255,193,7,0.15); color: #ffc107; }
 
-.search-box button{
-  background:#0f172a;
-  color:white;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
-}
+        .card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
 
-/* SECTION */
+        .card p {
+            color: #8899a6;
+            font-size: 14px;
+            line-height: 1.6;
+        }
 
-section{
-  padding:70px 7%;
-}
+        .card-btn {
+            margin-top: 20px;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 25px;
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
 
-.section-title{
-  text-align:center;
-  margin-bottom:50px;
-  font-size:36px;
-  color:#0f172a;
-}
+        .card-find .card-btn { background: #00d4ff; }
+        .card-become .card-btn { background: #7b2cbf; }
+        .card-worksheet .card-btn { background: #ffc107; color: #0a1628; }
 
-/* CARDS */
+        .card-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255,255,255,0.2);
+        }
 
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:25px;
-}
+        /* ========== FORMS ========== */
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #0d1b2a;
+            border: 1px solid #1b3a5c;
+            border-radius: 16px;
+            padding: 35px;
+        }
 
-.card{
-  background:white;
-  padding:30px;
-  border-radius:18px;
-  box-shadow:0 5px 20px rgba(0,0,0,0.08);
-  transition:0.3s;
-}
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 26px;
+        }
 
-.card:hover{
-  transform:translateY(-5px);
-}
+        .form-container h2 i {
+            margin-right: 10px;
+        }
 
-.card h3{
-  margin-bottom:15px;
-  color:#0f172a;
-}
+        .form-group {
+            margin-bottom: 18px;
+        }
 
-/* STATS */
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: #b0c4de;
+            font-size: 14px;
+        }
 
-.stats{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:20px;
-  text-align:center;
-}
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #1b3a5c;
+            border-radius: 10px;
+            background: #0a1628;
+            color: #fff;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
 
-.stat-box{
-  background:#0f172a;
-  color:white;
-  padding:40px;
-  border-radius:20px;
-}
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 10px rgba(0,212,255,0.2);
+        }
 
-.stat-box h2{
-  font-size:40px;
-  color:#38bdf8;
-}
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
 
-/* FORM */
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #00d4ff, #7b2cbf);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
 
-.form-section{
-  background:white;
-  border-radius:20px;
-  padding:40px;
-  box-shadow:0 5px 20px rgba(0,0,0,0.08);
-}
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,212,255,0.3);
+        }
 
-.form-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-}
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #8899a6;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
 
-.form-grid input,
-.form-grid textarea,
-.form-grid select{
-  padding:15px;
-  border:1px solid #ddd;
-  border-radius:10px;
-}
+        .back-btn:hover {
+            color: #00d4ff;
+        }
 
-textarea{
-  grid-column:span 2;
-  height:120px;
-}
+        /* ========== WORKSHEET SECTION ========== */
+        .worksheet-hero {
+            text-align: center;
+            padding: 40px 20px;
+        }
 
-.form-btn{
-  background:#0f172a;
-  color:white;
-  border:none;
-  padding:15px;
-  border-radius:10px;
-  cursor:pointer;
-}
+        .worksheet-hero h2 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
 
-/* FOOTER */
+        .worksheet-hero p {
+            color: #8899a6;
+            margin-bottom: 30px;
+        }
 
-footer{
-  background:#0f172a;
-  color:white;
-  text-align:center;
-  padding:40px 20px;
-}
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
 
-/* FLOATING BUTTONS */
+        .subject-card {
+            background: #0d1b2a;
+            border: 1px solid #1b3a5c;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
 
-.whatsapp-btn,
-.call-btn{
-  position:fixed;
-  right:20px;
-  padding:15px 20px;
-  border-radius:50px;
-  color:white;
-  text-decoration:none;
-  z-index:999;
-}
+        .subject-card:hover {
+            border-color: #ffc107;
+            transform: scale(1.05);
+        }
 
-.whatsapp-btn{
-  background:#25D366;
-  bottom:90px;
-}
+        .subject-card i {
+            font-size: 28px;
+            margin-bottom: 8px;
+            display: block;
+        }
 
-.call-btn{
-  background:#0ea5e9;
-  bottom:20px;
-}
+        .subject-card span {
+            font-size: 14px;
+        }
 
-/* MOBILE */
+        /* ========== MOBILE RESPONSIVE ========== */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 55px;
+            left: 15px;
+            z-index: 1001;
+            background: #1b3a5c;
+            border: none;
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+        }
 
-@media(max-width:768px){
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .hero h2 {
+                font-size: 28px;
+            }
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .card {
+                width: 100%;
+                max-width: 350px;
+            }
+        }
 
-  nav ul{
-    display:none;
-    flex-direction:column;
-    background:#0f172a;
-    position:absolute;
-    right:0;
-    top:70px;
-    width:220px;
-    padding:20px;
-  }
+        /* ========== FOOTER ========== */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #8899a6;
+            font-size: 13px;
+            border-top: 1px solid #1b3a5c;
+            margin-top: 40px;
+        }
 
-  nav ul.active{
-    display:flex;
-  }
+        .footer a {
+            color: #00d4ff;
+            text-decoration: none;
+        }
 
-  .menu-toggle{
-    display:block;
-  }
+        /* ========== TOAST ========== */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #1b3a5c;
+            color: #fff;
+            padding: 15px 25px;
+            border-radius: 10px;
+            border-left: 4px solid #00d4ff;
+            transform: translateX(150%);
+            transition: transform 0.4s;
+            z-index: 2000;
+            font-size: 14px;
+        }
 
-  .hero h1{
-    font-size:34px;
-  }
-
-  .search-box{
-    grid-template-columns:1fr;
-  }
-
-  .form-grid{
-    grid-template-columns:1fr;
-  }
-
-  textarea{
-    grid-column:span 1;
-  }
-}
-
-  </style>
+        .toast.show {
+            transform: translateX(0);
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- HEADER -->
-
-<header>
-
-  <div class="navbar">
-
-    <div class="logo">
-      Acharya
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <a href="https://youtube.com" target="_blank" class="yt" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://linkedin.com" target="_blank" class="li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://instagram.com" target="_blank" class="ig" title="Instagram"><i class="fab fa-instagram"></i></a>
     </div>
 
-    <nav>
-      <ul id="menu">
-
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Tutors</a></li>
-        <li><a href="#">Jobs</a></li>
-        <li><a href="#">Contact</a></li>
-
-      </ul>
-    </nav>
-
-    <div class="menu-toggle" onclick="toggleMenu()">
-      ☰
+    <!-- Sidebar -->
+    <button class="menu-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <h1>ACHARYA</h1>
+            <p>Learn. Grow. Excel.</p>
+        </div>
+        <div class="nav-item active" onclick="showSection('home')">
+            <i class="fas fa-home"></i> Home
+        </div>
+        <div class="nav-item" onclick="showSection('find-tutor')">
+            <i class="fas fa-search"></i> Find Tutor
+        </div>
+        <div class="nav-item" onclick="showSection('become-tutor')">
+            <i class="fas fa-chalkboard-teacher"></i> Become a Tutor
+        </div>
+        <div class="nav-item" onclick="showSection('worksheet')">
+            <i class="fas fa-file-alt"></i> Worksheets
+        </div>
+        <div class="nav-item" onclick="showSection('contact')">
+            <i class="fas fa-phone"></i> Contact Us
+        </div>
     </div>
 
-  </div>
+    <!-- Main Content -->
+    <div class="main-content">
 
-</header>
+        <!-- HOME SECTION -->
+        <div class="section active" id="home">
+            <div class="hero">
+                <h2><i class="fas fa-graduation-cap"></i> Welcome to Acharya</h2>
+                <p>Your gateway to quality education. Find the best tutors or join us as one!</p>
+            </div>
+            <div class="cards-container">
+                <div class="card card-find" onclick="showSection('find-tutor')">
+                    <div class="card-icon"><i class="fas fa-search"></i></div>
+                    <h3>Find a Tutor</h3>
+                    <p>Looking for expert guidance? Browse our verified tutors and find the perfect match for your learning needs.</p>
+                    <button class="card-btn">Get Started <i class="fas fa-arrow-right"></i></button>
+                </div>
+                <div class="card card-become" onclick="showSection('become-tutor')">
+                    <div class="card-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <h3>Become a Tutor</h3>
+                    <p>Share your knowledge and earn. Join our community of expert educators and make a difference.</p>
+                    <button class="card-btn">Apply Now <i class="fas fa-arrow-right"></i></button>
+                </div>
+                <div class="card card-worksheet" onclick="showSection('worksheet')">
+                    <div class="card-icon"><i class="fas fa-file-alt"></i></div>
+                    <h3>Worksheets</h3>
+                    <p>Practice makes perfect! Download subject-wise worksheets to sharpen your skills.</p>
+                    <button class="card-btn">Explore <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
 
-<!-- HERO -->
+        <!-- FIND TUTOR SECTION -->
+        <div class="section" id="find-tutor">
+            <div class="back-btn" onclick="showSection('home')"><i class="fas fa-arrow-left"></i> Back to Home</div>
+            <div class="form-container">
+                <h2><i class="fas fa-search" style="color:#00d4ff"></i> Find a Tutor</h2>
+                <form onsubmit="handleFindTutor(event)">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Your Name</label>
+                        <input type="text" id="ft-name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-phone"></i> Mobile Number</label>
+                        <input type="tel" id="ft-mobile" placeholder="Enter your mobile number" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-book"></i> Subject Required</label>
+                        <select id="ft-subject" required>
+                            <option value="">Select Subject</option>
+                            <option value="Mathematics">Mathematics</option>
+                            <option value="Science">Science</option>
+                            <option value="English">English</option>
+                            <option value="Hindi">Hindi</option>
+                            <option value="Social Science">Social Science</option>
+                            <option value="Physics">Physics</option>
+                            <option value="Chemistry">Chemistry</option>
+                            <option value="Biology">Biology</option>
+                            <option value="Computer Science">Computer Science</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-layer-group"></i> Class / Grade</label>
+                        <select id="ft-class" required>
+                            <option value="">Select Class</option>
+                            <option value="Class 1-5">Class 1-5</option>
+                            <option value="Class 6-8">Class 6-8</option>
+                            <option value="Class 9-10">Class 9-10</option>
+                            <option value="Class 11-12">Class 11-12</option>
+                            <option value="Competitive Exam">Competitive Exam</option>
+                            <option value="College">College</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-map-marker-alt"></i> Location / Address</label>
+                        <input type="text" id="ft-location" placeholder="Enter your city/area" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-comment"></i> Additional Requirements</label>
+                        <textarea id="ft-message" placeholder="Any specific requirements..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn"><i class="fab fa-whatsapp"></i> Apply via WhatsApp</button>
+                </form>
+            </div>
+        </div>
 
-<section class="hero">
+        <!-- BECOME TUTOR SECTION -->
+        <div class="section" id="become-tutor">
+            <div class="back-btn" onclick="showSection('home')"><i class="fas fa-arrow-left"></i> Back to Home</div>
+            <div class="form-container">
+                <h2><i class="fas fa-chalkboard-teacher" style="color:#7b2cbf"></i> Become a Tutor</h2>
+                <form onsubmit="handleBecomeTutor(event)">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Full Name</label>
+                        <input type="text" id="bt-name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-phone"></i> Mobile Number</label>
+                        <input type="tel" id="bt-mobile" placeholder="Enter your mobile number" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email ID</label>
+                        <input type="email" id="bt-email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-graduation-cap"></i> Highest Qualification</label>
+                        <select id="bt-qualification" required>
+                            <option value="">Select Qualification</option>
+                            <option value="12th Pass">12th Pass</option>
+                            <option value="Graduate">Graduate</option>
+                            <option value="Post Graduate">Post Graduate</option>
+                            <option value="B.Ed">B.Ed</option>
+                            <option value="M.Ed">M.Ed</option>
+                            <option value="PhD">PhD</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-book"></i> Subjects You Can Teach</label>
+                        <input type="text" id="bt-subjects" placeholder="e.g. Maths, Science, English" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-layer-group"></i> Classes You Can Teach</label>
+                        <input type="text" id="bt-classes" placeholder="e.g. Class 6-10" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-map-marker-alt"></i> Your Location</label>
+                        <input type="text" id="bt-location" placeholder="Enter your city/area" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-comment"></i> About Yourself</label>
+                        <textarea id="bt-about" placeholder="Tell us about your teaching experience..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn"><i class="fab fa-whatsapp"></i> Apply via WhatsApp</button>
+                </form>
+            </div>
+        </div>
 
-  <h1>
-    Best Home Tuition in Lucknow
-  </h1>
+        <!-- WORKSHEET SECTION -->
+        <div class="section" id="worksheet">
+            <div class="back-btn" onclick="showSection('home')"><i class="fas fa-arrow-left"></i> Back to Home</div>
+            <div class="worksheet-hero">
+                <h2><i class="fas fa-file-alt" style="color:#ffc107"></i> Worksheets</h2>
+                <p>Select a subject to request worksheets. We will send them to you via WhatsApp!</p>
+            </div>
+            <div class="subjects-grid">
+                <div class="subject-card" onclick="openWorksheetForm('Mathematics')">
+                    <i class="fas fa-calculator" style="color:#ff6b6b"></i>
+                    <span>Mathematics</span>
+                </div>
+                <div class="subject-card" onclick="openWorksheetForm('Science')">
+                    <i class="fas fa-flask" style="color:#4ecdc4"></i>
+                    <span>Science</span>
+                </div>
+                <div class="subject-card" onclick="openWorksheetForm('English')">
+                    <i class="fas fa-language" style="color:#45b7d1"></i>
+                    <span>English</span>
+                </div>
+                <div class="subject-card" onclick="openWorksheetForm('Hindi')">
+                    <i class="fas fa-font" style="color:#f9ca24"></i>
+                    <span>Hindi</span>
+                </div>
+                <div class="subject-card" onclick="openWorksheetForm('Social Science')">
+                    <i class="fas fa-globe-asia" style="color:#6c5ce7"></i>
+                    <span>Social Science</span>
+                </div>
+                <div class="subject-card" onclick="openWorksheetForm('Computer')">
+                    <i class="fas fa-laptop-code" style="color:#a29bfe"></i>
+                    <span>Computer</span>
+                </div>
+            </div>
 
-  <p>
-    Class 1 to 12 | CBSE | ICSE | JEE | NEET
-  </p>
+            <!-- Worksheet Form -->
+            <div class="form-container" id="worksheet-form-container" style="display:none; margin-top:20px;">
+                <h2><i class="fas fa-file-download" style="color:#ffc107"></i> Request Worksheet</h2>
+                <form onsubmit="handleWorksheet(event)">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Student Name</label>
+                        <input type="text" id="ws-name" placeholder="Enter student name" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-layer-group"></i> Class</label>
+                        <select id="ws-class" required>
+                            <option value="">Select Class</option>
+                            <option value="Class 1">Class 1</option>
+                            <option value="Class 2">Class 2</option>
+                            <option value="Class 3">Class 3</option>
+                            <option value="Class 4">Class 4</option>
+                            <option value="Class 5">Class 5</option>
+                            <option value="Class 6">Class 6</option>
+                            <option value="Class 7">Class 7</option>
+                            <option value="Class 8">Class 8</option>
+                            <option value="Class 9">Class 9</option>
+                            <option value="Class 10">Class 10</option>
+                            <option value="Class 11">Class 11</option>
+                            <option value="Class 12">Class 12</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-school"></i> School Name</label>
+                        <input type="text" id="ws-school" placeholder="Enter school name" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-book"></i> Subject</label>
+                        <input type="text" id="ws-subject" readonly style="background:#1b3a5c; cursor:not-allowed;">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-phone"></i> Parent's Mobile</label>
+                        <input type="tel" id="ws-mobile" placeholder="Enter mobile number" required>
+                    </div>
+                    <button type="submit" class="submit-btn"><i class="fab fa-whatsapp"></i> Send Request via WhatsApp</button>
+                </form>
+            </div>
+        </div>
 
-  <div class="hero-buttons">
+        <!-- CONTACT SECTION -->
+        <div class="section" id="contact">
+            <div class="back-btn" onclick="showSection('home')"><i class="fas fa-arrow-left"></i> Back to Home</div>
+            <div class="form-container">
+                <h2><i class="fas fa-phone" style="color:#00d4ff"></i> Contact Us</h2>
+                <div style="text-align:center; margin-bottom:25px;">
+                    <p style="color:#8899a6; margin-bottom:15px;">Have questions? Reach out to us directly!</p>
+                    <a href="https://wa.me/919369072114" target="_blank" style="display:inline-flex; align-items:center; gap:10px; background:#25d366; color:#fff; padding:12px 25px; border-radius:30px; text-decoration:none; font-weight:600; font-size:16px;">
+                        <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                    </a>
+                </div>
+                <div style="text-align:center; color:#8899a6; font-size:14px;">
+                    <p><i class="fas fa-phone" style="color:#00d4ff"></i> +91 93690 72114</p>
+                    <p style="margin-top:8px;"><i class="fas fa-envelope" style="color:#00d4ff"></i> contact@acharya.com</p>
+                </div>
+            </div>
+        </div>
 
-    <a href="#" class="btn primary-btn">
-      Hire Teacher
-    </a>
-
-    <a href="#" class="btn secondary-btn">
-      Book Free Demo
-    </a>
-
-  </div>
-
-</section>
-
-<!-- SEARCH -->
-
-<div class="search-box">
-
-  <select>
-    <option>Select Course</option>
-    <option>Class 1-5</option>
-    <option>Class 6-8</option>
-    <option>Class 9-10</option>
-    <option>Class 11-12</option>
-    <option>JEE</option>
-    <option>NEET</option>
-  </select>
-
-  <input type="text" placeholder="Enter City">
-
-  <button>
-    Search Tutors
-  </button>
-
-</div>
-
-<!-- WHY CHOOSE -->
-
-<section>
-
-  <h2 class="section-title">
-    Why Choose Acharya?
-  </h2>
-
-  <div class="cards">
-
-    <div class="card">
-      <h3>Expert Tutors</h3>
-      <p>Verified & experienced teachers.</p>
+        <div class="footer">
+            <p>© 2026 <strong style="color:#00d4ff">Acharya</strong> - Empowering Education. All rights reserved.</p>
+            <p style="margin-top:5px;">Made with <i class="fas fa-heart" style="color:#e4405f"></i> for students & teachers</p>
+        </div>
     </div>
 
-    <div class="card">
-      <h3>1-to-1 Teaching</h3>
-      <p>Personal attention at your home.</p>
-    </div>
-
-    <div class="card">
-      <h3>Affordable Fees</h3>
-      <p>Flexible pricing for all families.</p>
-    </div>
-
-    <div class="card">
-      <h3>Free Demo Class</h3>
-      <p>Take trial before confirmation.</p>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- SUBJECTS -->
-
-<section>
-
-  <h2 class="section-title">
-    Subjects We Cover
-  </h2>
-
-  <div class="cards">
-
-    <div class="card">Maths</div>
-    <div class="card">Physics</div>
-    <div class="card">Chemistry</div>
-    <div class="card">Biology</div>
-    <div class="card">English</div>
-    <div class="card">Science</div>
-    <div class="card">JEE</div>
-    <div class="card">NEET</div>
-
-  </div>
-
-</section>
-
-<!-- STATS -->
-
-<section>
-
-  <div class="stats">
-
-    <div class="stat-box">
-      <h2>500+</h2>
-      <p>Students</p>
-    </div>
-
-    <div class="stat-box">
-      <h2>100+</h2>
-      <p>Tutors</p>
-    </div>
-
-    <div class="stat-box">
-      <h2>50+</h2>
-      <p>Areas Covered</p>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- REVIEWS -->
-
-<section>
-
-  <h2 class="section-title">
-    Parent Reviews
-  </h2>
-
-  <div class="cards">
-
-    <div class="card">
-      "Very professional tutors and quick support."
-    </div>
-
-    <div class="card">
-      "My child improved a lot in Maths."
-    </div>
-
-    <div class="card">
-      "Best home tuition service in Lucknow."
-    </div>
-
-  </div>
-
-</section>
-
-<!-- INQUIRY FORM -->
-
-<section>
-
-  <h2 class="section-title">
-    Book Free Demo Class
-  </h2>
-
-  <div class="form-section">
-
-    <form class="form-grid">
-
-      <input type="text" placeholder="Parent Name">
-
-      <input type="tel" placeholder="Mobile Number">
-
-      <select>
-        <option>Select Class</option>
-        <option>Class 1-5</option>
-        <option>Class 6-8</option>
-        <option>Class 9-10</option>
-        <option>Class 11-12</option>
-      </select>
-
-      <input type="text" placeholder="Subject">
-
-      <textarea placeholder="Write Your Requirement"></textarea>
-
-      <button class="form-btn">
-        Submit Inquiry
-      </button>
-
-    </form>
-
-  </div>
-
-</section>
-
-<!-- TEACHER FORM -->
-
-<section>
-
-  <h2 class="section-title">
-    Become a Tutor
-  </h2>
-
-  <div class="form-section">
-
-    <form class="form-grid">
-
-      <input type="text" placeholder="Teacher Name">
-
-      <input type="tel" placeholder="Phone Number">
-
-      <input type="text" placeholder="Subjects">
-
-      <input type="text" placeholder="Experience">
-
-      <textarea placeholder="Tell About Yourself"></textarea>
-
-      <button class="form-btn">
-        Apply Now
-      </button>
-
-    </form>
-
-  </div>
-
-</section>
-
-<!-- FOOTER -->
-
-<footer>
-
-  <h2>Acharya Home Tutors Lucknow</h2>
-
-  <p>
-    Gomti Nagar | Aliganj | Indira Nagar | Hazratganj
-  </p>
-
-  <br>
-
-  <p>
-    Call: 9369072114
-  </p>
-
-</footer>
-
-<!-- FLOATING BUTTONS -->
-
-<a href="https://wa.me/919369072114"
-class="whatsapp-btn">
-WhatsApp
-</a>
-
-<a href="tel:9369072114"
-class="call-btn">
-Call Now
-</a>
-
-<!-- JS -->
-
-<script>
-
-function toggleMenu(){
-  document.getElementById("menu")
-  .classList.toggle("active");
-}
-
-</script>
-
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        const WHATSAPP_NUMBER = "919369072114"; // Your WhatsApp number with country code
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            document.getElementById('sidebar').classList.remove('open');
+            window.scrollTo(0,0);
+        }
+
+        // Override for nav items
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // ========== FIND TUTOR ==========
+        function handleFindTutor(e) {
+            e.preventDefault();
+            const name = document.getElementById('ft-name').value;
+            const mobile = document.getElementById('ft-mobile').value;
+            const subject = document.getElementById('ft-subject').value;
+            const cls = document.getElementById('ft-class').value;
+            const location = document.getElementById('ft-location').value;
+            const message = document.getElementById('ft-message').value;
+
+            const text = `*Find Tutor Request - Acharya*%0A%0A` +
+                `👤 *Name:* ${name}%0A` +
+                `📱 *Mobile:* ${mobile}%0A` +
+                `📚 *Subject:* ${subject}%0A` +
+                `🏫 *Class:* ${cls}%0A` +
+                `📍 *Location:* ${location}%0A` +
+                `💬 *Requirements:* ${message || 'N/A'}%0A%0A` +
+                `Please help me find a suitable tutor.`;
+
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
+            showToast('Redirecting to WhatsApp...');
+            e.target.reset();
+        }
+
+        // ========== BECOME TUTOR ==========
+        function handleBecomeTutor(e) {
+            e.preventDefault();
+            const name = document.getElementById('bt-name').value;
+            const mobile = document.getElementById('bt-mobile').value;
+            const email = document.getElementById('bt-email').value;
+            const qualification = document.getElementById('bt-qualification').value;
+            const subjects = document.getElementById('bt-subjects').value;
+            const classes = document.getElementById('bt-classes').value;
+            const location = document.getElementById('bt-location').value;
+            const about = document.getElementById('bt-about').value;
+
+            const text = `*Become a Tutor Application - Acharya*%0A%0A` +
+                `👤 *Name:* ${name}%0A` +
+                `📱 *Mobile:* ${mobile}%0A` +
+                `📧 *Email:* ${email}%0A` +
+                `🎓 *Qualification:* ${qualification}%0A` +
+                `📚 *Subjects:* ${subjects}%0A` +
+                `🏫 *Classes:* ${classes}%0A` +
+                `📍 *Location:* ${location}%0A` +
+                `💬 *About:* ${about || 'N/A'}%0A%0A` +
+                `I want to join Acharya as a tutor.`;
+
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
+            showToast('Redirecting to WhatsApp...');
+            e.target.reset();
+        }
+
+        // ========== WORKSHEET ==========
+        function openWorksheetForm(subject) {
+            document.getElementById('worksheet-form-container').style.display = 'block';
+            document.getElementById('ws-subject').value = subject;
+            document.getElementById('worksheet-form-container').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function handleWorksheet(e) {
+            e.preventDefault();
+            const name = document.getElementById('ws-name').value;
+            const cls = document.getElementById('ws-class').value;
+            const school = document.getElementById('ws-school').value;
+            const subject = document.getElementById('ws-subject').value;
+            const mobile = document.getElementById('ws-mobile').value;
+
+            const text = `*Worksheet Request - Acharya*%0A%0A` +
+                `👤 *Student Name:* ${name}%0A` +
+                `🏫 *Class:* ${cls}%0A` +
+                `🏢 *School:* ${school}%0A` +
+                `📚 *Subject:* ${subject}%0A` +
+                `📱 *Parent Mobile:* ${mobile}%0A%0A` +
+                `Please send the worksheet for the above details.`;
+
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
+            showToast('Redirecting to WhatsApp...');
+            e.target.reset();
+            document.getElementById('worksheet-form-container').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
