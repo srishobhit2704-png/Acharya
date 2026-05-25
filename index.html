@@ -755,129 +755,155 @@
             <p style="margin-top:5px;">Made with <i class="fas fa-heart" style="color:#e4405f"></i> for students & teachers</p>
         </div>
     </div>
+<script>
+const WHATSAPP_NUMBER = "919369072114";
 
+function showSection(sectionId) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById(sectionId).classList.add('active');
+
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+
+    const navMap = {
+        'home': 0,
+        'find-tutor': 1,
+        'become-tutor': 2,
+        'worksheet': 3,
+        'contact': 4
+    };
+
+    const navItems = document.querySelectorAll('.nav-item');
+    if (navItems[navMap[sectionId]]) {
+        navItems[navMap[sectionId]].classList.add('active');
+    }
+
+    document.getElementById('sidebar').classList.remove('open');
+    window.scrollTo(0,0);
+}
+
+function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('open');
+}
+
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+function handleFindTutor(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('ft-name').value;
+    const mobile = document.getElementById('ft-mobile').value;
+
+    const subjects = Array.from(document.querySelectorAll('input[name="ft_subject"]:checked'))
+        .map(cb => cb.value)
+        .join(', ');
+
+    const cls = document.getElementById('ft-class').value;
+    const location = document.getElementById('ft-location').value;
+    const message = document.getElementById('ft-message').value;
+
+    if (!subjects) {
+        alert("Please select at least one subject");
+        return;
+    }
+
+    const text =
+`*Find Tutor Request - Acharya*
+
+👤 *Name:* ${name}
+📱 *Mobile:* ${mobile}
+📚 *Subject:* ${subjects}
+🏫 *Class:* ${cls}
+📍 *Location:* ${location}
+💬 *Requirements:* ${message || 'N/A'}
+
+Please help me find a suitable tutor.`;
+
+    window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text), "_blank");
+    showToast('Redirecting to WhatsApp...');
+    e.target.reset();
+}
+
+function handleBecomeTutor(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('bt-name').value;
+    const mobile = document.getElementById('bt-mobile').value;
+    const email = document.getElementById('bt-email').value;
+    const qualification = document.getElementById('bt-qualification').value;
+    const subjects = document.getElementById('bt-subjects').value;
+    const classes = document.getElementById('bt-classes').value;
+    const location = document.getElementById('bt-location').value;
+    const about = document.getElementById('bt-about').value;
+
+    const text =
+`*Become a Tutor Application - Acharya*
+
+👤 *Name:* ${name}
+📱 *Mobile:* ${mobile}
+📧 *Email:* ${email}
+🎓 *Qualification:* ${qualification}
+📚 *Subjects:* ${subjects}
+🏫 *Classes:* ${classes}
+📍 *Location:* ${location}
+💬 *About:* ${about || 'N/A'}
+
+I want to join Acharya as a tutor.`;
+
+    window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text), "_blank");
+    showToast('Redirecting to WhatsApp...');
+    e.target.reset();
+}
+
+let selectedWorksheetSubjects = [];
+
+function openWorksheetForm(subject) {
+    document.getElementById('worksheet-form-container').style.display = 'block';
+
+    if (selectedWorksheetSubjects.includes(subject)) {
+        selectedWorksheetSubjects = selectedWorksheetSubjects.filter(s => s !== subject);
+    } else {
+        selectedWorksheetSubjects.push(subject);
+    }
+
+    document.getElementById('ws-subject').value = selectedWorksheetSubjects.join(', ');
+    document.getElementById('worksheet-form-container').scrollIntoView({ behavior: 'smooth' });
+}
+
+function handleWorksheet(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('ws-name').value;
+    const cls = document.getElementById('ws-class').value;
+    const school = document.getElementById('ws-school').value;
+    const subject = document.getElementById('ws-subject').value;
+    const mobile = document.getElementById('ws-mobile').value;
+
+    const text =
+`*Worksheet Request - Acharya*
+
+👤 *Student Name:* ${name}
+🏫 *Class:* ${cls}
+🏢 *School:* ${school}
+📚 *Subject:* ${subject}
+📱 *Parent Mobile:* ${mobile}
+
+Please send the worksheet for the above details.`;
+
+    window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text), "_blank");
+    showToast('Redirecting to WhatsApp...');
+    e.target.reset();
+    selectedWorksheetSubjects = [];
+    document.getElementById('worksheet-form-container').style.display = 'none';
+}
+</script>
     <!-- Toast Notification -->
     <div class="toast" id="toast"></div>
 
-    <script>
-        const WHATSAPP_NUMBER = "919369072114"; // Your WhatsApp number with country code
-
-        function showSection(sectionId) {
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.getElementById(sectionId).classList.add('active');
-            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-            document.getElementById('sidebar').classList.remove('open');
-            window.scrollTo(0,0);
-        }
-
-        // Override for nav items
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', function() {
-                document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('open');
-        }
-
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3000);
-        }
-
-        // ========== FIND TUTOR ==========
-        function handleFindTutor(e) {
-            e.preventDefault();
-            const name = document.getElementById('ft-name').value;
-            const mobile = document.getElementById('ft-mobile').value;
-            const subject = document.getElementById('ft-subject').value;
-            const cls = document.getElementById('ft-class').value;
-            const location = document.getElementById('ft-location').value;
-            const message = document.getElementById('ft-message').value;
-
-            const text = `*Find Tutor Request - Acharya*%0A%0A` +
-                `👤 *Name:* ${name}%0A` +
-                `📱 *Mobile:* ${mobile}%0A` +
-                `📚 *Subject:* ${subject}%0A` +
-                `🏫 *Class:* ${cls}%0A` +
-                `📍 *Location:* ${location}%0A` +
-                `💬 *Requirements:* ${message || 'N/A'}%0A%0A` +
-                `Please help me find a suitable tutor.`;
-
-            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
-            showToast('Redirecting to WhatsApp...');
-            e.target.reset();
-        }
-
-        // ========== BECOME TUTOR ==========
-        function handleBecomeTutor(e) {
-            e.preventDefault();
-            const name = document.getElementById('bt-name').value;
-            const mobile = document.getElementById('bt-mobile').value;
-            const email = document.getElementById('bt-email').value;
-            const qualification = document.getElementById('bt-qualification').value;
-            const subjects = document.getElementById('bt-subjects').value;
-            const classes = document.getElementById('bt-classes').value;
-            const location = document.getElementById('bt-location').value;
-            const about = document.getElementById('bt-about').value;
-
-            const text = `*Become a Tutor Application - Acharya*%0A%0A` +
-                `👤 *Name:* ${name}%0A` +
-                `📱 *Mobile:* ${mobile}%0A` +
-                `📧 *Email:* ${email}%0A` +
-                `🎓 *Qualification:* ${qualification}%0A` +
-                `📚 *Subjects:* ${subjects}%0A` +
-                `🏫 *Classes:* ${classes}%0A` +
-                `📍 *Location:* ${location}%0A` +
-                `💬 *About:* ${about || 'N/A'}%0A%0A` +
-                `I want to join Acharya as a tutor.`;
-
-            window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text), "_blank");
-            showToast('Redirecting to WhatsApp...');
-            e.target.reset();
-        }
-
-    let selectedWorksheetSubjects = [];
-
-function openWorksheetForm(subject) {
-  document.getElementById('worksheet-form-container').style.display = 'block';
-
-  if (selectedWorksheetSubjects.includes(subject)) {
-    selectedWorksheetSubjects = selectedWorksheetSubjects.filter(s => s !== subject);
-  } else {
-    selectedWorksheetSubjects.push(subject);
-  }
-
-  document.getElementById('ws-subject').value = selectedWorksheetSubjects.join(', ');
-  document.getElementById('worksheet-form-container').scrollIntoView({ behavior: 'smooth' });
-}
-
-        function handleWorksheet(e) {
-            e.preventDefault();
-            const name = document.getElementById('ws-name').value;
-            const cls = document.getElementById('ws-class').value;
-            const school = document.getElementById('ws-school').value;
-            const subject = document.getElementById('ws-subject').value;
-            const mobile = document.getElementById('ws-mobile').value;
-
-            const text = `*Worksheet Request - Acharya*%0A%0A` +
-                `👤 *Student Name:* ${name}%0A` +
-                `🏫 *Class:* ${cls}%0A` +
-                `🏢 *School:* ${school}%0A` +
-                `📚 *Subject:* ${subject}%0A` +
-                `📱 *Parent Mobile:* ${mobile}%0A%0A` +
-                `Please send the worksheet for the above details.`;
-
-            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
-            showToast('Redirecting to WhatsApp...');
-            e.target.reset();
-            document.getElementById('worksheet-form-container').style.display = 'none';
-        }
-    </script>
+    
 </body>
 </html>
