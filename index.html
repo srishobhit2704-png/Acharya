@@ -823,12 +823,20 @@
             e.target.reset();
         }
 
-        // ========== WORKSHEET ==========
-        function openWorksheetForm(subject) {
-            document.getElementById('worksheet-form-container').style.display = 'block';
-            document.getElementById('ws-subject').value = subject;
-            document.getElementById('worksheet-form-container').scrollIntoView({ behavior: 'smooth' });
-        }
+    let selectedWorksheetSubjects = [];
+
+function openWorksheetForm(subject) {
+  document.getElementById('worksheet-form-container').style.display = 'block';
+
+  if (selectedWorksheetSubjects.includes(subject)) {
+    selectedWorksheetSubjects = selectedWorksheetSubjects.filter(s => s !== subject);
+  } else {
+    selectedWorksheetSubjects.push(subject);
+  }
+
+  document.getElementById('ws-subject').value = selectedWorksheetSubjects.join(', ');
+  document.getElementById('worksheet-form-container').scrollIntoView({ behavior: 'smooth' });
+}
 
         function handleWorksheet(e) {
             e.preventDefault();
