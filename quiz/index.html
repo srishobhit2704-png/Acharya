@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Force Chapter Mega Quiz</title>
+
+<style>
+
+body{
+    margin:0;
+    padding:20px;
+    font-family:Arial, sans-serif;
+    background:#eef3ff;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 0 15px rgba(0,0,0,0.1);
+}
+
+h1{
+    text-align:center;
+    color:#0b4f9c;
+}
+
+h2{
+    color:#0b4f9c;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+button{
+    background:#0b4f9c;
+    color:white;
+    padding:12px 20px;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    margin-top:20px;
+}
+
+button:hover{
+    background:#08366b;
+}
+
+.question-box{
+    margin-top:25px;
+    padding:18px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    background:#fafafa;
+}
+
+.question-type{
+    color:#777;
+    font-size:14px;
+    margin-bottom:10px;
+}
+
+.question{
+    font-size:18px;
+    margin-bottom:15px;
+    line-height:1.5;
+}
+
+.option{
+    display:block;
+    padding:12px;
+    margin:8px 0;
+    background:#eeeeee;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.option:hover{
+    background:#dbe9ff;
+}
+
+.score{
+    margin-top:30px;
+    text-align:center;
+    font-size:24px;
+    color:green;
+}
+
+#quiz,
+#submitBtn{
+    display:none;
+}
+
+.student-info{
+    background:#fafafa;
+    padding:20px;
+    border-radius:12px;
+    border:1px solid #ddd;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Force Chapter Mega Quiz</h1>
+
+<!-- =========================
+STUDENT FORM
+========================= -->
+
+<div class="student-info" id="studentForm">
+
+    <h2>Student Details</h2>
+
+    <input type="text" id="studentName" placeholder="Enter Your Name">
+
+    <input type="text" id="studentClass" placeholder="Enter Class">
+
+    <input type="text" id="studentSchool" placeholder="Enter School Name">
+
+    <input type="text" id="studentMobile" placeholder="Enter Mobile Number">
+
+    <button onclick="startQuiz()">Start Quiz</button>
+
+</div>
+
+<!-- =========================
+QUIZ AREA
+========================= -->
+
+<div id="quiz"></div>
+
+<button id="submitBtn" onclick="submitQuiz()">
+    Submit Quiz
+</button>
+
+<div class="score" id="score"></div>
+
+</div>
+
+<script>
+
+/* =====================================================
+QUESTION BANK
+===================================================== */
+
+const questionBank = [];
+
+const concepts = [
+"Newton's First Law",
+"Newton's Second Law",
+"Newton's Third Law",
+"Momentum",
+"Inertia",
+"Balanced Forces",
+"Unbalanced Forces",
+"Friction",
+"Gravitational Force",
+"Circular Motion",
+"Action-Reaction Pair",
+"Mass and Weight",
+"Impulse",
+"Centripetal Force",
+"Air Resistance",
+"Static Friction",
+"Kinetic Friction",
+"Rolling Friction",
+"Acceleration",
+"Force and Pressure"
+];
+
+/* =====================================================
+MCQ QUESTIONS
+===================================================== */
+
+const mcqTemplates = [
+
+{
+q:"Which statement best explains",
+options:[
+"It changes state of motion",
+"It creates matter",
+"It destroys energy",
+"It only changes temperature"
+],
+answer:"It changes state of motion"
+},
+
+{
+q:"Which law is most closely related to",
+options:[
+"Newton's Second Law",
+"Law of Reflection",
+"Ohm's Law",
+"Pascal's Law"
+],
+answer:"Newton's Second Law"
+},
+
+{
+q:"Which quantity is directly affected in",
+options:[
+"Acceleration",
+"Temperature",
+"Density",
+"Frequency"
+],
+answer:"Acceleration"
+}
+
+];
+
+/* =====================================================
+TRUE FALSE
+===================================================== */
+
+const tfTemplates = [
+
+{
+q:"Force is a vector quantity.",
+answer:true
+},
+
+{
+q:"Balanced forces always produce acceleration.",
+answer:false
+},
+
+{
+q:"Momentum depends on mass and velocity.",
+answer:true
+},
+
+{
+q:"Friction always helps motion.",
+answer:false
+}
+
+];
+
+/* =====================================================
+FILL IN THE BLANKS
+===================================================== */
+
+const fillTemplates = [
+
+{
+q:"The SI unit of force is ______.",
+answer:"Newton"
+},
+
+{
+q:"Momentum is mass multiplied by ______.",
+answer:"velocity"
+},
+
+{
+q:"The tendency of a body to resist change is called ______.",
+answer:"inertia"
+},
+
+{
+q:"Force equals mass multiplied by ______.",
+answer:"acceleration"
+}
+
+];
+
+/* =====================================================
+ASSERTION REASON
+===================================================== */
+
+const assertionTemplates = [
+
+{
+assertion:"Assertion: Friction opposes motion.",
+reason:"Reason: Friction acts opposite to relative motion.",
+answer:"Both Assertion and Reason are true and Reason is the correct explanation."
+},
+
+{
+assertion:"Assertion: Mass and weight are same.",
+reason:"Reason: Weight depends on gravity.",
+answer:"Assertion is false but Reason is true."
+},
+
+{
+assertion:"Assertion: Inertia depends on mass.",
+reason:"Reason: More mass means greater resistance to change.",
+answer:"Both Assertion and Reason are true and Reason is the correct explanation."
+}
+
+];
+
+/* =====================================================
+CREATE 200 QUESTIONS
+===================================================== */
+
+for(let i=1;i<=200;i++){
+
+    let typeIndex = i % 4;
+
+    let concept = concepts[i % concepts.length];
+
+    if(typeIndex === 0){
+
+        let temp = mcqTemplates[i % mcqTemplates.length];
+
+        questionBank.push({
+
+            type:"MCQ",
+
+            question:`${temp.q} ${concept}?`,
+
+            options:temp.options,
+
+            answer:temp.answer
+        });
+
+    }
+
+    else if(typeIndex === 1){
+
+        let temp = tfTemplates[i % tfTemplates.length];
+
+        questionBank.push({
+
+            type:"True / False",
+
+            question:`${temp.q} (${concept})`,
+
+            options:["True","False"],
+
+            answer: temp.answer ? "True" : "False"
+        });
+
+    }
+
+    else if(typeIndex === 2){
+
+        let temp = fillTemplates[i % fillTemplates.length];
+
+        questionBank.push({
+
+            type:"Fill in the Blanks",
+
+            question:`${temp.q} (${concept})`,
+
+            options:[
+                temp.answer,
+                "joule",
+                "distance",
+                "time"
+            ].sort(()=>Math.random()-0.5),
+
+            answer:temp.answer
+        });
+
+    }
+
+    else{
+
+        let temp = assertionTemplates[i % assertionTemplates.length];
+
+        questionBank.push({
+
+            type:"Assertion Reason",
+
+            question:`
+            ${temp.assertion}
+            <br><br>
+            ${temp.reason}
+            `,
+
+            options:[
+            "Both Assertion and Reason are true and Reason is the correct explanation.",
+            "Both Assertion and Reason are true but Reason is NOT the correct explanation.",
+            "Assertion is true but Reason is false.",
+            "Assertion is false but Reason is true."
+            ],
+
+            answer:temp.answer
+        });
+
+    }
+
+}
+
+/* =====================================================
+RANDOM 50 QUESTIONS
+===================================================== */
+
+function getRandomQuestions(arr, num){
+
+    let shuffled = [...arr].sort(()=>0.5 - Math.random());
+
+    return shuffled.slice(0, num);
+
+}
+
+const quizQuestions = getRandomQuestions(questionBank,50);
+
+/* =====================================================
+START QUIZ
+===================================================== */
+
+function startQuiz(){
+
+    let name = document.getElementById("studentName").value;
+    let studentClass = document.getElementById("studentClass").value;
+    let school = document.getElementById("studentSchool").value;
+    let mobile = document.getElementById("studentMobile").value;
+
+    if(
+        name === "" ||
+        studentClass === "" ||
+        school === "" ||
+        mobile === ""
+    ){
+
+        alert("Please fill all details");
+        return;
+    }
+
+    if(mobile.length < 10){
+
+        alert("Enter valid mobile number");
+        return;
+    }
+
+    document.getElementById("studentForm").style.display = "none";
+
+    document.getElementById("quiz").style.display = "block";
+
+    document.getElementById("submitBtn").style.display = "inline-block";
+
+    loadQuiz();
+
+}
+
+/* =====================================================
+LOAD QUIZ
+===================================================== */
+
+function loadQuiz(){
+
+    const quizDiv = document.getElementById("quiz");
+
+    quizDiv.innerHTML = "";
+
+    quizQuestions.forEach((q,index)=>{
+
+        let html = `
+
+        <div class="question-box">
+
+            <div class="question-type">
+                ${q.type}
+            </div>
+
+            <div class="question">
+                Q${index+1}. ${q.question}
+            </div>
+
+        `;
+
+        q.options.forEach(option=>{
+
+            html += `
+
+            <label class="option">
+
+                <input
+                    type="radio"
+                    name="q${index}"
+                    value="${option}"
+                >
+
+                ${option}
+
+            </label>
+
+            `;
+
+        });
+
+        html += `</div>`;
+
+        quizDiv.innerHTML += html;
+
+    });
+
+}
+
+/* =====================================================
+SUBMIT QUIZ
+===================================================== */
+
+function submitQuiz(){
+
+    let score = 0;
+
+    quizQuestions.forEach((q,index)=>{
+
+        let selected = document.querySelector(
+            `input[name="q${index}"]:checked`
+        );
+
+        if(selected && selected.value === q.answer){
+
+            score++;
+
+        }
+
+    });
+
+    document.getElementById("score").innerHTML = `
+        Quiz Submitted Successfully! <br><br>
+        Your Score: ${score} / 50
+    `;
+
+    window.scrollTo(0,document.body.scrollHeight);
+
+}
+
+</script>
+
+</body>
+</html>
