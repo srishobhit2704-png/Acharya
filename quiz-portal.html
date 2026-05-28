@@ -468,730 +468,192 @@
         </div>
     </div>
 
-    <script>
-        // ==================== QuizData ====================
-        const quizData = {
-            // CLASS 4
-            4: {
-                math: [
-                    { type: 'mcq', q: 'What is the value of 7 × 8?', options: ['54', '56', '58', '52'], a: 1, exp: '7 × 8 = 56' },
-                    { type: 'mcq', q: 'Which fraction is largest: 1/2, 1/3, 1/4, 1/5?', options: ['1/2', '1/3', '1/4', '1/5'], a: 0, exp: '1/2 = 0.5 is the largest' },
-                    { type: 'mcq', q: 'What is the perimeter of a square with side 5 cm?', options: ['20 cm', '25 cm', '15 cm', '10 cm'], a: 0, exp: 'Perimeter = 4 × side = 4 × 5 = 20 cm' },
-                    { type: 'tf', q: 'Zero is an even number.', a: true, exp: 'Zero is divisible by 2, so it is even.' },
-                    { type: 'tf', q: 'A triangle has 4 sides.', a: false, exp: 'A triangle has exactly 3 sides.' },
-                    { type: 'mcq', q: 'What is 3/4 of 20?', options: ['12', '15', '10', '5'], a: 1, exp: '3/4 × 20 = 15' },
-                    { type: 'mcq', q: 'How many minutes are in 2.5 hours?', options: ['120', '130', '150', '160'], a: 2, exp: '2.5 × 60 = 150 minutes' },
-                    { type: 'tf', q: 'The sum of angles in a triangle is 180 degrees.', a: true, exp: 'Sum of interior angles of any triangle = 180°' },
-                    { type: 'mcq', q: 'Which is the smallest prime number?', options: ['0', '1', '2', '3'], a: 2, exp: '2 is the smallest prime number.' },
-                    { type: 'mcq', q: 'What is the place value of 7 in 3,745?', options: ['7', '70', '700', '7000'], a: 2, exp: '7 is in hundreds place: 700' },
-                    { type: 'tf', q: 'All rectangles are squares.', a: false, exp: 'Not all rectangles are squares. Squares have all sides equal.' },
-                    { type: 'mcq', q: 'What is 15% of 200?', options: ['20', '25', '30', '35'], a: 2, exp: '15/100 × 200 = 30' },
-                    { type: 'mcq', q: 'How many faces does a cube have?', options: ['4', '6', '8', '12'], a: 1, exp: 'A cube has 6 faces.' },
-                    { type: 'tf', q: '1 kilometer equals 1000 meters.', a: true, exp: '1 km = 1000 m' },
-                    { type: 'mcq', q: 'What is the next number: 2, 4, 8, 16, ?', options: ['24', '30', '32', '36'], a: 2, exp: 'Each number is multiplied by 2: 16 × 2 = 32' },
-                    { type: 'mcq', q: 'Which is heavier: 1 kg of cotton or 1 kg of iron?', options: ['Cotton', 'Iron', 'Both same', 'Cannot tell'], a: 2, exp: 'Both weigh 1 kg, so they are equal.' },
-                    { type: 'tf', q: 'The number 1 is neither prime nor composite.', a: true, exp: '1 has only one factor, so it is neither prime nor composite.' },
-                    { type: 'mcq', q: 'What is the Roman numeral for 50?', options: ['L', 'C', 'D', 'X'], a: 0, exp: 'L = 50 in Roman numerals' },
-                    { type: 'mcq', q: 'If a = 5 and b = 3, what is a² + b²?', options: ['34', '16', '64', '8'], a: 0, exp: '5² + 3² = 25 + 9 = 34' },
-                    { type: 'tf', q: 'A circle has infinite lines of symmetry.', a: true, exp: 'A circle has infinite diameters, each being a line of symmetry.' },
-                    { type: 'mcq', q: 'What is the HCF of 12 and 18?', options: ['2', '3', '6', '9'], a: 2, exp: 'Factors of 12: 1,2,3,4,6,12. Factors of 18: 1,2,3,6,9,18. HCF = 6' },
-                    { type: 'mcq', q: 'How many zeros in one crore?', options: ['5', '6', '7', '8'], a: 2, exp: '1 crore = 1,00,00,000 (7 zeros)' },
-                    { type: 'tf', q: 'Multiplication is repeated addition.', a: true, exp: '3 × 4 means 4 + 4 + 4 = 12' },
-                    { type: 'mcq', q: 'What is the area of a rectangle with length 8 cm and width 5 cm?', options: ['26 cm²', '40 cm²', '13 cm²', '32 cm²'], a: 1, exp: 'Area = length × width = 8 × 5 = 40 cm²' },
-                    { type: 'mcq', q: 'Which number is divisible by both 2 and 5?', options: ['12', '15', '20', '25'], a: 2, exp: '20 ends with 0, so divisible by both 2 and 5' },
-                    { type: 'tf', q: 'The diameter is twice the radius of a circle.', a: true, exp: 'Diameter = 2 × Radius' },
-                    { type: 'mcq', q: 'What is 2³ + 3²?', options: ['17', '15', '13', '19'], a: 0, exp: '2³ = 8, 3² = 9, 8 + 9 = 17' },
-                    { type: 'mcq', q: 'How many days are in a leap year?', options: ['365', '366', '364', '367'], a: 1, exp: 'Leap year has 366 days (February has 29 days)' },
-                    { type: 'tf', q: 'All sides of a rhombus are equal.', a: true, exp: 'By definition, all four sides of a rhombus are equal.' },
-                    { type: 'mcq', q: 'What is the LCM of 4 and 6?', options: ['12', '24', '8', '2'], a: 0, exp: 'Multiples of 4: 4,8,12... Multiples of 6: 6,12... LCM = 12' }
-                ],
-                physics: [
-                    { type: 'mcq', q: 'Which of these is a source of light?', options: ['Moon', 'Sun', 'Mirror', 'Wall'], a: 1, exp: 'Sun produces its own light. Moon reflects sunlight.' },
-                    { type: 'tf', q: 'Sound travels faster in air than in water.', a: false, exp: 'Sound travels faster in water (liquids) than in air.' },
-                    { type: 'mcq', q: 'What is the SI unit of length?', options: ['Kilogram', 'Meter', 'Liter', 'Second'], a: 1, exp: 'Meter (m) is the SI unit of length.' },
-                    { type: 'mcq', q: 'Which material is a good conductor of heat?', options: ['Wood', 'Plastic', 'Copper', 'Rubber'], a: 2, exp: 'Copper is a metal and good conductor of heat.' },
-                    { type: 'tf', q: 'Ice melts at 0°C.', a: true, exp: 'At standard pressure, ice melts at 0°C.' },
-                    { type: 'mcq', q: 'What causes day and night on Earth?', options: ['Earth revolves around Sun', 'Earth rotates on axis', 'Moon blocks Sun', 'Sun moves'], a: 1, exp: 'Earth\'s rotation on its axis causes day and night.' },
-                    { type: 'mcq', q: 'Which is NOT a form of energy?', options: ['Heat', 'Light', 'Sound', 'Wood'], a: 3, exp: 'Wood is matter, not energy. Heat, light, sound are energy forms.' },
-                    { type: 'tf', q: 'Magnets attract all metals.', a: false, exp: 'Magnets attract only iron, nickel, cobalt (ferromagnetic materials).' },
-                    { type: 'mcq', q: 'What do we use to measure temperature?', options: ['Barometer', 'Thermometer', 'Speedometer', 'Hygrometer'], a: 1, exp: 'Thermometer measures temperature.' },
-                    { type: 'mcq', q: 'In which direction does heat flow?', options: ['Cold to hot', 'Hot to cold', 'Both directions', 'Nowhere'], a: 1, exp: 'Heat naturally flows from hotter to colder objects.' },
-                    { type: 'tf', q: 'A shadow is formed when light is blocked.', a: true, exp: 'Shadow forms when opaque object blocks light.' },
-                    { type: 'mcq', q: 'Which state of matter has definite shape and volume?', options: ['Gas', 'Liquid', 'Solid', 'Plasma'], a: 2, exp: 'Solids have definite shape and volume.' },
-                    { type: 'mcq', q: 'What is the boiling point of water?', options: ['90°C', '100°C', '110°C', '120°C'], a: 1, exp: 'Water boils at 100°C at sea level.' },
-                    { type: 'tf', q: 'Electricity can flow through rubber.', a: false, exp: 'Rubber is an insulator; it does not allow electricity to flow.' },
-                    { type: 'mcq', q: 'Which force pulls objects toward Earth?', options: ['Magnetic force', 'Frictional force', 'Gravitational force', 'Electrostatic force'], a: 2, exp: 'Gravity pulls objects toward Earth.' },
-                    { type: 'mcq', q: 'What type of mirror is used in vehicles?', options: ['Plane mirror', 'Concave mirror', 'Convex mirror', 'None'], a: 2, exp: 'Convex mirrors provide wider field of view for vehicles.' },
-                    { type: 'tf', q: 'Light travels in straight lines.', a: true, exp: 'Light travels in straight lines called rays.' },
-                    { type: 'mcq', q: 'Which material is transparent?', options: ['Wood', 'Glass', 'Cardboard', 'Metal'], a: 1, exp: 'Glass allows light to pass through - it is transparent.' },
-                    { type: 'mcq', q: 'What happens to water when it freezes?', options: ['Expands', 'Contracts', 'Stays same', 'Disappears'], a: 0, exp: 'Water expands when freezing, which is why ice floats.' },
-                    { type: 'tf', q: 'Friction always helps motion.', a: false, exp: 'Friction opposes motion. It can be helpful (walking) or harmful (wear).' },
-                    { type: 'mcq', q: 'Which planet is closest to the Sun?', options: ['Venus', 'Earth', 'Mercury', 'Mars'], a: 2, exp: 'Mercury is the closest planet to the Sun.' },
-                    { type: 'mcq', q: 'What do we call the path of electric current?', options: ['Circuit', 'Cycle', 'Loop', 'Track'], a: 0, exp: 'A complete path for electric current is called a circuit.' },
-                    { type: 'tf', q: 'Air is needed for burning.', a: true, exp: 'Burning requires oxygen from air.' },
-                    { type: 'mcq', q: 'Which object will sink in water?', options: ['Cork', 'Plastic ball', 'Iron nail', 'Wood'], a: 2, exp: 'Iron is denser than water, so it sinks.' },
-                    { type: 'mcq', q: 'What is the main gas in air?', options: ['Oxygen', 'Carbon dioxide', 'Nitrogen', 'Hydrogen'], a: 2, exp: 'Air is about 78% nitrogen.' },
-                    { type: 'tf', q: 'A switch is used to open or close a circuit.', a: true, exp: 'Switch controls the flow of electricity in a circuit.' },
-                    { type: 'mcq', q: 'What type of energy does a moving car have?', options: ['Potential', 'Kinetic', 'Chemical', 'Nuclear'], a: 1, exp: 'Moving objects have kinetic energy.' },
-                    { type: 'mcq', q: 'Which season comes after winter?', options: ['Summer', 'Monsoon', 'Spring', 'Autumn'], a: 2, exp: 'Spring follows winter.' },
-                    { type: 'tf', q: 'All objects fall at the same speed in vacuum.', a: true, exp: 'In vacuum (no air resistance), all objects fall at same rate.' },
-                    { type: 'mcq', q: 'What protects Earth from harmful Sun rays?', options: ['Clouds', 'Ozone layer', 'Wind', 'Rain'], a: 1, exp: 'Ozone layer absorbs harmful UV radiation.' }
-                ],
-                chemistry: [
-                    { type: 'mcq', q: 'Water is made of which two elements?', options: ['Hydrogen & Oxygen', 'Nitrogen & Oxygen', 'Carbon & Hydrogen', 'Sodium & Chlorine'], a: 0, exp: 'H₂O = 2 Hydrogen + 1 Oxygen' },
-                    { type: 'tf', q: 'Air is a single pure substance.', a: false, exp: 'Air is a mixture of nitrogen, oxygen, and other gases.' },
-                    { type: 'mcq', q: 'Which gas do plants need for photosynthesis?', options: ['Oxygen', 'Nitrogen', 'Carbon dioxide', 'Hydrogen'], a: 2, exp: 'Plants use CO₂ for photosynthesis.' },
-                    { type: 'mcq', q: 'What is the chemical formula of table salt?', options: ['NaCl', 'HCl', 'KCl', 'CaCl₂'], a: 0, exp: 'Sodium Chloride = NaCl' },
-                    { type: 'tf', q: 'Rusting of iron is a chemical change.', a: true, exp: 'Rusting forms new substance (iron oxide), so it is chemical change.' },
-                    { type: 'mcq', q: 'Which is a liquid at room temperature?', options: ['Iron', 'Water', 'Oxygen', 'Wood'], a: 1, exp: 'Water is liquid at room temperature (25°C).' },
-                    { type: 'mcq', q: 'What happens when sugar dissolves in water?', options: ['Chemical change', 'Physical change', 'Nothing', 'Explosion'], a: 1, exp: 'Dissolving is physical change; sugar can be recovered by evaporation.' },
-                    { type: 'tf', q: 'Acids taste sour.', a: true, exp: 'Acids have sour taste (like lemon, vinegar).' },
-                    { type: 'mcq', q: 'Which gas is given out during photosynthesis?', options: ['CO₂', 'Oxygen', 'Nitrogen', 'Hydrogen'], a: 1, exp: 'Plants release oxygen during photosynthesis.' },
-                    { type: 'mcq', q: 'What color does litmus paper turn in acid?', options: ['Blue', 'Red', 'Green', 'Yellow'], a: 1, exp: 'Acids turn blue litmus red.' },
-                    { type: 'tf', q: 'Evaporation is a reversible change.', a: true, exp: 'Water can evaporate and then condense back - reversible.' },
-                    { type: 'mcq', q: 'Which is NOT a state of matter?', options: ['Solid', 'Liquid', 'Gas', 'Powder'], a: 3, exp: 'Powder is a solid form, not a state of matter.' },
-                    { type: 'mcq', q: 'What do we call water in gas form?', options: ['Ice', 'Steam', 'Vapor', 'Both B & C'], a: 3, exp: 'Both steam and water vapor are water in gas form.' },
-                    { type: 'tf', q: 'Burning of magnesium ribbon gives white light.', a: true, exp: 'Magnesium burns with dazzling white flame.' },
-                    { type: 'mcq', q: 'Which metal is liquid at room temperature?', options: ['Iron', 'Copper', 'Mercury', 'Gold'], a: 2, exp: 'Mercury is the only metal liquid at room temperature.' },
-                    { type: 'mcq', q: 'What is the pH of pure water?', options: ['0', '7', '14', '1'], a: 1, exp: 'Pure water is neutral with pH = 7.' },
-                    { type: 'tf', q: 'Cooking food is a physical change.', a: false, exp: 'Cooking changes chemical composition - it is chemical change.' },
-                    { type: 'mcq', q: 'Which gas is most abundant in air?', options: ['Oxygen', 'Nitrogen', 'CO₂', 'Argon'], a: 1, exp: 'Nitrogen makes up about 78% of air.' },
-                    { type: 'mcq', q: 'What is formed when baking soda mixes with vinegar?', options: ['Salt', 'Carbon dioxide', 'Oxygen', 'Nitrogen'], a: 1, exp: 'Baking soda + vinegar → CO₂ gas + water + salt' },
-                    { type: 'tf', q: 'All metals are hard solids.', a: false, exp: 'Mercury is liquid; sodium and potassium are soft.' },
-                    { type: 'mcq', q: 'Which process turns water vapor into liquid?', options: ['Evaporation', 'Condensation', 'Freezing', 'Melting'], a: 1, exp: 'Condensation: gas → liquid' },
-                    { type: 'mcq', q: 'What is the chemical symbol for gold?', options: ['Go', 'Gd', 'Au', 'Ag'], a: 2, exp: 'Au (from Latin Aurum) is symbol for gold.' },
-                    { type: 'tf', q: 'Oxygen supports burning.', a: true, exp: 'Oxygen is necessary for combustion.' },
-                    { type: 'mcq', q: 'Which acid is found in lemon?', options: ['Citric acid', 'Acetic acid', 'Hydrochloric acid', 'Sulfuric acid'], a: 0, exp: 'Lemon contains citric acid.' },
-                    { type: 'mcq', q: 'What is the chemical formula of carbon dioxide?', options: ['CO', 'CO₂', 'C₂O', 'C₂O₂'], a: 1, exp: 'Carbon dioxide = CO₂ (1 Carbon + 2 Oxygen)' },
-                    { type: 'tf', q: 'Chalk is made of calcium carbonate.', a: true, exp: 'Natural chalk is calcium carbonate (CaCO₃).' },
-                    { type: 'mcq', q: 'Which gas is called "laughing gas"?', options: ['Oxygen', 'Nitrogen', 'Nitrous oxide', 'CO₂'], a: 2, exp: 'N₂O (Nitrous oxide) is called laughing gas.' },
-                    { type: 'mcq', q: 'What happens to iron when it rusts?', options: ['Gets heavier', 'Gets lighter', 'No change', 'Turns to gold'], a: 0, exp: 'Iron + Oxygen → Iron oxide (rust), which adds oxygen mass.' },
-                    { type: 'tf', q: 'Distillation can separate salt from water.', a: true, exp: 'Distillation evaporates water and condenses it, leaving salt behind.' },
-                    { type: 'mcq', q: 'Which element is essential for life and found in proteins?', options: ['Carbon', 'Nitrogen', 'Oxygen', 'All of these'], a: 3, exp: 'Proteins contain C, H, O, N and sometimes S.' }
-                ],
-                biology: [
-                    { type: 'mcq', q: 'Which organ pumps blood in our body?', options: ['Lungs', 'Heart', 'Brain', 'Liver'], a: 1, exp: 'Heart is the muscular organ that pumps blood.' },
-                    { type: 'tf', q: 'Plants make their own food.', a: true, exp: 'Plants perform photosynthesis to make food.' },
-                    { type: 'mcq', q: 'Which part of plant absorbs water?', options: ['Leaves', 'Stem', 'Roots', 'Flowers'], a: 2, exp: 'Roots absorb water and minerals from soil.' },
-                    { type: 'mcq', q: 'How many bones are in adult human body?', options: ['106', '206', '306', '406'], a: 1, exp: 'Adult human has 206 bones.' },
-                    { type: 'tf', q: 'Fish breathe through lungs.', a: false, exp: 'Fish breathe through gills, not lungs.' },
-                    { type: 'mcq', q: 'Which vitamin is produced when skin is exposed to sunlight?', options: ['Vitamin A', 'Vitamin B', 'Vitamin C', 'Vitamin D'], a: 3, exp: 'Skin produces Vitamin D when exposed to UV rays.' },
-                    { type: 'mcq', q: 'What is the largest organ of human body?', options: ['Heart', 'Brain', 'Skin', 'Liver'], a: 2, exp: 'Skin is the largest organ by surface area.' },
-                    { type: 'tf', q: 'All insects have 6 legs.', a: true, exp: 'Insects are defined by having 3 pairs (6) of legs.' },
-                    { type: 'mcq', q: 'Which gas do we breathe in?', options: ['Carbon dioxide', 'Oxygen', 'Nitrogen', 'Hydrogen'], a: 1, exp: 'We inhale oxygen and exhale carbon dioxide.' },
-                    { type: 'mcq', q: 'What do herbivores eat?', options: ['Meat', 'Plants', 'Both', 'Insects'], a: 1, exp: 'Herbivores eat only plants.' },
-                    { type: 'tf', q: 'The brain controls all body functions.', a: true, exp: 'Brain is the control center of the body.' },
-                    { type: 'mcq', q: 'Which bird cannot fly?', options: ['Sparrow', 'Eagle', 'Penguin', 'Crow'], a: 2, exp: 'Penguins cannot fly; they swim.' },
-                    { type: 'mcq', q: 'What is the basic unit of life?', options: ['Tissue', 'Organ', 'Cell', 'Atom'], a: 2, exp: 'Cell is the basic structural and functional unit of life.' },
-                    { type: 'tf', q: 'Snakes are mammals.', a: false, exp: 'Snakes are reptiles, not mammals.' },
-                    { type: 'mcq', q: 'Which part of eye controls light entering?', options: ['Lens', 'Retina', 'Iris', 'Cornea'], a: 2, exp: 'Iris controls pupil size, regulating light entry.' },
-                    { type: 'mcq', q: 'What do bees collect from flowers?', options: ['Leaves', 'Nectar', 'Roots', 'Seeds'], a: 1, exp: 'Bees collect nectar to make honey.' },
-                    { type: 'tf', q: 'Humans have 32 teeth as adults.', a: true, exp: 'Adult humans typically have 32 teeth (including wisdom teeth).' },
-                    { type: 'mcq', q: 'Which animal is called "ship of the desert"?', options: ['Horse', 'Elephant', 'Camel', 'Donkey'], a: 2, exp: 'Camel is called ship of the desert.' },
-                    { type: 'mcq', q: 'What gives plants their green color?', options: ['Carotene', 'Chlorophyll', 'Melanin', 'Hemoglobin'], a: 1, exp: 'Chlorophyll absorbs red and blue light, reflecting green.' },
-                    { type: 'tf', q: 'Frogs can live both in water and on land.', a: true, exp: 'Frogs are amphibians - they live in both environments.' },
-                    { type: 'mcq', q: 'Which blood cells fight germs?', options: ['RBC', 'WBC', 'Platelets', 'Plasma'], a: 1, exp: 'White Blood Cells (WBC) fight infections.' },
-                    { type: 'mcq', q: 'What is the main function of roots?', options: ['Photosynthesis', 'Absorption', 'Reproduction', 'Protection'], a: 1, exp: 'Roots anchor plant and absorb water/minerals.' },
-                    { type: 'tf', q: 'Butterflies come from caterpillars.', a: true, exp: 'Complete metamorphosis: egg → caterpillar → pupa → butterfly' },
-                    { type: 'mcq', q: 'Which sense organ helps us smell?', options: ['Eye', 'Ear', 'Nose', 'Tongue'], a: 2, exp: 'Nose contains olfactory receptors for smell.' },
-                    { type: 'mcq', q: 'What covers and protects the body?', options: ['Bones', 'Muscles', 'Skin', 'Blood'], a: 2, exp: 'Skin is the protective covering of the body.' },
-                    { type: 'tf', q: 'All plants need sunlight to grow.', a: true, exp: 'Most plants need sunlight for photosynthesis.' },
-                    { type: 'mcq', q: 'Which animal lays eggs but is a mammal?', options: ['Kangaroo', 'Platypus', 'Bat', 'Whale'], a: 1, exp: 'Platypus is one of few egg-laying mammals.' },
-                    { type: 'mcq', q: 'What carries food in plants?', options: ['Xylem', 'Phloem', 'Roots', 'Stomata'], a: 1, exp: 'Phloem transports food (sugar) in plants.' },
-                    { type: 'tf', q: 'The heart has 4 chambers.', a: true, exp: 'Human heart has 2 atria and 2 ventricles (4 chambers).' },
-                    { type: 'mcq', q: 'Which is NOT a sense organ?', options: ['Eye', 'Ear', 'Heart', 'Skin'], a: 2, exp: 'Heart is a circulatory organ, not a sense organ.' }
-                ]
-            },
+    
+<script>
+const quizData = {};
+const subjects = ['math','physics','chemistry','biology'];
 
-            // CLASS 5
-            5: {
-                math: [
-                    { type: 'mcq', q: 'What is the value of π (pi) approximately?', options: ['3.14', '2.71', '1.62', '3.41'], a: 0, exp: 'π ≈ 3.14 or 22/7' },
-                    { type: 'mcq', q: 'What is the area of a circle with radius 7 cm?', options: ['154 cm²', '44 cm²', '308 cm²', '22 cm²'], a: 0, exp: 'Area = πr² = 22/7 × 7 × 7 = 154 cm²' },
-                    { type: 'tf', q: 'A number divisible by both 2 and 3 is divisible by 6.', a: true, exp: 'If divisible by 2 and 3, it is divisible by LCM(2,3) = 6.' },
-                    { type: 'mcq', q: 'What is the volume of a cube with side 4 cm?', options: ['16 cm³', '64 cm³', '48 cm³', '12 cm³'], a: 1, exp: 'Volume = side³ = 4³ = 64 cm³' },
-                    { type: 'mcq', q: 'Which is the smallest 5-digit number?', options: ['10000', '9999', '10001', '11111'], a: 0, exp: '10000 is the smallest 5-digit number.' },
-                    { type: 'tf', q: '0.5 is equal to 1/2.', a: true, exp: '0.5 = 5/10 = 1/2' },
-                    { type: 'mcq', q: 'What is the average of 10, 20, 30, 40?', options: ['20', '25', '30', '100'], a: 1, exp: 'Average = (10+20+30+40)/4 = 100/4 = 25' },
-                    { type: 'mcq', q: 'How many degrees in a right angle?', options: ['60°', '90°', '120°', '180°'], a: 1, exp: 'Right angle = 90°' },
-                    { type: 'tf', q: 'All prime numbers are odd.', a: false, exp: '2 is prime and even.' },
-                    { type: 'mcq', q: 'What is 25% of 80?', options: ['15', '20', '25', '30'], a: 1, exp: '25/100 × 80 = 20' },
-                    { type: 'mcq', q: 'Which fraction is equivalent to 3/4?', options: ['6/8', '9/12', '12/16', 'All of these'], a: 3, exp: 'All are equivalent to 3/4 when simplified.' },
-                    { type: 'tf', q: 'The sum of two odd numbers is always even.', a: true, exp: 'Odd + Odd = Even (e.g., 3+5=8)' },
-                    { type: 'mcq', q: 'What is the HCF of 15 and 25?', options: ['5', '15', '25', '75'], a: 0, exp: 'Factors of 15: 1,3,5,15. Factors of 25: 1,5,25. HCF = 5' },
-                    { type: 'mcq', q: 'If x + 5 = 12, what is x?', options: ['5', '6', '7', '8'], a: 2, exp: 'x = 12 - 5 = 7' },
-                    { type: 'tf', q: 'A parallelogram has all sides equal.', a: false, exp: 'Only opposite sides are equal in parallelogram.' },
-                    { type: 'mcq', q: 'What is the next prime number after 7?', options: ['8', '9', '10', '11'], a: 3, exp: '11 is the next prime after 7.' },
-                    { type: 'mcq', q: 'How many faces does a cylinder have?', options: ['1', '2', '3', '4'], a: 2, exp: 'Cylinder has 2 circular faces + 1 curved surface = 3 faces' },
-                    { type: 'tf', q: 'The product of two negative numbers is positive.', a: true, exp: '(-a) × (-b) = ab (positive)' },
-                    { type: 'mcq', q: 'What is the LCM of 6 and 8?', options: ['24', '48', '12', '2'], a: 0, exp: 'Multiples of 6: 6,12,18,24... Multiples of 8: 8,16,24... LCM = 24' },
-                    { type: 'mcq', q: 'If a rectangle has length 12 and breadth 8, what is its perimeter?', options: ['20', '40', '96', '48'], a: 1, exp: 'Perimeter = 2(l+b) = 2(12+8) = 40' },
-                    { type: 'tf', q: '0 divided by any number is 0.', a: true, exp: '0/a = 0 for any non-zero a.' },
-                    { type: 'mcq', q: 'What is 3/5 as a decimal?', options: ['0.3', '0.5', '0.6', '0.8'], a: 2, exp: '3/5 = 0.6' },
-                    { type: 'mcq', q: 'Which number is a perfect square?', options: ['24', '36', '48', '50'], a: 1, exp: '36 = 6², so it is a perfect square.' },
-                    { type: 'tf', q: 'The diagonals of a rectangle are equal.', a: true, exp: 'In rectangle, both diagonals are equal in length.' },
-                    { type: 'mcq', q: 'What is the ratio of 20 to 80 in simplest form?', options: ['1:2', '1:3', '1:4', '1:5'], a: 2, exp: '20:80 = 20/20 : 80/20 = 1:4' },
-                    { type: 'mcq', q: 'How many lines of symmetry does an equilateral triangle have?', options: ['1', '2', '3', '0'], a: 2, exp: 'Equilateral triangle has 3 lines of symmetry.' },
-                    { type: 'tf', q: '1 meter equals 100 centimeters.', a: true, exp: '1 m = 100 cm' },
-                    { type: 'mcq', q: 'What is the value of 2⁵?', options: ['10', '16', '25', '32'], a: 3, exp: '2⁵ = 2×2×2×2×2×2×2×2 = 32' },
-                    { type: 'mcq', q: 'If 3 books cost ₹45, what is the cost of 5 books?', options: ['₹60', '₹65', '₹70', '₹75'], a: 3, exp: '1 book = ₹15, so 5 books = ₹75' },
-                    { type: 'tf', q: 'A quadrilateral has exactly 4 sides.', a: true, exp: 'Quadri means 4, so quadrilateral has 4 sides.' }
-                ],
-                physics: [
-                    { type: 'mcq', q: 'What is the speed of light approximately?', options: ['3,00,000 km/s', '30,000 km/s', '3,000 km/s', '300 km/s'], a: 0, exp: 'Speed of light ≈ 3 × 10⁸ m/s = 3,00,000 km/s' },
-                    { type: 'tf', q: 'Sound cannot travel through vacuum.', a: true, exp: 'Sound needs a medium; vacuum has no particles.' },
-                    { type: 'mcq', q: 'Which lens is used to correct farsightedness?', options: ['Concave', 'Convex', 'Cylindrical', 'None'], a: 1, exp: 'Convex (converging) lens corrects hypermetropia.' },
-                    { type: 'mcq', q: 'What is the unit of electric current?', options: ['Volt', 'Watt', 'Ampere', 'Ohm'], a: 2, exp: 'Ampere (A) is the SI unit of current.' },
-                    { type: 'tf', q: 'White light is a mixture of 7 colors.', a: true, exp: 'Newton showed white light splits into 7 colors (VIBGYOR).' },
-                    { type: 'mcq', q: 'Which mirror always forms virtual image?', options: ['Plane', 'Concave', 'Convex', 'All'], a: 2, exp: 'Convex mirror always forms virtual, erect, diminished image.' },
-                    { type: 'mcq', q: 'What is the SI unit of force?', options: ['Joule', 'Watt', 'Newton', 'Pascal'], a: 2, exp: 'Newton (N) is the SI unit of force.' },
-                    { type: 'tf', q: 'An object in motion stays in motion unless acted upon.', a: true, exp: 'Newton\'s First Law (Law of Inertia).' },
-                    { type: 'mcq', q: 'Which material is the best insulator?', options: ['Copper', 'Aluminum', 'Rubber', 'Iron'], a: 2, exp: 'Rubber is an excellent electrical insulator.' },
-                    { type: 'mcq', q: 'What type of energy is stored in a stretched spring?', options: ['Kinetic', 'Potential', 'Thermal', 'Chemical'], a: 1, exp: 'Stretched spring has elastic potential energy.' },
-                    { type: 'tf', q: 'The moon produces its own light.', a: false, exp: 'Moon reflects sunlight; it does not produce light.' },
-                    { type: 'mcq', q: 'Which law explains why we wear seatbelts?', options: ['Ohm\'s law', 'Newton\'s 1st law', 'Boyle\'s law', 'Archimedes'], a: 1, exp: 'Seatbelts prevent inertia from throwing us forward.' },
-                    { type: 'mcq', q: 'What happens to resistance when length of wire increases?', options: ['Decreases', 'Increases', 'Same', 'Zero'], a: 1, exp: 'R ∝ L, so resistance increases with length.' },
-                    { type: 'tf', q: 'Lightning is a form of static electricity.', a: true, exp: 'Lightning is discharge of static electricity in clouds.' },
-                    { type: 'mcq', q: 'Which color has the longest wavelength in visible light?', options: ['Violet', 'Blue', 'Green', 'Red'], a: 3, exp: 'Red has longest wavelength (~700 nm).' },
-                    { type: 'mcq', q: 'What is the normal human body temperature?', options: ['36°C', '37°C', '38°C', '39°C'], a: 1, exp: 'Normal body temperature ≈ 37°C (98.6°F).' },
-                    { type: 'tf', q: 'A concave lens is also called a diverging lens.', a: true, exp: 'Concave lens diverges parallel rays of light.' },
-                    { type: 'mcq', q: 'What does a barometer measure?', options: ['Temperature', 'Pressure', 'Humidity', 'Speed'], a: 1, exp: 'Barometer measures atmospheric pressure.' },
-                    { type: 'mcq', q: 'Which has more inertia: a bicycle or a truck?', options: ['Bicycle', 'Truck', 'Same', 'Depends on speed'], a: 1, exp: 'Inertia depends on mass; truck has more mass.' },
-                    { type: 'tf', q: 'Electric current flows from negative to positive terminal.', a: false, exp: 'Conventional current flows positive to negative. Electron flow is negative to positive.' },
-                    { type: 'mcq', q: 'What is the unit of work?', options: ['Newton', 'Watt', 'Joule', 'Pascal'], a: 2, exp: 'Joule (J) is the SI unit of work.' },
-                    { type: 'mcq', q: 'Which mirror is used by dentists?', options: ['Plane', 'Concave', 'Convex', 'None'], a: 1, exp: 'Concave mirror gives magnified image for examination.' },
-                    { type: 'tf', q: 'All objects radiate heat energy.', a: true, exp: 'All objects above absolute zero radiate infrared radiation.' },
-                    { type: 'mcq', q: 'What is the frequency unit?', options: ['Meter', 'Hertz', 'Second', 'Newton'], a: 1, exp: 'Hertz (Hz) = cycles per second.' },
-                    { type: 'mcq', q: 'Which law: Volume of gas is inversely proportional to pressure?', options: ['Boyle\'s law', 'Charles\'s law', 'Ohm\'s law', 'Newton\'s law'], a: 0, exp: 'Boyle\'s law: P ∝ 1/V at constant temperature.' },
-                    { type: 'tf', q: 'A transformer works on DC current.', a: false, exp: 'Transformer works only on AC (changing current).' },
-                    { type: 'mcq', q: 'What is the escape velocity from Earth?', options: ['8 km/s', '11.2 km/s', '15 km/s', '20 km/s'], a: 1, exp: 'Escape velocity from Earth ≈ 11.2 km/s.' },
-                    { type: 'mcq', q: 'Which color deviates most when white light passes through prism?', options: ['Red', 'Yellow', 'Green', 'Violet'], a: 3, exp: 'Violet has shortest wavelength, so deviates most.' },
-                    { type: 'tf', q: 'The pitch of sound depends on frequency.', a: true, exp: 'Higher frequency = higher pitch; lower frequency = lower pitch.' },
-                    { type: 'mcq', q: 'What is the unit of power?', options: ['Joule', 'Watt', 'Newton', 'Volt'], a: 1, exp: 'Watt (W) = Joule/second, unit of power.' }
-                ],
-                chemistry: [
-                    { type: 'mcq', q: 'What is the atomic number of Carbon?', options: ['4', '6', '8', '12'], a: 1, exp: 'Carbon has 6 protons, so atomic number = 6.' },
-                    { type: 'tf', q: 'Diamond and graphite are allotropes of carbon.', a: true, exp: 'Both are pure carbon with different structures.' },
-                    { type: 'mcq', q: 'Which gas is used in fire extinguishers?', options: ['Oxygen', 'Nitrogen', 'CO₂', 'Hydrogen'], a: 2, exp: 'CO₂ displaces oxygen and cools fire.' },
-                    { type: 'mcq', q: 'What is the pH of lemon juice?', options: ['2-3', '5-6', '7', '8-9'], a: 0, exp: 'Lemon juice is acidic with pH around 2-3.' },
-                    { type: 'tf', q: 'Rusting requires both oxygen and water.', a: true, exp: 'Iron + Oxygen + Water → Iron oxide (rust)' },
-                    { type: 'mcq', q: 'Which element is a noble gas?', options: ['Oxygen', 'Nitrogen', 'Helium', 'Chlorine'], a: 2, exp: 'Helium is in Group 18 - noble gases.' },
-                    { type: 'mcq', q: 'What is the chemical formula of sulfuric acid?', options: ['HCl', 'H₂SO₄', 'HNO₃', 'H₂CO₃'], a: 1, exp: 'Sulfuric acid = H₂SO₄' },
-                    { type: 'tf', q: 'Acids turn phenolphthalein pink.', a: false, exp: 'Acids keep phenolphthalein colorless; bases turn it pink.' },
-                    { type: 'mcq', q: 'Which metal reacts vigorously with cold water?', options: ['Iron', 'Copper', 'Sodium', 'Gold'], a: 2, exp: 'Sodium reacts explosively with cold water.' },
-                    { type: 'mcq', q: 'What is the main component of natural gas?', options: ['Ethane', 'Propane', 'Methane', 'Butane'], a: 2, exp: 'Natural gas is mainly methane (CH₄).' },
-                    { type: 'tf', q: 'Ozone is O₃.', a: true, exp: 'Ozone molecule consists of 3 oxygen atoms.' },
-                    { type: 'mcq', q: 'Which process separates dyes from ink?', options: ['Filtration', 'Distillation', 'Chromatography', 'Evaporation'], a: 2, exp: 'Chromatography separates components based on solubility.' },
-                    { type: 'mcq', q: 'What is the valency of oxygen?', options: ['1', '2', '3', '4'], a: 1, exp: 'Oxygen needs 2 electrons to complete octet, so valency = 2.' },
-                    { type: 'tf', q: 'Calcium carbonate decomposes on heating to give CO₂.', a: true, exp: 'CaCO₃ → CaO + CO₂ (thermal decomposition)' },
-                    { type: 'mcq', q: 'Which acid is present in vinegar?', options: ['Citric acid', 'Acetic acid', 'Lactic acid', 'Tartaric acid'], a: 1, exp: 'Vinegar contains 5-8% acetic acid (CH₃COOH).' },
-                    { type: 'mcq', q: 'What is the chemical name of baking soda?', options: ['Sodium carbonate', 'Sodium bicarbonate', 'Calcium carbonate', 'Potassium carbonate'], a: 1, exp: 'Baking soda = Sodium bicarbonate (NaHCO₃)' },
-                    { type: 'tf', q: 'Metals are generally good conductors of electricity.', a: true, exp: 'Metals have free electrons that conduct electricity.' },
-                    { type: 'mcq', q: 'Which gas is called "fixed air"?', options: ['Oxygen', 'Nitrogen', 'Carbon dioxide', 'Hydrogen'], a: 2, exp: 'CO₂ was historically called fixed air by Joseph Black.' },
-                    { type: 'mcq', q: 'What is the atomic mass of oxygen?', options: ['8', '12', '16', '18'], a: 2, exp: 'Oxygen has atomic mass ≈ 16 u.' },
-                    { type: 'tf', q: 'Hard water contains calcium and magnesium salts.', a: true, exp: 'Hardness is caused by Ca²⁺ and Mg²⁺ ions.' },
-                    { type: 'mcq', q: 'Which element is most abundant in Earth\'s crust?', options: ['Iron', 'Silicon', 'Oxygen', 'Aluminum'], a: 2, exp: 'Oxygen is ~46% of Earth\'s crust by mass.' },
-                    { type: 'mcq', q: 'What is the chemical formula of ammonia?', options: ['NH₃', 'NO₂', 'N₂O', 'N₂H₄'], a: 0, exp: 'Ammonia = NH₃ (1 Nitrogen + 3 Hydrogen)' },
-                    { type: 'tf', q: 'Neutralization reaction produces salt and water.', a: true, exp: 'Acid + Base → Salt + Water (neutralization)' },
-                    { type: 'mcq', q: 'Which metal is used in making thermometers?', options: ['Iron', 'Copper', 'Mercury', 'Silver'], a: 2, exp: 'Mercury expands uniformly and is liquid at room temp.' },
-                    { type: 'mcq', q: 'What is the chemical formula of rust?', options: ['FeO', 'Fe₂O₃', 'Fe₃O₄', 'Fe₂O₃·xH₂O'], a: 3, exp: 'Rust is hydrated iron(III) oxide: Fe₂O₃·xH₂O' },
-                    { type: 'tf', q: 'Sublimation is direct solid to gas conversion.', a: true, exp: 'Examples: Dry ice, iodine, camphor.' },
-                    { type: 'mcq', q: 'Which gas turns lime water milky?', options: ['Oxygen', 'Nitrogen', 'CO₂', 'Hydrogen'], a: 2, exp: 'CO₂ + Ca(OH)₂ → CaCO₃ (white precipitate) + H₂O' },
-                    { type: 'mcq', q: 'What is the valency of nitrogen in NH₃?', options: ['2', '3', '4', '5'], a: 1, exp: 'Nitrogen forms 3 bonds with hydrogen, so valency = 3.' },
-                    { type: 'tf', q: 'Isotopes have same atomic number but different mass number.', a: true, exp: 'Isotopes differ in neutron number, not proton number.' },
-                    { type: 'mcq', q: 'Which acid is present in ant sting?', options: ['Formic acid', 'Acetic acid', 'Citric acid', 'Oxalic acid'], a: 0, exp: 'Ants inject formic acid (HCOOH).' }
-                ],
-                biology: [
-                    { type: 'mcq', q: 'What is the powerhouse of the cell?', options: ['Nucleus', 'Mitochondria', 'Ribosome', 'Golgi'], a: 1, exp: 'Mitochondria produce ATP (energy) - called powerhouse.' },
-                    { type: 'tf', q: 'Amoeba moves using pseudopodia.', a: true, exp: 'Pseudopodia are false feet used for movement and feeding.' },
-                    { type: 'mcq', q: 'Which blood vessel carries blood away from heart?', options: ['Vein', 'Artery', 'Capillary', 'Valve'], a: 1, exp: 'Arteries carry oxygenated blood away from heart.' },
-                    { type: 'mcq', q: 'What is the process of water loss from leaves called?', options: ['Photosynthesis', 'Transpiration', 'Respiration', 'Absorption'], a: 1, exp: 'Transpiration is evaporation of water from leaf stomata.' },
-                    { type: 'tf', q: 'Human beings have open circulatory system.', a: false, exp: 'Humans have closed circulatory system (blood in vessels).' },
-                    { type: 'mcq', q: 'Which part of brain controls balance?', options: ['Cerebrum', 'Cerebellum', 'Medulla', 'Hypothalamus'], a: 1, exp: 'Cerebellum maintains posture and balance.' },
-                    { type: 'mcq', q: 'What is the largest gland in human body?', options: ['Pancreas', 'Liver', 'Thyroid', 'Adrenal'], a: 1, exp: 'Liver is the largest gland, producing bile.' },
-                    { type: 'tf', q: 'Fungi are autotrophs.', a: false, exp: 'Fungi are heterotrophs (saprophytes) - they absorb nutrients.' },
-                    { type: 'mcq', q: 'Which vitamin deficiency causes scurvy?', options: ['Vitamin A', 'Vitamin B', 'Vitamin C', 'Vitamin D'], a: 2, exp: 'Scurvy is caused by Vitamin C deficiency.' },
-                    { type: 'mcq', q: 'What is the functional unit of kidney?', options: ['Neuron', 'Nephron', 'Alveolus', 'Villus'], a: 1, exp: 'Nephron is the structural and functional unit of kidney.' },
-                    { type: 'tf', q: 'Sponges belong to phylum Porifera.', a: true, exp: 'Porifera means pore-bearing; sponges have pores.' },
-                    { type: 'mcq', q: 'Which gas is produced during photosynthesis?', options: ['CO₂', 'Oxygen', 'Nitrogen', 'Hydrogen'], a: 1, exp: '6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂' },
-                    { type: 'mcq', q: 'What is the pH of human blood?', options: ['6.4', '7.0', '7.4', '8.0'], a: 2, exp: 'Human blood pH is slightly alkaline (~7.4).' },
-                    { type: 'tf', q: 'Earthworms have segmented bodies.', a: true, exp: 'Earthworms are annelids with metameric segmentation.' },
-                    { type: 'mcq', q: 'Which hormone regulates blood sugar?', options: ['Thyroxine', 'Insulin', 'Adrenaline', 'Growth hormone'], a: 1, exp: 'Insulin (from pancreas) lowers blood glucose.' },
-                    { type: 'mcq', q: 'What is the shape of DNA?', options: ['Linear', 'Circular', 'Double helix', 'Spiral'], a: 2, exp: 'DNA has double helix structure (Watson & Crick, 1953).' },
-                    { type: 'tf', q: 'Malaria is caused by a virus.', a: false, exp: 'Malaria is caused by Plasmodium parasite, transmitted by mosquito.' },
-                    { type: 'mcq', q: 'Which part of flower develops into fruit?', options: ['Ovary', 'Stigma', 'Anther', 'Petal'], a: 0, exp: 'After fertilization, ovary develops into fruit.' },
-                    { type: 'mcq', q: 'What is the hardest tissue in human body?', options: ['Bone', 'Cartilage', 'Enamel', 'Dentin'], a: 2, exp: 'Tooth enamel is the hardest substance in human body.' },
-                    { type: 'tf', q: 'Asexual reproduction involves only one parent.', a: true, exp: 'No fusion of gametes; offspring genetically identical.' },
-                    { type: 'mcq', q: 'Which chamber of heart receives oxygenated blood?', options: ['Right atrium', 'Left atrium', 'Right ventricle', 'Left ventricle'], a: 1, exp: 'Left atrium receives oxygenated blood from lungs.' },
-                    { type: 'mcq', q: 'What is the process of cell division in somatic cells?', options: ['Meiosis', 'Mitosis', 'Binary fission', 'Budding'], a: 1, exp: 'Mitosis produces two identical daughter cells.' },
-                    { type: 'tf', q: 'Bacteria have a well-defined nucleus.', a: false, exp: 'Bacteria are prokaryotes; they lack membrane-bound nucleus.' },
-                    { type: 'mcq', q: 'Which disease is caused by deficiency of iodine?', options: ['Scurvy', 'Rickets', 'Goiter', 'Anemia'], a: 2, exp: 'Iodine deficiency causes goiter (thyroid enlargement).' },
-                    { type: 'mcq', q: 'What is the main function of xylem?', options: ['Food transport', 'Water transport', 'Support', 'Both B & C'], a: 3, exp: 'Xylem transports water and provides mechanical support.' },
-                    { type: 'tf', q: 'Yeast reproduces by budding.', a: true, exp: 'Yeast is a fungus that reproduces asexually by budding.' },
-                    { type: 'mcq', q: 'Which vitamin is synthesized by bacteria in intestine?', options: ['A', 'B12', 'C', 'D'], a: 1, exp: 'Vitamin B12 is synthesized by gut bacteria.' },
-                    { type: 'mcq', q: 'What is the life span of RBC?', options: ['30 days', '60 days', '120 days', '180 days'], a: 2, exp: 'Red blood cells live about 120 days.' },
-                    { type: 'tf', q: 'The scientific name of human is Homo sapiens.', a: true, exp: 'Binomial nomenclature: Genus Homo, species sapiens.' },
-                    { type: 'mcq', q: 'Which is NOT a greenhouse gas?', options: ['CO₂', 'Methane', 'Oxygen', 'Nitrous oxide'], a: 2, exp: 'Oxygen is not a greenhouse gas; CO₂, CH₄, N₂O are.' }
-                ]
-            },
-
-            // CLASS 6
-            6: {
-  math: [
-    { type: 'mcq', q: 'What is the HCF of 24 and 36?', options: ['6', '12', '18', '24'], a: 1, exp: 'HCF of 24 and 36 is 12.' },
-    { type: 'mcq', q: 'What is the LCM of 6 and 8?', options: ['12', '18', '24', '48'], a: 2, exp: 'LCM of 6 and 8 is 24.' },
-    { type: 'tf', q: 'Every prime number is odd.', a: false, exp: '2 is prime but even.' },
-    { type: 'mcq', q: 'Which is the smallest prime number?', options: ['0', '1', '2', '3'], a: 2, exp: '2 is the smallest prime number.' },
-    { type: 'mcq', q: 'What is 3/4 of 100?', options: ['25', '50', '75', '100'], a: 2, exp: '3/4 × 100 = 75.' },
-    { type: 'tf', q: 'A triangle has three sides.', a: true, exp: 'Triangle has 3 sides.' },
-    { type: 'mcq', q: 'What is the perimeter of a square of side 5 cm?', options: ['10 cm', '15 cm', '20 cm', '25 cm'], a: 2, exp: 'Perimeter = 4 × side = 20 cm.' },
-    { type: 'mcq', q: 'What is the place value of 5 in 45,678?', options: ['5', '50', '500', '5000'], a: 3, exp: '5 is in thousands place.' },
-    { type: 'tf', q: '1 is neither prime nor composite.', a: true, exp: '1 has only one factor.' },
-    { type: 'mcq', q: 'Which fraction is equal to 1/2?', options: ['2/4', '3/4', '1/4', '4/5'], a: 0, exp: '2/4 simplifies to 1/2.' },
-    { type: 'mcq', q: 'What is 15 × 12?', options: ['160', '170', '180', '190'], a: 2, exp: '15 × 12 = 180.' },
-    { type: 'tf', q: 'A rectangle has all sides equal.', a: false, exp: 'A square has all sides equal; rectangle has opposite sides equal.' },
-    { type: 'mcq', q: 'What is the successor of 999?', options: ['998', '999', '1000', '1001'], a: 2, exp: 'Successor means next number.' },
-    { type: 'mcq', q: 'Which number is divisible by 3?', options: ['124', '135', '152', '221'], a: 1, exp: '1 + 3 + 5 = 9, divisible by 3.' },
-    { type: 'tf', q: 'Zero is a whole number.', a: true, exp: 'Whole numbers start from 0.' },
-    { type: 'mcq', q: 'What is 7²?', options: ['14', '21', '49', '77'], a: 2, exp: '7² = 49.' },
-    { type: 'mcq', q: 'How many degrees are there in a right angle?', options: ['45°', '60°', '90°', '180°'], a: 2, exp: 'Right angle is 90°.' },
-    { type: 'tf', q: 'A line segment has two end points.', a: true, exp: 'Line segment has fixed length and two endpoints.' },
-    { type: 'mcq', q: 'What is 1 km equal to?', options: ['10 m', '100 m', '1000 m', '10000 m'], a: 2, exp: '1 km = 1000 m.' },
-    { type: 'mcq', q: 'Which is the largest 3-digit number?', options: ['100', '999', '1000', '990'], a: 1, exp: '999 is the largest 3-digit number.' },
-    { type: 'tf', q: 'All even numbers are divisible by 2.', a: true, exp: 'Even numbers are multiples of 2.' },
-    { type: 'mcq', q: 'What is the value of 0 × 56?', options: ['0', '1', '56', '560'], a: 0, exp: 'Any number multiplied by 0 is 0.' },
-    { type: 'mcq', q: 'Which shape has no corners?', options: ['Square', 'Triangle', 'Circle', 'Rectangle'], a: 2, exp: 'Circle has no corners.' },
-    { type: 'tf', q: 'An acute angle is greater than 90°.', a: false, exp: 'Acute angle is less than 90°.' },
-    { type: 'mcq', q: 'What is 1000 - 456?', options: ['544', '554', '644', '456'], a: 0, exp: '1000 - 456 = 544.' }
-  ],
-
-  science: [
-    { type: 'mcq', q: 'Which part of plant absorbs water?', options: ['Leaf', 'Stem', 'Root', 'Flower'], a: 2, exp: 'Roots absorb water and minerals from soil.' },
-    { type: 'mcq', q: 'Which gas do plants use in photosynthesis?', options: ['Oxygen', 'Carbon dioxide', 'Nitrogen', 'Hydrogen'], a: 1, exp: 'Plants use carbon dioxide during photosynthesis.' },
-    { type: 'tf', q: 'Air is a mixture of gases.', a: true, exp: 'Air contains nitrogen, oxygen, carbon dioxide and other gases.' },
-    { type: 'mcq', q: 'Which organ pumps blood in human body?', options: ['Lungs', 'Brain', 'Heart', 'Kidney'], a: 2, exp: 'Heart pumps blood throughout the body.' },
-    { type: 'tf', q: 'Magnets attract plastic.', a: false, exp: 'Magnets attract magnetic materials like iron.' },
-    { type: 'mcq', q: 'Which is a source of protein?', options: ['Rice', 'Pulses', 'Sugar', 'Oil'], a: 1, exp: 'Pulses are rich in protein.' },
-    { type: 'mcq', q: 'Which planet is known as the Red Planet?', options: ['Earth', 'Mars', 'Venus', 'Jupiter'], a: 1, exp: 'Mars is called the Red Planet.' },
-    { type: 'tf', q: 'Living things need food to grow.', a: true, exp: 'Food provides energy for growth.' },
-    { type: 'mcq', q: 'Which is a non-living thing?', options: ['Dog', 'Tree', 'Stone', 'Bird'], a: 2, exp: 'Stone does not show life processes.' },
-    { type: 'mcq', q: 'Which vitamin is produced in skin by sunlight?', options: ['Vitamin A', 'Vitamin B', 'Vitamin C', 'Vitamin D'], a: 3, exp: 'Sunlight helps skin produce Vitamin D.' },
-    { type: 'tf', q: 'Water has a fixed shape.', a: false, exp: 'Water takes the shape of its container.' },
-    { type: 'mcq', q: 'Which material is transparent?', options: ['Wood', 'Glass', 'Stone', 'Iron'], a: 1, exp: 'Glass allows light to pass through.' },
-    { type: 'mcq', q: 'Which sense organ helps us to hear?', options: ['Eye', 'Ear', 'Nose', 'Skin'], a: 1, exp: 'Ears help us hear sounds.' },
-    { type: 'tf', q: 'Plants release oxygen during photosynthesis.', a: true, exp: 'Oxygen is released as a by-product.' },
-    { type: 'mcq', q: 'Which is a natural source of light?', options: ['Bulb', 'Candle', 'Sun', 'Torch'], a: 2, exp: 'Sun is a natural source of light.' },
-    { type: 'mcq', q: 'Which animal is herbivorous?', options: ['Lion', 'Tiger', 'Cow', 'Wolf'], a: 2, exp: 'Cow eats plants.' },
-    { type: 'tf', q: 'Boiling changes water into steam.', a: true, exp: 'On heating, water changes into vapour.' },
-    { type: 'mcq', q: 'Which part of plant makes food?', options: ['Root', 'Stem', 'Leaf', 'Seed'], a: 2, exp: 'Leaves make food by photosynthesis.' },
-    { type: 'mcq', q: 'Which is a renewable resource?', options: ['Coal', 'Petrol', 'Sunlight', 'Diesel'], a: 2, exp: 'Sunlight is renewable.' },
-    { type: 'tf', q: 'Human body has 206 bones in adults.', a: true, exp: 'Adult human skeleton has 206 bones.' },
-    { type: 'mcq', q: 'Which gas do humans exhale mainly?', options: ['Oxygen', 'Carbon dioxide', 'Hydrogen', 'Helium'], a: 1, exp: 'Humans exhale carbon dioxide.' },
-    { type: 'mcq', q: 'Which is used to measure temperature?', options: ['Barometer', 'Thermometer', 'Speedometer', 'Compass'], a: 1, exp: 'Thermometer measures temperature.' },
-    { type: 'tf', q: 'Shadow is formed when light is blocked.', a: true, exp: 'Opaque objects block light and form shadows.' },
-    { type: 'mcq', q: 'Which is the nearest star to Earth?', options: ['Moon', 'Sun', 'Mars', 'Venus'], a: 1, exp: 'Sun is the nearest star to Earth.' },
-    { type: 'mcq', q: 'Which part protects the brain?', options: ['Rib cage', 'Skull', 'Backbone', 'Pelvis'], a: 1, exp: 'Skull protects the brain.' }
-  ]
-},
-            7: {
-  math: [
-    { type: 'mcq', q: 'What is (-5) + 8?', options: ['3', '-3', '13', '-13'], a: 0, exp: '-5 + 8 = 3.' },
-    { type: 'mcq', q: 'What is the value of 2³?', options: ['4', '6', '8', '9'], a: 2, exp: '2³ = 8.' },
-    { type: 'tf', q: 'The sum of angles of a triangle is 180°.', a: true, exp: 'Triangle angle sum is 180°.' },
-    { type: 'mcq', q: 'What is 25% of 200?', options: ['25', '50', '75', '100'], a: 1, exp: '25% of 200 = 50.' },
-    { type: 'tf', q: 'A square is also a rectangle.', a: true, exp: 'A square has all properties of rectangle.' },
-    { type: 'mcq', q: 'What is 7 × (-3)?', options: ['21', '-21', '10', '-10'], a: 1, exp: 'Positive × negative = negative.' },
-    { type: 'mcq', q: 'What is 5/6 + 1/6?', options: ['1', '6/12', '4/6', '5/12'], a: 0, exp: '5/6 + 1/6 = 6/6 = 1.' },
-    { type: 'tf', q: 'A median of triangle joins vertex to midpoint of opposite side.', a: true, exp: 'This is definition of median.' },
-    { type: 'mcq', q: 'What is simple interest on ₹1000 at 10% for 1 year?', options: ['₹10', '₹50', '₹100', '₹1000'], a: 2, exp: 'SI = PRT/100 = 1000×10×1/100 = 100.' },
-    { type: 'mcq', q: 'What is 0.25 as fraction?', options: ['1/2', '1/3', '1/4', '1/5'], a: 2, exp: '0.25 = 25/100 = 1/4.' },
-    { type: 'tf', q: 'All equilateral triangles are isosceles.', a: true, exp: 'Equilateral triangle has at least two equal sides.' },
-    { type: 'mcq', q: 'What is the additive inverse of 9?', options: ['9', '-9', '1/9', '0'], a: 1, exp: '9 + (-9) = 0.' },
-    { type: 'mcq', q: 'What is 12% of 50?', options: ['5', '6', '10', '12'], a: 1, exp: '12/100 × 50 = 6.' },
-    { type: 'tf', q: 'Parallel lines meet at one point.', a: false, exp: 'Parallel lines never meet.' },
-    { type: 'mcq', q: 'What is the perimeter of rectangle length 8 cm and breadth 5 cm?', options: ['13 cm', '26 cm', '40 cm', '80 cm'], a: 1, exp: 'Perimeter = 2(l+b) = 26 cm.' },
-    { type: 'mcq', q: 'Which is a pair of supplementary angles?', options: ['40° and 50°', '90° and 90°', '30° and 40°', '60° and 60°'], a: 1, exp: 'Supplementary angles sum to 180°.' },
-    { type: 'tf', q: 'A rational number can be negative.', a: true, exp: 'Example: -2/3 is rational.' },
-    { type: 'mcq', q: 'What is 3.5 × 2?', options: ['5', '6', '7', '8'], a: 2, exp: '3.5 × 2 = 7.' },
-    { type: 'mcq', q: 'What is the mode of 2, 3, 3, 4, 5?', options: ['2', '3', '4', '5'], a: 1, exp: 'Mode is most repeated value.' },
-    { type: 'tf', q: 'The product of two negative integers is positive.', a: true, exp: 'Negative × negative = positive.' },
-    { type: 'mcq', q: 'What is 10²?', options: ['20', '100', '1000', '10'], a: 1, exp: '10² = 100.' },
-    { type: 'mcq', q: 'Which angle is less than 90°?', options: ['Obtuse', 'Right', 'Acute', 'Straight'], a: 2, exp: 'Acute angle is less than 90°.' },
-    { type: 'tf', q: 'A circle has corners.', a: false, exp: 'Circle has no corners.' },
-    { type: 'mcq', q: 'What is the value of x if x + 5 = 12?', options: ['5', '6', '7', '8'], a: 2, exp: 'x = 12 - 5 = 7.' },
-    { type: 'mcq', q: 'What is 1 litre equal to?', options: ['10 ml', '100 ml', '1000 ml', '10000 ml'], a: 2, exp: '1 litre = 1000 ml.' }
-  ],
-
-  science: [
-    { type: 'mcq', q: 'Which process helps plants make food?', options: ['Respiration', 'Photosynthesis', 'Digestion', 'Transpiration'], a: 1, exp: 'Plants make food by photosynthesis.' },
-    { type: 'mcq', q: 'Which acid is present in stomach?', options: ['HCl', 'H2SO4', 'HNO3', 'CH3COOH'], a: 0, exp: 'Hydrochloric acid is present in stomach.' },
-    { type: 'tf', q: 'Blood transports oxygen.', a: true, exp: 'RBCs carry oxygen.' },
-    { type: 'mcq', q: 'Which is a good conductor?', options: ['Wood', 'Plastic', 'Copper', 'Rubber'], a: 2, exp: 'Copper conducts electricity.' },
-    { type: 'tf', q: 'Heat naturally flows from cold body to hot body.', a: false, exp: 'Heat flows from hot to cold body.' },
-    { type: 'mcq', q: 'Which pigment gives green colour to leaves?', options: ['Haemoglobin', 'Chlorophyll', 'Melanin', 'Keratin'], a: 1, exp: 'Chlorophyll makes leaves green.' },
-    { type: 'mcq', q: 'Which organ helps in breathing?', options: ['Heart', 'Lungs', 'Kidney', 'Stomach'], a: 1, exp: 'Lungs help in breathing.' },
-    { type: 'tf', q: 'Wool is obtained from sheep.', a: true, exp: 'Sheep gives wool.' },
-    { type: 'mcq', q: 'Which instrument measures temperature?', options: ['Barometer', 'Thermometer', 'Compass', 'Speedometer'], a: 1, exp: 'Thermometer measures temperature.' },
-    { type: 'mcq', q: 'Which type of mirror is used as rear view mirror?', options: ['Plane mirror', 'Concave mirror', 'Convex mirror', 'None'], a: 2, exp: 'Convex mirror gives wider view.' },
-    { type: 'tf', q: 'Rusting requires oxygen and moisture.', a: true, exp: 'Iron rusts in presence of air and water.' },
-    { type: 'mcq', q: 'Which is a physical change?', options: ['Burning paper', 'Melting ice', 'Cooking food', 'Rusting iron'], a: 1, exp: 'Melting ice is reversible physical change.' },
-    { type: 'mcq', q: 'Which animal breathes through skin?', options: ['Fish', 'Frog', 'Bird', 'Dog'], a: 1, exp: 'Frog can breathe through moist skin.' },
-    { type: 'tf', q: 'Plants also respire.', a: true, exp: 'Plants need energy and respire.' },
-    { type: 'mcq', q: 'Which blood cells fight germs?', options: ['RBC', 'WBC', 'Platelets', 'Plasma'], a: 1, exp: 'White blood cells fight infections.' },
-    { type: 'mcq', q: 'Which is a decomposer?', options: ['Mushroom', 'Tiger', 'Grass', 'Goat'], a: 0, exp: 'Fungi like mushroom decompose dead matter.' },
-    { type: 'tf', q: 'Water is a poor conductor of heat compared to metals.', a: true, exp: 'Metals conduct heat better than water.' },
-    { type: 'mcq', q: 'Which part of digestive system absorbs digested food?', options: ['Mouth', 'Stomach', 'Small intestine', 'Large intestine'], a: 2, exp: 'Small intestine absorbs digested food.' },
-    { type: 'mcq', q: 'Which fibre is obtained from silkworm?', options: ['Cotton', 'Wool', 'Silk', 'Jute'], a: 2, exp: 'Silk is obtained from silkworm.' },
-    { type: 'tf', q: 'A concave lens is thinner at centre.', a: true, exp: 'Concave lens is thinner in middle.' },
-    { type: 'mcq', q: 'Which gas is released during respiration?', options: ['Oxygen', 'Carbon dioxide', 'Nitrogen', 'Hydrogen'], a: 1, exp: 'Respiration releases carbon dioxide.' },
-    { type: 'mcq', q: 'Which is a natural indicator?', options: ['Litmus', 'Phenolphthalein', 'Methyl orange', 'Salt'], a: 0, exp: 'Litmus is a natural indicator.' },
-    { type: 'tf', q: 'Electric current can flow only in a closed circuit.', a: true, exp: 'Closed path is needed for current flow.' },
-    { type: 'mcq', q: 'Which mode of heat transfer occurs in vacuum?', options: ['Conduction', 'Convection', 'Radiation', 'All'], a: 2, exp: 'Radiation does not need medium.' },
-    { type: 'mcq', q: 'Which organ removes waste from blood?', options: ['Heart', 'Kidney', 'Lungs', 'Brain'], a: 1, exp: 'Kidneys filter blood and remove wastes.' }
-  ]
-},
-            8: {
-  math: [
-    { type: 'mcq', q: 'What is square of 12?', options: ['124', '144', '132', '121'], a: 1, exp: '12² = 144.' },
-    { type: 'mcq', q: 'What is cube of 5?', options: ['25', '100', '125', '150'], a: 2, exp: '5³ = 125.' },
-    { type: 'tf', q: 'A rational number can be written as p/q.', a: true, exp: 'q should not be zero.' },
-    { type: 'mcq', q: 'Solve: 2x = 10', options: ['2', '5', '10', '20'], a: 1, exp: 'x = 5.' },
-    { type: 'tf', q: 'Zero has reciprocal.', a: false, exp: 'Reciprocal of zero is not defined.' },
-    { type: 'mcq', q: 'What is the value of 3² + 4²?', options: ['7', '12', '25', '49'], a: 2, exp: '9 + 16 = 25.' },
-    { type: 'mcq', q: 'What is the square root of 169?', options: ['11', '12', '13', '14'], a: 2, exp: '13² = 169.' },
-    { type: 'tf', q: 'Every whole number is a rational number.', a: true, exp: 'Whole numbers can be written with denominator 1.' },
-    { type: 'mcq', q: 'What is 20% of 250?', options: ['25', '50', '75', '100'], a: 1, exp: '20/100 × 250 = 50.' },
-    { type: 'mcq', q: 'Which is a perfect square?', options: ['20', '36', '50', '72'], a: 1, exp: '36 = 6².' },
-    { type: 'tf', q: 'A parallelogram has opposite sides equal.', a: true, exp: 'Opposite sides of parallelogram are equal.' },
-    { type: 'mcq', q: 'Area of rectangle is?', options: ['l + b', '2(l+b)', 'l × b', 'l/b'], a: 2, exp: 'Area of rectangle = length × breadth.' },
-    { type: 'mcq', q: 'What is 2⁵?', options: ['10', '16', '25', '32'], a: 3, exp: '2⁵ = 32.' },
-    { type: 'tf', q: 'A cube has 8 vertices.', a: true, exp: 'Cube has 8 vertices.' },
-    { type: 'mcq', q: 'What is the value of x if 3x + 2 = 11?', options: ['2', '3', '4', '5'], a: 1, exp: '3x = 9, so x = 3.' },
-    { type: 'mcq', q: 'Which number is divisible by 9?', options: ['123', '234', '243', '250'], a: 2, exp: '2+4+3 = 9, so 243 is divisible by 9.' },
-    { type: 'tf', q: 'A rhombus has all sides equal.', a: true, exp: 'All sides of rhombus are equal.' },
-    { type: 'mcq', q: 'What is compound interest based on?', options: ['Only principal', 'Principal and previous interest', 'Only rate', 'Only time'], a: 1, exp: 'Compound interest is calculated on amount.' },
-    { type: 'mcq', q: 'What is the cube root of 64?', options: ['2', '4', '6', '8'], a: 1, exp: '4³ = 64.' },
-    { type: 'tf', q: 'A polygon with 5 sides is called hexagon.', a: false, exp: '5-sided polygon is pentagon.' },
-    { type: 'mcq', q: 'What is the mean of 2, 4, 6, 8?', options: ['4', '5', '6', '8'], a: 1, exp: 'Mean = 20/4 = 5.' },
-    { type: 'mcq', q: 'Which is the identity for multiplication?', options: ['0', '1', '-1', '10'], a: 1, exp: 'Any number × 1 = same number.' },
-    { type: 'tf', q: 'The diagonals of a square are equal.', a: true, exp: 'Square diagonals are equal.' },
-    { type: 'mcq', q: 'What is 15²?', options: ['125', '200', '225', '250'], a: 2, exp: '15² = 225.' },
-    { type: 'mcq', q: 'Which expression is a monomial?', options: ['x + y', '2x', 'x² + 1', 'a + b + c'], a: 1, exp: '2x has only one term.' }
-  ],
-
-  science: [
-    { type: 'mcq', q: 'Which force opposes motion?', options: ['Magnetic force', 'Friction', 'Gravity', 'Muscular force'], a: 1, exp: 'Friction opposes motion.' },
-    { type: 'mcq', q: 'Which gas is needed for burning?', options: ['Nitrogen', 'Oxygen', 'Carbon dioxide', 'Hydrogen'], a: 1, exp: 'Oxygen supports combustion.' },
-    { type: 'tf', q: 'Microorganisms can be useful.', a: true, exp: 'Some microbes help in curd formation.' },
-    { type: 'mcq', q: 'Which is a fossil fuel?', options: ['Coal', 'Wood', 'Sunlight', 'Wind'], a: 0, exp: 'Coal is fossil fuel.' },
-    { type: 'tf', q: 'Sound cannot travel through vacuum.', a: true, exp: 'Sound needs medium.' },
-    { type: 'mcq', q: 'Which is a synthetic fibre?', options: ['Cotton', 'Wool', 'Nylon', 'Silk'], a: 2, exp: 'Nylon is synthetic fibre.' },
-    { type: 'mcq', q: 'Which part of cell controls activities?', options: ['Cell wall', 'Nucleus', 'Cytoplasm', 'Vacuole'], a: 1, exp: 'Nucleus controls cell activities.' },
-    { type: 'tf', q: 'Metals are generally sonorous.', a: true, exp: 'Metals produce ringing sound.' },
-    { type: 'mcq', q: 'Which disease is caused by bacteria?', options: ['Common cold', 'Tuberculosis', 'AIDS', 'Dengue'], a: 1, exp: 'Tuberculosis is bacterial disease.' },
-    { type: 'mcq', q: 'Which is the main constituent of natural gas?', options: ['Methane', 'Ethane', 'Propane', 'Butane'], a: 0, exp: 'Natural gas mainly contains methane.' },
-    { type: 'tf', q: 'Coal and petroleum are exhaustible resources.', a: true, exp: 'They are limited fossil fuels.' },
-    { type: 'mcq', q: 'Which is the unit of force?', options: ['Joule', 'Newton', 'Watt', 'Pascal'], a: 1, exp: 'Force is measured in Newton.' },
-    { type: 'mcq', q: 'Which planet is known for rings?', options: ['Mars', 'Earth', 'Saturn', 'Mercury'], a: 2, exp: 'Saturn has prominent rings.' },
-    { type: 'tf', q: 'Friction produces heat.', a: true, exp: 'Rubbing surfaces produces heat due to friction.' },
-    { type: 'mcq', q: 'Which organ produces sound in humans?', options: ['Lungs', 'Voice box', 'Heart', 'Kidney'], a: 1, exp: 'Larynx or voice box produces sound.' },
-    { type: 'mcq', q: 'Which is a metal?', options: ['Sulphur', 'Carbon', 'Iron', 'Phosphorus'], a: 2, exp: 'Iron is a metal.' },
-    { type: 'tf', q: 'Non-metals are generally poor conductors.', a: true, exp: 'Most non-metals do not conduct electricity well.' },
-    { type: 'mcq', q: 'Which process is used to separate grains from stalks?', options: ['Threshing', 'Filtration', 'Evaporation', 'Condensation'], a: 0, exp: 'Threshing separates grains from stalks.' },
-    { type: 'mcq', q: 'Which is a unicellular organism?', options: ['Human', 'Amoeba', 'Dog', 'Mango tree'], a: 1, exp: 'Amoeba has only one cell.' },
-    { type: 'tf', q: 'Adolescence is the period of changes after childhood.', a: true, exp: 'Adolescence involves physical and mental changes.' },
-    { type: 'mcq', q: 'Which gas causes greenhouse effect mainly?', options: ['Oxygen', 'Carbon dioxide', 'Nitrogen', 'Helium'], a: 1, exp: 'Carbon dioxide is a greenhouse gas.' },
-    { type: 'mcq', q: 'Which instrument measures earthquake intensity?', options: ['Seismograph', 'Thermometer', 'Barometer', 'Ammeter'], a: 0, exp: 'Seismograph records earthquakes.' },
-    { type: 'tf', q: 'Lightning is an electric discharge.', a: true, exp: 'Lightning occurs due to discharge of charges.' },
-    { type: 'mcq', q: 'Which is used in fire extinguishers?', options: ['Oxygen', 'Carbon dioxide', 'Hydrogen', 'Nitrogen'], a: 1, exp: 'Carbon dioxide does not support burning.' },
-    { type: 'mcq', q: 'Which part of flower becomes fruit?', options: ['Petal', 'Ovary', 'Sepal', 'Stamen'], a: 1, exp: 'Ovary develops into fruit.' }
-  ]
-},
-            9: {
-  math: [
-    { type: 'mcq', q: 'What is the value of √81?', options: ['7', '8', '9', '10'], a: 2, exp: '√81 = 9.' },
-    { type: 'mcq', q: 'What is degree of polynomial x² + 3x + 1?', options: ['1', '2', '3', '0'], a: 1, exp: 'Highest power is 2.' },
-    { type: 'tf', q: 'Every natural number is a whole number.', a: true, exp: 'Whole numbers include 0 and natural numbers.' },
-    { type: 'mcq', q: 'Area of triangle is?', options: ['bh', '1/2 bh', '2bh', 'b+h'], a: 1, exp: 'Area = 1/2 × base × height.' },
-    { type: 'tf', q: 'Two parallel lines intersect at one point.', a: false, exp: 'Parallel lines never meet.' },
-    { type: 'mcq', q: 'Which is an irrational number?', options: ['2', '3/4', '√2', '0.5'], a: 2, exp: '√2 is irrational.' },
-    { type: 'mcq', q: 'What is (a + b)²?', options: ['a² + b²', 'a² + 2ab + b²', 'a² - 2ab + b²', '2a + 2b'], a: 1, exp: '(a+b)² = a² + 2ab + b².' },
-    { type: 'tf', q: 'A linear polynomial has degree 1.', a: true, exp: 'Linear polynomial has highest power 1.' },
-    { type: 'mcq', q: 'If x = 2, what is x² + 3?', options: ['5', '7', '9', '11'], a: 1, exp: '2² + 3 = 7.' },
-    { type: 'mcq', q: 'Which point lies on x-axis?', options: ['(0, 5)', '(3, 0)', '(2, 4)', '(1, 1)'], a: 1, exp: 'On x-axis, y-coordinate is 0.' },
-    { type: 'tf', q: 'The sum of angles of a quadrilateral is 360°.', a: true, exp: 'Quadrilateral angle sum is 360°.' },
-    { type: 'mcq', q: 'What is the distance of point (3,4) from origin?', options: ['3', '4', '5', '7'], a: 2, exp: 'Distance = √(3²+4²)=5.' },
-    { type: 'mcq', q: 'Which is a binomial?', options: ['x', 'x + 2', 'x² + x + 1', '5'], a: 1, exp: 'Binomial has two terms.' },
-    { type: 'tf', q: 'All squares are rectangles.', a: true, exp: 'Square has all properties of rectangle.' },
-    { type: 'mcq', q: 'Volume of cube of side a is?', options: ['a²', 'a³', '6a²', '4a'], a: 1, exp: 'Volume of cube = a³.' },
-    { type: 'mcq', q: 'Which is Heron’s formula?', options: ['√s(s-a)(s-b)(s-c)', '1/2 bh', 'l×b', 'πr²'], a: 0, exp: 'Heron formula = √s(s-a)(s-b)(s-c).' },
-    { type: 'tf', q: 'A circle has infinite lines of symmetry.', a: true, exp: 'Every diameter is a line of symmetry.' },
-    { type: 'mcq', q: 'Mean of 2, 4, 6 is?', options: ['2', '3', '4', '6'], a: 2, exp: 'Mean = 12/3 = 4.' },
-    { type: 'mcq', q: 'What is probability of getting head in coin toss?', options: ['0', '1/2', '1', '2'], a: 1, exp: 'There are two equally likely outcomes.' },
-    { type: 'tf', q: 'A theorem needs proof.', a: true, exp: 'Theorem is proved using reasoning.' },
-    { type: 'mcq', q: 'Which is a constant polynomial?', options: ['x + 1', 'x²', '7', 'x³ + 2'], a: 2, exp: '7 has no variable.' },
-    { type: 'mcq', q: 'What is the value of 2⁰?', options: ['0', '1', '2', 'Undefined'], a: 1, exp: 'Any non-zero number power 0 is 1.' },
-    { type: 'tf', q: 'A chord passing through centre is diameter.', a: true, exp: 'Diameter is chord through centre.' },
-    { type: 'mcq', q: 'Which coordinate is written first?', options: ['y-coordinate', 'x-coordinate', 'z-coordinate', 'None'], a: 1, exp: 'Ordered pair is written as (x, y).' },
-    { type: 'mcq', q: 'What is surface area of cube?', options: ['a³', '4a²', '6a²', '2a²'], a: 2, exp: 'Total surface area of cube = 6a².' }
-  ],
-
-  science: [
-    { type: 'mcq', q: 'SI unit of force is?', options: ['Joule', 'Newton', 'Watt', 'Pascal'], a: 1, exp: 'Force unit is Newton.' },
-    { type: 'mcq', q: 'Acceleration due to gravity is approximately?', options: ['9.8 m/s²', '8.9 m/s²', '10.8 m/s²', '5 m/s²'], a: 0, exp: 'g ≈ 9.8 m/s².' },
-    { type: 'tf', q: 'Matter has mass and occupies space.', a: true, exp: 'This is definition of matter.' },
-    { type: 'mcq', q: 'Which tissue transports water in plants?', options: ['Phloem', 'Xylem', 'Epidermis', 'Meristem'], a: 1, exp: 'Xylem transports water.' },
-    { type: 'tf', q: 'Atom is electrically neutral.', a: true, exp: 'Number of protons and electrons is equal.' },
-    { type: 'mcq', q: 'Which state of matter has fixed shape?', options: ['Solid', 'Liquid', 'Gas', 'Plasma'], a: 0, exp: 'Solids have fixed shape.' },
-    { type: 'mcq', q: 'What is unit of velocity?', options: ['m/s', 'm/s²', 'kg', 'N'], a: 0, exp: 'Velocity = displacement/time.' },
-    { type: 'tf', q: 'Speed is a scalar quantity.', a: true, exp: 'Speed has magnitude only.' },
-    { type: 'mcq', q: 'Which cell organelle is powerhouse?', options: ['Nucleus', 'Mitochondria', 'Ribosome', 'Vacuole'], a: 1, exp: 'Mitochondria produces energy.' },
-    { type: 'mcq', q: 'Which particle has negative charge?', options: ['Proton', 'Neutron', 'Electron', 'Nucleus'], a: 2, exp: 'Electron is negatively charged.' },
-    { type: 'tf', q: 'Evaporation causes cooling.', a: true, exp: 'High energy particles escape, causing cooling.' },
-    { type: 'mcq', q: 'Which is a mixture?', options: ['Water', 'Air', 'Salt', 'Sugar'], a: 1, exp: 'Air is a mixture of gases.' },
-    { type: 'mcq', q: 'Which law explains action and reaction?', options: ['Newton first law', 'Newton second law', 'Newton third law', 'Law of gravitation'], a: 2, exp: 'Newton third law states action and reaction are equal and opposite.' },
-    { type: 'tf', q: 'Work is done when force causes displacement.', a: true, exp: 'Work = force × displacement.' },
-    { type: 'mcq', q: 'Which tissue connects muscles to bones?', options: ['Ligament', 'Tendon', 'Cartilage', 'Blood'], a: 1, exp: 'Tendon connects muscle to bone.' },
-    { type: 'mcq', q: 'Which disease is caused by virus?', options: ['Tuberculosis', 'Typhoid', 'Measles', 'Cholera'], a: 2, exp: 'Measles is viral disease.' },
-    { type: 'tf', q: 'Density = mass/volume.', a: true, exp: 'Density is mass per unit volume.' },
-    { type: 'mcq', q: 'Which has maximum intermolecular space?', options: ['Solid', 'Liquid', 'Gas', 'Ice'], a: 2, exp: 'Gases have maximum space between particles.' },
-    { type: 'mcq', q: 'Which is the basic unit of life?', options: ['Atom', 'Cell', 'Tissue', 'Organ'], a: 1, exp: 'Cell is basic unit of life.' },
-    { type: 'tf', q: 'Plasma membrane is selectively permeable.', a: true, exp: 'It allows selected substances to pass.' },
-    { type: 'mcq', q: 'What is momentum?', options: ['mass × velocity', 'force × time', 'mass × acceleration', 'work/time'], a: 0, exp: 'Momentum = mass × velocity.' },
-    { type: 'mcq', q: 'Which separation method is used for salt from seawater?', options: ['Filtration', 'Evaporation', 'Magnetism', 'Sieving'], a: 1, exp: 'Evaporation leaves salt behind.' },
-    { type: 'tf', q: 'Sound is produced by vibrating objects.', a: true, exp: 'Vibrations produce sound.' },
-    { type: 'mcq', q: 'Which is a plant hormone?', options: ['Insulin', 'Auxin', 'Adrenaline', 'Thyroxine'], a: 1, exp: 'Auxin is a plant hormone.' },
-    { type: 'mcq', q: 'Which gas is most abundant in air?', options: ['Oxygen', 'Nitrogen', 'Carbon dioxide', 'Hydrogen'], a: 1, exp: 'Nitrogen is about 78% of air.' }
-  ]
-},
-            10: {
-  math: [
-    { type: 'mcq', q: 'Quadratic equation has degree?', options: ['1', '2', '3', '4'], a: 1, exp: 'Quadratic equation has degree 2.' },
-    { type: 'mcq', q: 'Distance formula is used in which chapter?', options: ['Statistics', 'Coordinate Geometry', 'Probability', 'Trigonometry'], a: 1, exp: 'Distance formula belongs to Coordinate Geometry.' },
-    { type: 'tf', q: 'sin²θ + cos²θ = 1.', a: true, exp: 'This is a basic trigonometric identity.' },
-    { type: 'mcq', q: 'Common difference is used in?', options: ['AP', 'GP', 'Circle', 'Probability'], a: 0, exp: 'Arithmetic Progression has common difference.' },
-    { type: 'tf', q: 'Tangent touches circle at two points.', a: false, exp: 'Tangent touches circle at exactly one point.' },
-    { type: 'mcq', q: 'What is the sum of roots of ax² + bx + c = 0?', options: ['c/a', '-b/a', 'b/a', '-c/a'], a: 1, exp: 'Sum of roots = -b/a.' },
-    { type: 'mcq', q: 'What is the product of roots of ax² + bx + c = 0?', options: ['c/a', '-b/a', 'b/a', '-c/a'], a: 0, exp: 'Product of roots = c/a.' },
-    { type: 'tf', q: 'If discriminant is zero, roots are equal.', a: true, exp: 'D = 0 gives equal real roots.' },
-    { type: 'mcq', q: 'What is tan θ equal to?', options: ['sinθ/cosθ', 'cosθ/sinθ', '1/sinθ', '1/cosθ'], a: 0, exp: 'tanθ = sinθ/cosθ.' },
-    { type: 'mcq', q: 'What is value of sin 30°?', options: ['0', '1/2', '√3/2', '1'], a: 1, exp: 'sin 30° = 1/2.' },
-    { type: 'tf', q: 'Probability of an impossible event is 0.', a: true, exp: 'Impossible event cannot occur.' },
-    { type: 'mcq', q: 'What is distance between points (0,0) and (3,4)?', options: ['3', '4', '5', '7'], a: 2, exp: 'Distance = √(3²+4²)=5.' },
-    { type: 'mcq', q: 'Which is the formula for area of circle?', options: ['2πr', 'πr²', 'πd', 'r²'], a: 1, exp: 'Area of circle = πr².' },
-    { type: 'tf', q: 'Mean is affected by extreme values.', a: true, exp: 'Very large or small values affect mean.' },
-    { type: 'mcq', q: 'What is nth term of AP?', options: ['a + (n-1)d', 'a + nd', 'a - nd', 'adn'], a: 0, exp: 'nth term of AP = a + (n-1)d.' },
-    { type: 'mcq', q: 'What is value of cos 60°?', options: ['0', '1/2', '√3/2', '1'], a: 1, exp: 'cos 60° = 1/2.' },
-    { type: 'tf', q: 'Two tangents drawn from an external point to a circle are equal.', a: true, exp: 'Tangents from same external point are equal.' },
-    { type: 'mcq', q: 'Which pair is co-prime?', options: ['2 and 4', '6 and 9', '8 and 15', '10 and 20'], a: 2, exp: '8 and 15 have HCF 1.' },
-    { type: 'mcq', q: 'What is HCF of 18 and 24?', options: ['3', '6', '9', '12'], a: 1, exp: 'HCF of 18 and 24 is 6.' },
-    { type: 'tf', q: '√2 is a rational number.', a: false, exp: '√2 is irrational.' },
-    { type: 'mcq', q: 'What is median of 2, 4, 6?', options: ['2', '4', '6', '12'], a: 1, exp: 'Middle value is 4.' },
-    { type: 'mcq', q: 'If two triangles are similar, their corresponding angles are?', options: ['Equal', 'Double', 'Half', 'Unequal'], a: 0, exp: 'Similar triangles have equal corresponding angles.' },
-    { type: 'tf', q: 'A secant intersects a circle at two points.', a: true, exp: 'Secant cuts circle at two points.' },
-    { type: 'mcq', q: 'What is volume of sphere?', options: ['4πr²', '4/3πr³', 'πr²h', '2πr'], a: 1, exp: 'Volume of sphere = 4/3πr³.' },
-    { type: 'mcq', q: 'What is probability of getting 6 on a dice?', options: ['1/2', '1/3', '1/6', '1'], a: 2, exp: 'Only one favourable outcome out of 6.' }
-  ],
-
-  science: [
-    { type: 'mcq', q: 'pH less than 7 indicates?', options: ['Acidic', 'Basic', 'Neutral', 'Salt'], a: 0, exp: 'Acids have pH less than 7.' },
-    { type: 'mcq', q: 'SI unit of electric current is?', options: ['Volt', 'Ampere', 'Ohm', 'Watt'], a: 1, exp: 'Current unit is Ampere.' },
-    { type: 'tf', q: 'Metals generally conduct electricity.', a: true, exp: 'Metals have free electrons.' },
-    { type: 'mcq', q: 'Which is the functional unit of life?', options: ['Tissue', 'Cell', 'Organ', 'Nucleus'], a: 1, exp: 'Cell is basic unit of life.' },
-    { type: 'tf', q: 'Photosynthesis releases oxygen.', a: true, exp: 'Oxygen is released during photosynthesis.' },
-    { type: 'mcq', q: 'Which gas turns lime water milky?', options: ['Oxygen', 'Carbon dioxide', 'Nitrogen', 'Hydrogen'], a: 1, exp: 'CO2 turns lime water milky.' },
-    { type: 'mcq', q: 'Which metal is liquid at room temperature?', options: ['Iron', 'Mercury', 'Copper', 'Aluminium'], a: 1, exp: 'Mercury is liquid at room temperature.' },
-    { type: 'tf', q: 'A balanced chemical equation follows law of conservation of mass.', a: true, exp: 'Atoms are conserved in balanced equation.' },
-    { type: 'mcq', q: 'Which mirror is used in vehicle headlights?', options: ['Plane', 'Convex', 'Concave', 'None'], a: 2, exp: 'Concave mirror gives strong parallel beam.' },
-    { type: 'mcq', q: 'Unit of resistance is?', options: ['Ohm', 'Volt', 'Ampere', 'Coulomb'], a: 0, exp: 'Resistance is measured in ohm.' },
-    { type: 'tf', q: 'Human heart has four chambers.', a: true, exp: 'Heart has two atria and two ventricles.' },
-    { type: 'mcq', q: 'Which part of plant transports food?', options: ['Xylem', 'Phloem', 'Root hair', 'Stomata'], a: 1, exp: 'Phloem transports food.' },
-    { type: 'mcq', q: 'Which hormone controls blood sugar?', options: ['Insulin', 'Adrenaline', 'Thyroxine', 'Estrogen'], a: 0, exp: 'Insulin controls blood glucose level.' },
-    { type: 'tf', q: 'Refraction is bending of light.', a: true, exp: 'Light bends when it passes from one medium to another.' },
-    { type: 'mcq', q: 'Which lens is used to correct myopia?', options: ['Convex lens', 'Concave lens', 'Cylindrical lens', 'Plane glass'], a: 1, exp: 'Concave lens corrects myopia.' },
-    { type: 'mcq', q: 'Which is a renewable source of energy?', options: ['Coal', 'Petroleum', 'Solar energy', 'Natural gas'], a: 2, exp: 'Solar energy is renewable.' },
-    { type: 'tf', q: 'Decomposition reaction breaks one compound into simpler substances.', a: true, exp: 'Decomposition means breaking down.' },
-    { type: 'mcq', q: 'Which is the male reproductive part of flower?', options: ['Pistil', 'Stamen', 'Ovary', 'Sepal'], a: 1, exp: 'Stamen is male reproductive part.' },
-    { type: 'mcq', q: 'Which is the excretory unit of kidney?', options: ['Neuron', 'Nephron', 'Alveoli', 'Villus'], a: 1, exp: 'Nephron filters blood in kidney.' },
-    { type: 'tf', q: 'Magnetic field lines form closed curves.', a: true, exp: 'Magnetic field lines are continuous closed loops.' },
-    { type: 'mcq', q: 'Which acid is present in lemon?', options: ['Acetic acid', 'Citric acid', 'Lactic acid', 'Hydrochloric acid'], a: 1, exp: 'Lemon contains citric acid.' },
-    { type: 'mcq', q: 'Which process removes waste from blood?', options: ['Respiration', 'Dialysis', 'Photosynthesis', 'Digestion'], a: 1, exp: 'Dialysis removes wastes when kidneys fail.' },
-    { type: 'tf', q: 'Current flows from higher potential to lower potential conventionally.', a: true, exp: 'Conventional current direction is from positive to negative.' },
-    { type: 'mcq', q: 'Which gas is produced when acid reacts with metal?', options: ['Oxygen', 'Hydrogen', 'Nitrogen', 'Carbon dioxide'], a: 1, exp: 'Acid + metal produces salt and hydrogen gas.' },
-    { type: 'mcq', q: 'Which part of brain controls balance?', options: ['Cerebrum', 'Cerebellum', 'Medulla', 'Spinal cord'], a: 1, exp: 'Cerebellum controls balance and coordination.' }
-  ]
-},
-            11: {
-  physics: [
-    { type: 'mcq', q: 'SI unit of work is?', options: ['Newton', 'Joule', 'Watt', 'Pascal'], a: 1, exp: 'Work unit is Joule.' },
-    { type: 'mcq', q: 'Dimensional formula of velocity is?', options: ['LT⁻¹', 'L²T⁻¹', 'MLT⁻²', 'LT²'], a: 0, exp: 'Velocity = displacement/time.' },
-    { type: 'tf', q: 'Momentum is a vector quantity.', a: true, exp: 'Momentum has magnitude and direction.' },
-    { type: 'mcq', q: 'SI unit of force is?', options: ['Joule', 'Newton', 'Watt', 'Meter'], a: 1, exp: 'Force is measured in Newton.' },
-    { type: 'mcq', q: 'Acceleration is rate of change of?', options: ['Distance', 'Velocity', 'Speed only', 'Mass'], a: 1, exp: 'Acceleration = change in velocity/time.' },
-    { type: 'tf', q: 'Speed is a scalar quantity.', a: true, exp: 'Speed has magnitude only.' },
-    { type: 'mcq', q: 'What is the value of g near Earth surface?', options: ['9.8 m/s²', '8.9 m/s²', '10.8 m/s²', '5 m/s²'], a: 0, exp: 'g is approximately 9.8 m/s².' },
-    { type: 'mcq', q: 'Which law is F = ma?', options: ['Newton first law', 'Newton second law', 'Newton third law', 'Law of gravitation'], a: 1, exp: 'Newton second law gives F = ma.' },
-    { type: 'tf', q: 'Work done can be zero.', a: true, exp: 'If displacement is zero or force is perpendicular, work can be zero.' },
-    { type: 'mcq', q: 'Power is defined as?', options: ['Work/time', 'Force/time', 'Energy × time', 'Mass × acceleration'], a: 0, exp: 'Power = work done per unit time.' },
-    { type: 'mcq', q: 'SI unit of power is?', options: ['Joule', 'Watt', 'Newton', 'Pascal'], a: 1, exp: 'Power unit is Watt.' },
-    { type: 'tf', q: 'Kinetic energy depends on velocity.', a: true, exp: 'K.E. = 1/2 mv².' },
-    { type: 'mcq', q: 'Which quantity is conserved in elastic collision?', options: ['Momentum only', 'Kinetic energy only', 'Both momentum and kinetic energy', 'None'], a: 2, exp: 'In elastic collision, both momentum and kinetic energy are conserved.' },
-    { type: 'mcq', q: 'Unit of pressure is?', options: ['Newton', 'Pascal', 'Joule', 'Watt'], a: 1, exp: 'Pressure unit is Pascal.' },
-    { type: 'tf', q: 'Pressure in a fluid increases with depth.', a: true, exp: 'Fluid pressure increases as depth increases.' },
-    { type: 'mcq', q: 'Which quantity has dimensions MLT⁻²?', options: ['Work', 'Force', 'Power', 'Pressure'], a: 1, exp: 'Force has dimensional formula MLT⁻².' },
-    { type: 'mcq', q: 'Simple harmonic motion is?', options: ['Periodic motion', 'Random motion', 'Linear motion only', 'Circular motion only'], a: 0, exp: 'SHM is a type of periodic motion.' },
-    { type: 'tf', q: 'Frequency is reciprocal of time period.', a: true, exp: 'f = 1/T.' },
-    { type: 'mcq', q: 'SI unit of frequency is?', options: ['Hertz', 'Second', 'Meter', 'Newton'], a: 0, exp: 'Frequency unit is Hertz.' },
-    { type: 'mcq', q: 'Escape velocity depends on?', options: ['Mass of body only', 'Mass and radius of planet', 'Temperature', 'Pressure'], a: 1, exp: 'Escape velocity depends on mass and radius of planet.' },
-    { type: 'tf', q: 'Gravitational force is always attractive.', a: true, exp: 'Gravity is attractive in nature.' },
-    { type: 'mcq', q: 'Surface tension is related to?', options: ['Liquids', 'Solids only', 'Gases only', 'Vacuum'], a: 0, exp: 'Surface tension is property of liquid surface.' },
-    { type: 'mcq', q: 'Which scale has no negative temperature theoretically?', options: ['Celsius', 'Fahrenheit', 'Kelvin', 'None'], a: 2, exp: 'Kelvin scale starts from absolute zero.' },
-    { type: 'tf', q: 'Heat is a form of energy.', a: true, exp: 'Heat is energy transferred due to temperature difference.' },
-    { type: 'mcq', q: 'Equation of continuity is based on conservation of?', options: ['Mass', 'Energy', 'Charge', 'Momentum'], a: 0, exp: 'Continuity equation follows conservation of mass.' }
-  ],
-
-  chemistry: [
-    { type: 'mcq', q: 'Atomic number represents number of?', options: ['Neutrons', 'Protons', 'Electrons only', 'Nucleons'], a: 1, exp: 'Atomic number = number of protons.' },
-    { type: 'mcq', q: 'p-block elements belong to which groups?', options: ['1-2', '13-18', '3-12', 'Only 18'], a: 1, exp: 'p-block includes groups 13 to 18.' },
-    { type: 'tf', q: 'Isotopes have same atomic number.', a: true, exp: 'Isotopes have same protons but different neutrons.' },
-    { type: 'mcq', q: 'Mole is SI unit of?', options: ['Mass', 'Amount of substance', 'Volume', 'Density'], a: 1, exp: 'Mole measures amount of substance.' },
-    { type: 'mcq', q: 'Avogadro number is?', options: ['6.022×10²³', '3.14', '9.8', '1.6×10⁻¹⁹'], a: 0, exp: 'Avogadro number is 6.022×10²³.' },
-    { type: 'tf', q: 'Orbitals have definite shapes.', a: true, exp: 's, p, d orbitals have different shapes.' },
-    { type: 'mcq', q: 'Which quantum number describes size of orbital?', options: ['Principal', 'Azimuthal', 'Magnetic', 'Spin'], a: 0, exp: 'Principal quantum number describes shell/size.' },
-    { type: 'mcq', q: 'Which block contains transition elements?', options: ['s-block', 'p-block', 'd-block', 'f-block'], a: 2, exp: 'd-block elements are transition elements.' },
-    { type: 'tf', q: 'Electronegativity generally increases across a period.', a: true, exp: 'Effective nuclear charge increases across period.' },
-    { type: 'mcq', q: 'Which bond is formed by sharing electrons?', options: ['Ionic', 'Covalent', 'Metallic', 'Hydrogen'], a: 1, exp: 'Covalent bond involves sharing of electrons.' },
-    { type: 'mcq', q: 'Ideal gas equation is?', options: ['PV = nRT', 'P = F/A', 'V = IR', 'E = mc²'], a: 0, exp: 'Ideal gas equation is PV = nRT.' },
-    { type: 'tf', q: 'Catalyst changes rate of reaction.', a: true, exp: 'Catalyst increases or changes reaction rate without being consumed.' },
-    { type: 'mcq', q: 'Oxidation means?', options: ['Gain of electrons', 'Loss of electrons', 'Gain of protons', 'Loss of neutrons'], a: 1, exp: 'Oxidation is loss of electrons.' },
-    { type: 'mcq', q: 'Which is strongest intermolecular force?', options: ['London force', 'Dipole-dipole', 'Hydrogen bonding', 'Ion-dipole'], a: 3, exp: 'Ion-dipole is generally strongest among these.' },
-    { type: 'tf', q: 'Enthalpy is a state function.', a: true, exp: 'Enthalpy depends only on state.' },
-    { type: 'mcq', q: 'Which element has atomic number 1?', options: ['Helium', 'Hydrogen', 'Lithium', 'Carbon'], a: 1, exp: 'Hydrogen has atomic number 1.' },
-    { type: 'mcq', q: 'Which has maximum electronegativity?', options: ['Oxygen', 'Fluorine', 'Chlorine', 'Nitrogen'], a: 1, exp: 'Fluorine is most electronegative.' },
-    { type: 'tf', q: 'Ionic compounds generally have high melting points.', a: true, exp: 'Strong electrostatic forces require more energy.' },
-    { type: 'mcq', q: 'Which is an alkali metal?', options: ['Na', 'Ca', 'Al', 'Cl'], a: 0, exp: 'Sodium is group 1 alkali metal.' },
-    { type: 'mcq', q: 'Which gas is monoatomic?', options: ['Oxygen', 'Nitrogen', 'Helium', 'Hydrogen'], a: 2, exp: 'Helium is a noble gas and monoatomic.' },
-    { type: 'tf', q: 'pH of neutral solution at 25°C is 7.', a: true, exp: 'Neutral water has pH 7 at 25°C.' },
-    { type: 'mcq', q: 'Which is Lewis acid?', options: ['Electron pair donor', 'Electron pair acceptor', 'Proton donor', 'Hydroxide donor'], a: 1, exp: 'Lewis acid accepts electron pair.' },
-    { type: 'mcq', q: 'Which is not a state function?', options: ['Enthalpy', 'Entropy', 'Work', 'Internal energy'], a: 2, exp: 'Work depends on path.' },
-    { type: 'tf', q: 'Hybridisation explains shape of molecules.', a: true, exp: 'Hybridisation helps explain molecular geometry.' },
-    { type: 'mcq', q: 'Which has sp³ hybridisation?', options: ['CH4', 'C2H2', 'BF3', 'CO2'], a: 0, exp: 'Methane carbon is sp³ hybridised.' }
-  ],
-
-  bio: [
-    { type: 'mcq', q: 'Powerhouse of cell is?', options: ['Nucleus', 'Mitochondria', 'Ribosome', 'Golgi body'], a: 1, exp: 'Mitochondria produces energy.' },
-    { type: 'mcq', q: 'Enzyme present in saliva is?', options: ['Pepsin', 'Trypsin', 'Amylase', 'Lipase'], a: 2, exp: 'Salivary amylase digests starch.' },
-    { type: 'tf', q: 'Xylem transports water.', a: true, exp: 'Xylem carries water and minerals.' },
-    { type: 'mcq', q: 'Basic unit of classification is?', options: ['Genus', 'Species', 'Family', 'Order'], a: 1, exp: 'Species is basic unit of classification.' },
-    { type: 'mcq', q: 'Which organelle contains DNA?', options: ['Mitochondria', 'Ribosome', 'Lysosome', 'Vacuole'], a: 0, exp: 'Mitochondria has its own DNA.' },
-    { type: 'tf', q: 'Ribosomes are sites of protein synthesis.', a: true, exp: 'Ribosomes make proteins.' },
-    { type: 'mcq', q: 'Which tissue conducts food in plants?', options: ['Xylem', 'Phloem', 'Epidermis', 'Collenchyma'], a: 1, exp: 'Phloem transports food.' },
-    { type: 'mcq', q: 'Which is a connective tissue?', options: ['Blood', 'Epidermis', 'Muscle fibre', 'Neuron'], a: 0, exp: 'Blood is fluid connective tissue.' },
-    { type: 'tf', q: 'Enzymes are mostly proteins.', a: true, exp: 'Most enzymes are protein molecules.' },
-    { type: 'mcq', q: 'Which kingdom includes bacteria?', options: ['Protista', 'Monera', 'Fungi', 'Plantae'], a: 1, exp: 'Bacteria belong to Monera.' },
-    { type: 'mcq', q: 'Which is not a part of neuron?', options: ['Dendrite', 'Axon', 'Cell body', 'Stomata'], a: 3, exp: 'Stomata are pores in leaves.' },
-    { type: 'tf', q: 'Cell wall is present in plant cells.', a: true, exp: 'Plant cells have cell wall outside plasma membrane.' },
-    { type: 'mcq', q: 'Which biomolecule stores genetic information?', options: ['DNA', 'Protein', 'Lipid', 'Starch'], a: 0, exp: 'DNA stores genetic information.' },
-    { type: 'mcq', q: 'Which is the site of photosynthesis?', options: ['Mitochondria', 'Chloroplast', 'Nucleus', 'Ribosome'], a: 1, exp: 'Chloroplast contains chlorophyll.' },
-    { type: 'tf', q: 'Lysosomes contain digestive enzymes.', a: true, exp: 'Lysosomes help in intracellular digestion.' },
-    { type: 'mcq', q: 'Which is a plant hormone?', options: ['Insulin', 'Auxin', 'Thyroxine', 'Adrenaline'], a: 1, exp: 'Auxin is a plant hormone.' },
-    { type: 'mcq', q: 'Which blood cells carry oxygen?', options: ['WBC', 'RBC', 'Platelets', 'Plasma'], a: 1, exp: 'RBC contains haemoglobin and carries oxygen.' },
-    { type: 'tf', q: 'Meristematic tissues actively divide.', a: true, exp: 'Meristematic cells divide continuously.' },
-    { type: 'mcq', q: 'Which part of plant absorbs water?', options: ['Leaf', 'Root hair', 'Flower', 'Fruit'], a: 1, exp: 'Root hairs absorb water and minerals.' },
-    { type: 'mcq', q: 'Which is an example of fungi?', options: ['Amoeba', 'Mushroom', 'Bacteria', 'Algae'], a: 1, exp: 'Mushroom is a fungus.' },
-    { type: 'tf', q: 'Prokaryotic cells lack true nucleus.', a: true, exp: 'Prokaryotes do not have membrane-bound nucleus.' },
-    { type: 'mcq', q: 'Which organelle modifies and packages proteins?', options: ['Golgi body', 'Ribosome', 'Vacuole', 'Nucleus'], a: 0, exp: 'Golgi apparatus modifies and packages proteins.' },
-    { type: 'mcq', q: 'Which is the structural unit of kidney?', options: ['Neuron', 'Nephron', 'Alveolus', 'Villus'], a: 1, exp: 'Nephron is functional unit of kidney.' },
-    { type: 'tf', q: 'A virus can reproduce only inside living cells.', a: true, exp: 'Viruses need host cells to reproduce.' },
-    { type: 'mcq', q: 'Which tissue helps in movement?', options: ['Muscle tissue', 'Epithelial tissue', 'Xylem', 'Phloem'], a: 0, exp: 'Muscle tissue contracts and helps movement.' }
-  ]
-},
-            12: {
-  physics: [
-    { type: 'mcq', q: 'SI unit of electric potential is?', options: ['Ampere', 'Volt', 'Ohm', 'Coulomb'], a: 1, exp: 'Electric potential is measured in Volt.' },
-    { type: 'mcq', q: 'Lens formula is?', options: ['1/f = 1/v - 1/u', 'f = u + v', '1/f = 1/u + 1/v', 'v = u/f'], a: 0, exp: 'Lens formula is 1/f = 1/v - 1/u.' },
-    { type: 'tf', q: 'Electric field is a vector quantity.', a: true, exp: 'Electric field has magnitude and direction.' },
-    { type: 'mcq', q: 'SI unit of capacitance is?', options: ['Farad', 'Henry', 'Tesla', 'Weber'], a: 0, exp: 'Capacitance is measured in Farad.' },
-    { type: 'mcq', q: 'Ohm’s law is?', options: ['V = IR', 'P = VI', 'F = ma', 'Q = CV'], a: 0, exp: 'Ohm’s law states V = IR.' },
-    { type: 'tf', q: 'Magnetic field is a vector quantity.', a: true, exp: 'Magnetic field has direction.' },
-    { type: 'mcq', q: 'Unit of magnetic flux is?', options: ['Tesla', 'Weber', 'Henry', 'Farad'], a: 1, exp: 'Magnetic flux is measured in Weber.' },
-    { type: 'mcq', q: 'Which device converts AC to DC?', options: ['Transformer', 'Rectifier', 'Generator', 'Motor'], a: 1, exp: 'Rectifier converts AC into DC.' },
-    { type: 'tf', q: 'Transformer works on DC.', a: false, exp: 'Transformer works on changing current, mainly AC.' },
-    { type: 'mcq', q: 'Which mirror is used in solar furnace?', options: ['Plane', 'Convex', 'Concave', 'None'], a: 2, exp: 'Concave mirror focuses sunlight.' },
-    { type: 'mcq', q: 'Unit of electric charge is?', options: ['Coulomb', 'Volt', 'Ampere', 'Ohm'], a: 0, exp: 'Charge is measured in Coulomb.' },
-    { type: 'tf', q: 'Photoelectric effect supports particle nature of light.', a: true, exp: 'Photoelectric effect shows photons.' },
-    { type: 'mcq', q: 'Energy of photon is?', options: ['E = hv', 'E = mc', 'E = IR', 'E = V/R'], a: 0, exp: 'Photon energy is E = hv.' },
-    { type: 'mcq', q: 'Which wave has highest frequency?', options: ['Radio wave', 'Microwave', 'Visible light', 'Gamma ray'], a: 3, exp: 'Gamma rays have highest frequency.' },
-    { type: 'tf', q: 'Nuclear fusion occurs in the Sun.', a: true, exp: 'Sun produces energy by fusion.' },
-    { type: 'mcq', q: 'SI unit of inductance is?', options: ['Henry', 'Farad', 'Weber', 'Tesla'], a: 0, exp: 'Inductance is measured in Henry.' },
-    { type: 'mcq', q: 'Which logic gate gives output 1 only when all inputs are 1?', options: ['OR', 'AND', 'NOT', 'NOR'], a: 1, exp: 'AND gate gives 1 only when all inputs are 1.' },
-    { type: 'tf', q: 'p-n junction diode allows current mainly in one direction.', a: true, exp: 'Diode conducts in forward bias.' },
-    { type: 'mcq', q: 'Which quantity is conserved in Kirchhoff’s junction rule?', options: ['Energy', 'Charge', 'Momentum', 'Mass'], a: 1, exp: 'Junction rule is based on conservation of charge.' },
-    { type: 'mcq', q: 'Unit of electric field is?', options: ['N/C', 'J/s', 'Wb', 'T'], a: 0, exp: 'Electric field unit is N/C or V/m.' },
-    { type: 'tf', q: 'Convex lens is converging lens.', a: true, exp: 'Convex lens converges light rays.' },
-    { type: 'mcq', q: 'Which phenomenon proves wave nature of light?', options: ['Photoelectric effect', 'Interference', 'Compton effect', 'Black body radiation'], a: 1, exp: 'Interference proves wave nature of light.' },
-    { type: 'mcq', q: 'Bohr model explains spectrum of?', options: ['Hydrogen atom', 'Helium molecule', 'Sodium chloride', 'Water'], a: 0, exp: 'Bohr model explains hydrogen spectrum.' },
-    { type: 'tf', q: 'Alpha particles are positively charged.', a: true, exp: 'Alpha particles are helium nuclei with positive charge.' },
-    { type: 'mcq', q: 'Which material is used in semiconductor devices?', options: ['Silicon', 'Wood', 'Plastic', 'Glass'], a: 0, exp: 'Silicon is commonly used semiconductor.' }
-  ],
-
-  chemistry: [
-    { type: 'mcq', q: 'Which is an aldehyde group?', options: ['-OH', '-CHO', '-COOH', '-NH2'], a: 1, exp: '-CHO is aldehyde group.' },
-    { type: 'mcq', q: 'Rate of reaction depends on?', options: ['Temperature', 'Concentration', 'Catalyst', 'All of these'], a: 3, exp: 'All these factors affect reaction rate.' },
-    { type: 'tf', q: 'Benzene is aromatic.', a: true, exp: 'Benzene is aromatic due to delocalized π electrons.' },
-    { type: 'mcq', q: 'Which is alcohol functional group?', options: ['-OH', '-CHO', '-COOH', '-CO-'], a: 0, exp: 'Alcohols contain -OH group.' },
-    { type: 'mcq', q: 'Which is strongest acid?', options: ['HCl', 'CH3COOH', 'H2CO3', 'HCOOH'], a: 0, exp: 'HCl is a strong acid.' },
-    { type: 'tf', q: 'Catalyst changes activation energy.', a: true, exp: 'Catalyst provides alternate path with lower activation energy.' },
-    { type: 'mcq', q: 'Which is a colligative property?', options: ['Boiling point elevation', 'Colour', 'Odour', 'Taste'], a: 0, exp: 'Boiling point elevation depends on number of solute particles.' },
-    { type: 'mcq', q: 'Which metal is extracted by Hall-Heroult process?', options: ['Iron', 'Aluminium', 'Copper', 'Zinc'], a: 1, exp: 'Aluminium is extracted by Hall-Heroult process.' },
-    { type: 'tf', q: 'First order reaction has unit of rate constant s⁻¹.', a: true, exp: 'For first order reaction, k has unit s⁻¹.' },
-    { type: 'mcq', q: 'Which is a transition metal?', options: ['Na', 'Mg', 'Fe', 'Al'], a: 2, exp: 'Iron is a d-block transition metal.' },
-    { type: 'mcq', q: 'Which polymer is used in non-stick cookware?', options: ['PVC', 'PTFE', 'Nylon', 'Bakelite'], a: 1, exp: 'PTFE or Teflon is used in non-stick coating.' },
-    { type: 'tf', q: 'Glucose is a carbohydrate.', a: true, exp: 'Glucose is a monosaccharide carbohydrate.' },
-    { type: 'mcq', q: 'Which vitamin is water soluble?', options: ['Vitamin A', 'Vitamin D', 'Vitamin C', 'Vitamin K'], a: 2, exp: 'Vitamin C is water soluble.' },
-    { type: 'mcq', q: 'Which is an amine group?', options: ['-NH2', '-OH', '-COOH', '-CHO'], a: 0, exp: 'Amines contain -NH2 group.' },
-    { type: 'tf', q: 'SN1 reaction proceeds through carbocation intermediate.', a: true, exp: 'SN1 mechanism involves carbocation formation.' },
-    { type: 'mcq', q: 'Which is a noble gas?', options: ['Oxygen', 'Nitrogen', 'Argon', 'Hydrogen'], a: 2, exp: 'Argon is a noble gas.' },
-    { type: 'mcq', q: 'Which is used as antiseptic?', options: ['Dettol', 'NaCl', 'Sugar', 'Starch'], a: 0, exp: 'Dettol is commonly used antiseptic.' },
-    { type: 'tf', q: 'Phenol is more acidic than alcohol.', a: true, exp: 'Phenoxide ion is resonance stabilized.' },
-    { type: 'mcq', q: 'Which is the monomer of PVC?', options: ['Vinyl chloride', 'Ethene', 'Styrene', 'Tetrafluoroethene'], a: 0, exp: 'PVC is made from vinyl chloride.' },
-    { type: 'mcq', q: 'Which is an example of emulsion?', options: ['Milk', 'Salt solution', 'Air', 'Brass'], a: 0, exp: 'Milk is an emulsion.' },
-    { type: 'tf', q: 'd-block elements show variable oxidation states.', a: true, exp: 'Transition elements commonly show variable oxidation states.' },
-    { type: 'mcq', q: 'Which is reducing sugar?', options: ['Glucose', 'Sucrose', 'Starch', 'Cellulose'], a: 0, exp: 'Glucose is a reducing sugar.' },
-    { type: 'mcq', q: 'Which is used in dry cleaning?', options: ['Water', 'Petrol only', 'Tetrachloroethene', 'Salt'], a: 2, exp: 'Tetrachloroethene is used as dry cleaning solvent.' },
-    { type: 'tf', q: 'Amino acids contain both -NH2 and -COOH groups.', a: true, exp: 'Amino acids have amino and carboxyl groups.' },
-    { type: 'mcq', q: 'Which is an example of coordination compound?', options: ['K4[Fe(CN)6]', 'NaCl', 'H2O', 'CH4'], a: 0, exp: 'K4[Fe(CN)6] is a coordination compound.' }
-  ],
-
-  bio: [
-    { type: 'mcq', q: 'DNA replication occurs in which phase?', options: ['G1', 'S phase', 'G2', 'M phase'], a: 1, exp: 'DNA replication occurs in S phase.' },
-    { type: 'mcq', q: 'Mendel worked on which plant?', options: ['Rose', 'Pea plant', 'Wheat', 'Maize'], a: 1, exp: 'Mendel worked on pea plant.' },
-    { type: 'tf', q: 'RNA contains uracil.', a: true, exp: 'RNA has uracil instead of thymine.' },
-    { type: 'mcq', q: 'Which is the genetic material?', options: ['DNA', 'Protein', 'Lipid', 'Starch'], a: 0, exp: 'DNA is genetic material in most organisms.' },
-    { type: 'mcq', q: 'Which hormone triggers ovulation?', options: ['FSH', 'LH', 'Insulin', 'Thyroxine'], a: 1, exp: 'LH surge triggers ovulation.' },
-    { type: 'tf', q: 'Codon is a sequence of three nucleotides.', a: true, exp: 'Each codon has three bases.' },
-    { type: 'mcq', q: 'Which is a restriction enzyme?', options: ['EcoRI', 'Amylase', 'Pepsin', 'Lipase'], a: 0, exp: 'EcoRI is a restriction endonuclease.' },
-    { type: 'mcq', q: 'Which disease is caused by Plasmodium?', options: ['Dengue', 'Malaria', 'Typhoid', 'AIDS'], a: 1, exp: 'Plasmodium causes malaria.' },
-    { type: 'tf', q: 'Antibodies are proteins.', a: true, exp: 'Antibodies are immunoglobulin proteins.' },
-    { type: 'mcq', q: 'Which is the site of fertilization in humans?', options: ['Uterus', 'Ovary', 'Fallopian tube', 'Vagina'], a: 2, exp: 'Fertilization usually occurs in fallopian tube.' },
-    { type: 'mcq', q: 'Which is an example of biotic component?', options: ['Water', 'Air', 'Plant', 'Soil'], a: 2, exp: 'Plants are living components.' },
-    { type: 'tf', q: 'PCR is used to amplify DNA.', a: true, exp: 'PCR makes many copies of DNA.' },
-    { type: 'mcq', q: 'Which is a stop codon?', options: ['AUG', 'UAA', 'UUU', 'GGC'], a: 1, exp: 'UAA is a stop codon.' },
-    { type: 'mcq', q: 'Which hormone regulates blood glucose?', options: ['Insulin', 'ADH', 'Oxytocin', 'Melatonin'], a: 0, exp: 'Insulin lowers blood glucose.' },
-    { type: 'tf', q: 'AIDS is caused by HIV.', a: true, exp: 'HIV causes AIDS.' },
-    { type: 'mcq', q: 'Which is the functional unit of ecosystem?', options: ['Species', 'Population', 'Ecosystem', 'Community'], a: 2, exp: 'Ecosystem is functional unit of ecology.' },
-    { type: 'mcq', q: 'Which plant hormone promotes fruit ripening?', options: ['Auxin', 'Gibberellin', 'Ethylene', 'Cytokinin'], a: 2, exp: 'Ethylene promotes fruit ripening.' },
-    { type: 'tf', q: 'DNA is double helical.', a: true, exp: 'DNA has double helix structure.' },
-    { type: 'mcq', q: 'Which is a primary consumer?', options: ['Grass', 'Deer', 'Tiger', 'Fungus'], a: 1, exp: 'Deer eats plants, so it is primary consumer.' },
-    { type: 'mcq', q: 'Which technique separates DNA fragments?', options: ['Gel electrophoresis', 'Centrifugation only', 'Filtration', 'Distillation'], a: 0, exp: 'Gel electrophoresis separates DNA fragments by size.' },
-    { type: 'tf', q: 'Spermatogenesis occurs in testes.', a: true, exp: 'Sperm formation occurs in testes.' },
-    { type: 'mcq', q: 'Which is a vaccine-preventable disease?', options: ['Polio', 'Diabetes', 'Scurvy', 'Hypertension'], a: 0, exp: 'Polio can be prevented by vaccination.' },
-    { type: 'mcq', q: 'Which is the first step of gene expression?', options: ['Translation', 'Transcription', 'Replication', 'Mutation'], a: 1, exp: 'Transcription forms RNA from DNA.' },
- { type: 'tf', q: 'Mutations can create new alleles...' },
-        { type: 'mcq', q: 'Which is an example of...' }
-    ]
-};
-
-function startQuiz() {
-    alert('Button working!');
+function makeQuestions(cls, subject){
+  const names = {
+    math: 'Mathematics',
+    physics: 'Physics',
+    chemistry: 'Chemistry',
+    biology: 'Biology'
+  };
+  return [
+    {type:'mcq', q:`Class ${cls} ${names[subject]}: What is 2 + 2?`, options:['3','4','5','6'], a:1, exp:'2 + 2 = 4'},
+    {type:'tf', q:`Class ${cls} ${names[subject]}: The Sun gives us light.`, a:true, exp:'Sun is a natural source of light.'},
+    {type:'mcq', q:`Class ${cls} ${names[subject]}: Which option is correct?`, options:['A','B','C','D'], a:0, exp:'Option A is correct for this sample question.'},
+    {type:'tf', q:`Class ${cls} ${names[subject]}: A triangle has 4 sides.`, a:false, exp:'A triangle has 3 sides.'},
+    {type:'mcq', q:`Class ${cls} ${names[subject]}: How many minutes are in 1 hour?`, options:['30','45','60','90'], a:2, exp:'1 hour = 60 minutes.'}
+  ];
 }
+for(let c=4;c<=12;c++){
+  quizData[c] = {};
+  subjects.forEach(s => quizData[c][s] = makeQuestions(c,s));
+}
+
+let currentQuestions = [];
+let currentQuestionIndex = 0;
+let userAnswers = [];
+let timerInterval = null;
+let timeLeft = 0;
+
+function startQuiz(){
+  const cls = document.getElementById('classSelect').value;
+  const subject = document.getElementById('subjectSelect').value;
+  const type = document.getElementById('typeSelect').value;
+  const time = parseInt(document.getElementById('timeSelect').value);
+
+  let questions = (quizData[cls] && quizData[cls][subject]) ? quizData[cls][subject] : [];
+  if(type !== 'all') questions = questions.filter(q => q.type === type);
+
+  if(!questions.length){
+    alert('Is class/subject/type me question nahi mila.');
+    return;
+  }
+
+  currentQuestions = questions;
+  currentQuestionIndex = 0;
+  userAnswers = new Array(currentQuestions.length).fill(null);
+
+  document.getElementById('setupScreen').classList.add('hidden');
+  document.getElementById('resultScreen').classList.add('hidden');
+  document.getElementById('quizScreen').classList.remove('hidden');
+
+  document.getElementById('quizInfo').textContent =
+    `Class ${cls} | ${subject.toUpperCase()} | ${currentQuestions.length} Questions`;
+
+  if(timerInterval) clearInterval(timerInterval);
+  if(time > 0){
+    timeLeft = time * 60;
+    timerInterval = setInterval(updateTimer, 1000);
+    updateTimer();
+  } else {
+    document.getElementById('timer').textContent = 'No Limit';
+  }
+
+  showQuestion();
+}
+
+function updateTimer(){
+  const min = Math.floor(timeLeft / 60);
+  const sec = timeLeft % 60;
+  const timer = document.getElementById('timer');
+  timer.textContent = `${min}:${sec.toString().padStart(2,'0')}`;
+  timer.classList.toggle('warning', timeLeft <= 60);
+  if(timeLeft <= 0){
+    clearInterval(timerInterval);
+    finishQuiz();
+  }
+  timeLeft--;
+}
+
+function showQuestion(){
+  const q = currentQuestions[currentQuestionIndex];
+  const box = document.getElementById('questionContainer');
+  const badge = q.type === 'mcq' ? 'MCQ' : q.type === 'tf' ? 'True/False' : 'A/R';
+
+  let html = `<div class="question-card">
+    <span class="question-number">Question ${currentQuestionIndex + 1} of ${currentQuestions.length}</span>
+    <span class="badge badge-${q.type}">${badge}</span>
+    <div class="question-text">${q.q}</div>
+    <div class="options">`;
+
+  if(q.type === 'mcq'){
+    q.options.forEach((op, i) => {
+      const selected = userAnswers[currentQuestionIndex] === i ? 'selected' : '';
+      html += `<label class="option ${selected}" onclick="selectAnswer(${i})">
+        <input type="radio" name="answer" ${selected ? 'checked' : ''}> ${op}
+      </label>`;
+    });
+  } else {
+    [['True', true], ['False', false]].forEach(([op, val]) => {
+      const selected = userAnswers[currentQuestionIndex] === val ? 'selected' : '';
+      html += `<label class="option ${selected}" onclick="selectAnswer(${val})">
+        <input type="radio" name="answer" ${selected ? 'checked' : ''}> ${op}
+      </label>`;
+    });
+  }
+
+  html += `</div></div>`;
+  box.innerHTML = html;
+
+  document.getElementById('prevBtn').disabled = currentQuestionIndex === 0;
+  document.getElementById('nextBtn').textContent =
+    currentQuestionIndex === currentQuestions.length - 1 ? 'Finish Quiz' : 'Next →';
+  document.getElementById('progressBar').style.width =
+    `${((currentQuestionIndex + 1) / currentQuestions.length) * 100}%`;
+}
+
+function selectAnswer(ans){
+  userAnswers[currentQuestionIndex] = ans;
+  showQuestion();
+}
+
+function nextQuestion(){
+  if(currentQuestionIndex < currentQuestions.length - 1){
+    currentQuestionIndex++;
+    showQuestion();
+  } else {
+    finishQuiz();
+  }
+}
+
+function prevQuestion(){
+  if(currentQuestionIndex > 0){
+    currentQuestionIndex--;
+    showQuestion();
+  }
+}
+
+function finishQuiz(){
+  if(timerInterval) clearInterval(timerInterval);
+  let correct = 0;
+  currentQuestions.forEach((q, i) => {
+    if(userAnswers[i] === q.a) correct++;
+  });
+
+  const total = currentQuestions.length;
+  const wrong = total - correct;
+  const percent = Math.round((correct / total) * 100);
+
+  document.getElementById('quizScreen').classList.add('hidden');
+  document.getElementById('resultScreen').classList.remove('hidden');
+
+  document.getElementById('scoreCircle').textContent = `${correct}/${total}`;
+  document.getElementById('correctCount').textContent = correct;
+  document.getElementById('wrongCount').textContent = wrong;
+  document.getElementById('percentage').textContent = percent + '%';
+  document.getElementById('resultMessage').textContent =
+    percent >= 80 ? 'Excellent!' : percent >= 50 ? 'Good Try!' : 'Practice More!';
+}
+
+function showReview(){
+  const review = document.getElementById('reviewSection');
+  const box = document.getElementById('reviewContainer');
+  review.classList.remove('hidden');
+
+  box.innerHTML = currentQuestions.map((q, i) => {
+    const ok = userAnswers[i] === q.a;
+    const your = userAnswers[i] === null ? 'Not answered' :
+      (q.type === 'mcq' ? q.options[userAnswers[i]] : userAnswers[i]);
+    const correct = q.type === 'mcq' ? q.options[q.a] : q.a;
+    return `<div class="review-item ${ok ? 'correct-ans' : 'wrong-ans'}">
+      <b>Q${i+1}. ${q.q}</b><br>
+      Your Answer: ${your}<br>
+      Correct Answer: ${correct}<br>
+      <small>${q.exp || ''}</small>
+    </div>`;
+  }).join('');
+}
+
+function restartQuiz(){
+  if(timerInterval) clearInterval(timerInterval);
+  document.getElementById('resultScreen').classList.add('hidden');
+  document.getElementById('quizScreen').classList.add('hidden');
+  document.getElementById('setupScreen').classList.remove('hidden');
+}
+</script>
+</body>
+</html>
