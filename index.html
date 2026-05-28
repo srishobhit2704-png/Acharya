@@ -110,21 +110,23 @@ body{font-family:Segoe UI,Tahoma,sans-serif;background:#0a1628;color:#fff;min-he
 <p>Share your knowledge and earn.</p>
 <button class="card-btn">Apply Now</button>
 </div>
-
-<div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 25px; width: 100%; box-sizing: border-box;">
         
-        <div class="card card-worksheet" onclick="showSection('worksheet')">
+        <div class="card card-worksheet" onclick="showSection('worksheet')" style="margin: 0;">
             <div class="card-icon"><i class="fas fa-file-alt"></i></div>
             <h3>Worksheets</h3>
             <p>Request subject-wise worksheets.</p>
             <button class="card-btn">Explore</button>
         </div>
 
-        <div class="card card-quiz" onclick="window.location.href='quiz-portal.html'">
-            <div class="card-icon"><i class="fas fa-brain"></i></div>
-            <h3>Quiz Zone</h3>
+        <div class="card card-quiz" onclick="window.location.href='quiz-portal.html'" style="margin: 0; border-color: rgba(239, 68, 68, 0.3);">
+            <div class="card-icon" style="color: #ef4444;"><i class="fas fa-brain"></i></div>
+            <h3 style="color: #ef4444; font-weight: bold;">Quiz Zone</h3>
             <p>Practice Class & Subject wise standard quizzes.</p>
-            <button class="card-btn">Start Practice <i class="fas fa-arrow-right" style="margin-left: 6px; color: #00d4ff;"></i></button>
+            <button class="card-btn" style="background: #ef4444; color: white;">Start Practice <i class="fas fa-arrow-right" style="margin-left: 6px; color: white;"></i></button>
+        </div>
+
+    </div>
         </div>
 
     </div>
