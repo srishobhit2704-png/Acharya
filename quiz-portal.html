@@ -1,137 +1,333 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acharya - Quiz Portal</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; background: #0f172a; color: #f8fafc; padding: 20px; margin: 0; }
-        .container { max-width: 700px; margin: 40px auto; background: #1e293b; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
-        h2, h3 { text-align: center; color: #00d4ff; }
-        select, input, button { width: 100%; padding: 12px; margin: 12px 0; border-radius: 8px; border: 1px solid #475569; background: #334155; color: white; font-size: 16px; box-sizing: border-box; }
-        select:focus, input:focus { border-color: #00d4ff; outline: none; }
-        button { background: #00d4ff; color: #0f172a; border: none; cursor: pointer; font-weight: bold; transition: 0.2s; }
-        button:hover { background: #00b4d8; transform: translateY(-2px); }
-        .hidden { display: none; }
-        .option-btn { background: #334155; text-align: left; border: 1px solid #475569; font-weight: normal; color: #f8fafc; margin: 8px 0; transition: 0.2s; display: block; width: 100%; padding: 12px; border-radius: 8px; }
-        .option-btn:hover { background: #475569; padding-left: 18px; }
-        .back-btn { background: transparent; color: #00d4ff; width: auto; padding: 5px 10px; font-size: 14px; margin: 0; border: none; cursor: pointer; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acharya Digital Assessment Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+  :root {
+    --bg: #060b18;
+    --card: #0d1a2e;
+    --border: #1a3a5c;
+    --accent: #00d4ff;
+    --green: #00ff88;
+    --red: #ff3355;
+    --yellow: #ffd700;
+    --text: #c8e0f0;
+    --dim: #5a7a9a;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Rajdhani', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content:'';
+    position: fixed; inset:0;
+    background: radial-gradient(ellipse at 20% 50%, rgba(0,100,200,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(0,212,255,0.06) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  h1, h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--accent);
+    text-shadow: 0 0 20px rgba(0,212,255,0.5);
+    text-align: center;
+  }
+
+  header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .back-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--accent);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+  }
+  .back-btn:hover { background: rgba(0,212,255,0.1); }
+
+  /* Registration Form Styles */
+  .setup-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 30px;
+    max-width: 550px;
+    margin: 40px auto;
+    box-shadow: 0 0 30px rgba(0,0,0,0.4);
+  }
+  .setup-card h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--accent);
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+  label {
+    display: block;
+    margin-top: 14px;
+    font-size: 0.9rem;
+    color: var(--dim);
+    letter-spacing: 1px;
+  }
+  input, select {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: var(--text);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    outline: none;
+    margin-top: 6px;
+    box-sizing: border-box;
+  }
+  input:focus, select:focus { border-color: var(--accent); }
+
+  /* Progress & Stats */
+  #progress-bar-wrap { height: 4px; background: var(--border); position: sticky; top: 0; z-index: 10; }
+  #progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--green)); transition: width 0.4s ease; box-shadow: 0 0 10px var(--accent); }
+  #stats-bar { display: flex; justify-content: center; gap: 30px; padding: 12px 20px; font-size: 0.85rem; background: rgba(13,26,46,0.8); border-bottom: 1px solid var(--border); }
+  .stat { display: flex; align-items: center; gap: 6px; }
+  .stat-val { font-family: 'Orbitron', sans-serif; font-size: 1rem; }
+  .stat-val.green { color: var(--green); }
+  .stat-val.red { color: var(--red); }
+  .stat-val.yellow { color: var(--yellow); }
+
+  /* Quiz Area */
+  #quiz-area { max-width: 720px; margin: 30px auto; padding: 0 16px 60px; }
+  .q-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 26px 24px 22px; box-shadow: 0 0 30px rgba(0,0,0,0.4); position: relative; overflow: hidden; }
+  .q-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; font-size: 0.8rem; text-transform: uppercase; color: var(--dim); }
+  .q-number { font-family: 'Orbitron', sans-serif; color: var(--accent); }
+  .q-type-badge { padding: 3px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 600; }
+  .badge-assertion { background: rgba(255,215,0,0.12); color: var(--yellow); border: 1px solid rgba(255,215,0,0.3); }
+  .badge-tf        { background: rgba(0,255,136,0.1);  color: var(--green);  border: 1px solid rgba(0,255,136,0.3); }
+  .badge-fib       { background: rgba(0,212,255,0.1);  color: var(--accent); border: 1px solid rgba(0,212,255,0.3); }
+  .badge-mcq       { background: rgba(180,100,255,0.12); color: #c084fc; border: 1px solid rgba(180,100,255,0.3); }
+
+  .q-text { font-size: 1.15rem; line-height: 1.7; color: #daeeff; margin-bottom: 8px; }
+  .q-subtext { font-size: 0.9rem; color: var(--dim); margin-bottom: 18px; font-style: italic; }
+  .assertion-box { background: rgba(255,215,0,0.05); border: 1px solid rgba(255,215,0,0.2); border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; }
+  .lbl { font-family: 'Orbitron', sans-serif; font-size: 0.75rem; color: var(--yellow); margin-right: 6px; }
+
+  /* Options */
+  .options { display: flex; flex-direction: column; gap: 10px; }
+  .opt-btn { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; cursor: pointer; text-align: left; color: var(--text); font-family: 'Rajdhani', sans-serif; font-size: 1rem; display: flex; gap: 10px; width: 100%; }
+  .opt-btn:hover:not(:disabled) { border-color: var(--accent); background: rgba(0,212,255,0.06); color: #fff; }
+  .opt-btn.selected-correct { border-color: var(--green); background: rgba(0,255,136,0.1); color: var(--green); }
+  .opt-btn.selected-wrong { border-color: var(--red); background: rgba(255,51,85,0.1); color: var(--red); }
+  .opt-btn.reveal-correct { border-color: var(--green); background: rgba(0,255,136,0.07); color: var(--green); }
+  .opt-letter { font-family: 'Orbitron', sans-serif; font-size: 0.75rem; min-width: 22px; height: 22px; display: flex; align-items:center; justify-content:center; border-radius: 50%; border: 1px solid currentColor; }
+
+  /* FIB Elements */
+  .fib-input { margin-bottom: 12px; }
+  .fib-input.correct { border-color: var(--green); background: rgba(0,255,136,0.07); color: var(--green); }
+  .fib-input.wrong   { border-color: var(--red);   background: rgba(255,51,85,0.07);  color: var(--red); }
+
+  .submit-btn, .start-btn { background: linear-gradient(135deg, #0077aa, #00d4ff); color: #000; border: none; border-radius: 8px; padding: 12px 24px; font-family: 'Orbitron', sans-serif; font-size: 0.85rem; font-weight: 700; cursor: pointer; letter-spacing: 1px; width: 100%; margin-top: 15px; }
+  .submit-btn:hover, .start-btn:hover { opacity: 0.85; }
+
+  /* Feedback */
+  .feedback-banner { margin-top: 18px; border-radius: 10px; padding: 14px 16px; font-size: 0.95rem; }
+  .feedback-banner.correct-fb { background: rgba(0,255,136,0.08); border: 1px solid rgba(0,255,136,0.3); color: var(--green); }
+  .feedback-banner.wrong-fb { background: rgba(255,51,85,0.08); border: 1px solid rgba(255,51,85,0.3); color: #ff8090; }
+  .fb-emoji { font-size: 1.8rem; display: block; margin-bottom: 6px; }
+  .fb-title { font-family: 'Orbitron', sans-serif; font-size: 0.9rem; }
+  .fb-explain { color: var(--text); font-size: 0.88rem; margin-top: 6px; }
+  .next-btn { margin-top: 16px; background: transparent; border: 1px solid var(--accent); color: var(--accent); border-radius: 8px; padding: 10px; font-family: 'Orbitron', sans-serif; cursor: pointer; width: 100%; }
+
+  /* Blast particles */
+  .blast-overlay { position: fixed; inset:0; pointer-events: none; z-index: 100; }
+  .blast-particle { position: absolute; width: 8px; height: 8px; border-radius: 50%; animation: blastFly 0.9s ease-out forwards; }
+  @keyframes blastFly { from { opacity:1; transform: scale(1) translate(0,0); } to   { opacity:0; transform: scale(0.3) translate(var(--tx), var(--ty)); } }
+
+  /* Report Card */
+  #report-card { max-width: 680px; margin: 30px auto; padding: 0 16px 60px; }
+  .report-header { text-align: center; padding: 32px; background: var(--card); border: 1px solid var(--border); border-radius: 16px 16px 0 0; }
+  .report-grade { font-family: 'Orbitron', sans-serif; font-size: 4rem; font-weight: 900; margin: 12px 0; }
+  .report-grade.A { color: var(--green); text-shadow: 0 0 30px rgba(0,255,136,0.5); }
+  .report-grade.B { color: var(--accent); text-shadow: 0 0 30px rgba(0,212,255,0.5); }
+  .report-grade.C { color: var(--yellow); text-shadow: 0 0 30px rgba(255,215,0,0.5); }
+  .report-grade.D { color: var(--red); text-shadow: 0 0 30px rgba(255,51,85,0.5); }
+  .report-body { background: var(--card); border: 1px solid var(--border); border-top: none; border-radius: 0 0 16px 16px; padding: 20px; }
+  .report-stats { display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
+  .rstat-val { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; font-weight: bold; display: block; }
+  .rstat-lbl { font-size: 0.75rem; color: var(--dim); text-transform: uppercase; }
+  .breakdown-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 0.88rem; }
+  .br-type { min-width: 120px; color: var(--dim); }
+  .br-bar-wrap { flex:1; height:6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow:hidden; }
+  .br-bar { height:100%; border-radius: 3px; }
+  .br-num { min-width: 40px; text-align:right; font-family:'Orbitron'; font-size:0.75rem; }
+  .restart-btn { display: block; width: 100%; background: linear-gradient(135deg, #003355, #006699); border: 1px solid var(--accent); color: var(--accent); border-radius: 10px; padding: 13px; font-family: 'Orbitron', sans-serif; cursor: pointer; margin-top: 20px; letter-spacing: 1px; }
+
+  .hidden { display: none !important; }
+</style>
 </head>
 <body>
 
-<div class="container">
-    <button class="back-btn" onclick="window.location.href='index.html'"><i class="fas fa-arrow-left"></i> Main Site</button>
-    <h2>🏆 Acharya Digital Assessment Portal</h2>
-    <hr style="border-color: #475569;">
+<header>
+  <button class="back-btn" onclick="window.location.href='index.html'"><i class="fas fa-arrow-left"></i> MAIN SITE</button>
+  <h2>🏆 ACHARYA ASSESSMENT PORTAL</h2>
+  <div style="width: 80px;"></div>
+</header>
 
-    <div id="setup-area">
-        <h3>Student Registration & Topic Selection</h3>
-        <input type="text" id="student-name" placeholder="👨‍🎓 Enter Full Name" required>
-        <input type="tel" id="student-mobile" placeholder="📱 10-Digit WhatsApp Number" required>
-        
-        <label for="class-select">Choose Class:</label>
-        <select id="class-select" onchange="updateSubjects()">
-            <option value="">-- Select Class --</option>
-            <option value="9">Class 9th</option>
-            <option value="10">Class 10th</option>
-        </select>
+<div id="setup-screen">
+  <div class="setup-card">
+    <h3>🚀 Student Registration & Topic Selection</h3>
+    
+    <input type="text" id="student-name" placeholder="👨‍🎓 Enter Student Full Name" required>
+    <input type="tel" id="student-mobile" placeholder="📱 10-Digit WhatsApp Number" required>
+    
+    <label>CHOOSE CLASS</label>
+    <select id="class-select" onchange="updateSubjects()">
+        <option value="">-- Select Class --</option>
+        <option value="9">Class 9th</option>
+        <option value="10">Class 10th</option>
+    </select>
 
-        <label for="subject-select">Choose Subject:</label>
-        <select id="subject-select" onchange="updateTopics()" disabled>
-            <option value="">-- Select Subject --</option>
-        </select>
+    <label>CHOOSE SUBJECT</label>
+    <select id="subject-select" onchange="updateTopics()" disabled>
+        <option value="">-- Select Subject --</option>
+    </select>
 
-        <label for="topic-select">Choose Topic/Chapter:</label>
-        <select id="topic-select" disabled>
-            <option value="">-- Select Topic --</option>
-        </select>
+    <label>CHOOSE CHAPTER / WORKSHEET</label>
+    <select id="topic-select" disabled>
+        <option value="">-- Select Topic --</option>
+    </select>
 
-        <button onclick="validateAndStart()">Start Challenge 🚀</button>
-    </div>
-
-    <div id="quiz-area" class="hidden">
-        <h3 id="current-quiz-title" style="color: #38bdf8;"></h3>
-        <div id="question-box" style="text-align: left; margin-top: 20px;">
-            <p id="question-text" style="font-size: 18px; font-weight: bold; line-height: 1.6;"></p>
-            <div id="options-box"></div>
-        </div>
-        <p id="score-board" style="font-weight: bold; margin-top: 20px; color: #00d4ff; text-align: right;"></p>
-    </div>
+    <button class="start-btn" onclick="validateAndStart()">START CHALLENGE ▶</button>
+  </div>
 </div>
 
+<div id="progress-bar-wrap" class="hidden">
+  <div id="progress-bar" style="width:0%"></div>
+</div>
+<div id="stats-bar" class="hidden">
+  <div class="stat">PROGRESS <span class="stat-val yellow" id="q-counter">1/25</span></div>
+  <div class="stat">✓ <span class="stat-val green" id="correct-count">0</span></div>
+  <div class="stat">✗ <span class="stat-val red" id="wrong-count">0</span></div>
+  <div class="stat">SCORE <span class="stat-val" id="score-pct" style="color:var(--accent)">0%</span></div>
+</div>
+
+<div id="quiz-area" class="hidden"></div>
+
+<div id="report-card" class="hidden"></div>
+
+<div id="blast-overlay" class="blast-overlay"></div>
+
 <script>
-// YAHAN AAP APNE SAARE QUESTIONS SUB-TOPIC WISE ADD KAR SAKTE HAIN
+// =========================================================================
+// 📑 APNI SAARI WORKSHEETS KA DATA IS DATABASE MEIN RAKHEIN (PURANA BHI RAHEGA)
+// =========================================================================
 const quizDatabase = {
-    "9": {
-        "Physics": {
-            "Force and Laws of Motion": [
-                {
-                    "question": "Which law of motion gives the quantitative definition of force?",
-                    "options": ["First Law", "Second Law", "Third Law", "Law of Gravitation"],
-                    "answer": "Second Law"
-                },
-                {
-                    "question": "Action and reaction forces act on the same body.",
-                    "options": ["True", "False"],
-                    "answer": "False"
-                }
-            ],
-            "Motion": [
-                {
-                    "question": "Slope of a velocity-time graph gives:",
-                    "options": ["Distance", "Displacement", "Acceleration", "Speed"],
-                    "answer": "Acceleration"
-                }
-            ]
+  "9": {
+    "Physics": {
+      "Motion (Chapter 1)": [
+        {
+          type: 'assertion',
+          text: 'Read the assertion and reason carefully.',
+          assertion: 'A body can have zero velocity but non-zero acceleration.',
+          reason: 'At the highest point of a vertically thrown ball, velocity is zero but gravitational acceleration still acts on it.',
+          options: ['Both A and R are true, and R is the correct explanation of A.', 'Both A and R are true, but R is NOT the correct explanation of A.', 'A is true but R is false.', 'A is false but R is true.'],
+          answer: 0,
+          explain: 'At the topmost point, v = 0 but g = 9.8 m/s² downward still acts. R explains A.'
         },
-        "Mathematics": {
-            "Number Systems": [
-                {
-                    "question": "Every rational number is a real number.",
-                    "options": ["True", "False"],
-                    "answer": "True"
-                }
-            ]
+        {
+          type: 'tf',
+          text: 'True or False: Distance is a vector quantity.',
+          options: ['True', 'False'],
+          answer: 1,
+          explain: 'Distance is a scalar quantity. Displacement is the vector one.'
+        },
+        {
+          type: 'fib',
+          text: 'Fill in the blank: SI unit of acceleration is ________.',
+          answer: 'm/s²',
+          hint: '(metres per second squared)',
+          explain: 'Acceleration = velocity/time = m/s².'
+        },
+        {
+          type: 'mcq',
+          text: 'A car travels 30 km north, then 40 km east. What is its displacement?',
+          options: ['70 km', '50 km', '10 km', '35 km'],
+          answer: 1,
+          explain: 'Displacement = √(30² + 40²) = 50 km.'
         }
-    },
-    "10": {
-        "Science": {
-            "Light Reflection": [
-                {
-                    "question": "Focal length of a plane mirror is:",
-                    "options": ["Zero", "Infinity", "25 cm", "-25 cm"],
-                    "answer": "Infinity"
-                }
-            ]
+      ],
+      "Force and Laws of Motion": [
+        {
+          type: 'mcq',
+          text: 'Which law of motion gives the quantitative definition of force?',
+          options: ['First Law', 'Second Law', 'Third Law', 'Law of Gravitation'],
+          answer: 1,
+          explain: 'Newton\'s second law gives F = ma.'
         }
+      ]
     }
+  },
+  "10": {
+    "Science": {
+      "Light Reflection": [
+        {
+          type: 'tf',
+          text: 'True or False: Focal length of a plane mirror is infinity.',
+          options: ['True', 'False'],
+          answer: 0,
+          explain: 'A plane mirror has no curvature, so its focal length is infinite.'
+        }
+      ]
+    }
+  }
 };
 
+// --- Dropdown Management Script ---
 function updateSubjects() {
-    const classSel = document.getElementById("class-select").value;
+    const cls = document.getElementById("class-select").value;
     const subSel = document.getElementById("subject-select");
     const topicSel = document.getElementById("topic-select");
     subSel.innerHTML = '<option value="">-- Select Subject --</option>';
     topicSel.innerHTML = '<option value="">-- Select Topic --</option>';
     topicSel.disabled = true;
-    if (!classSel) { subSel.disabled = true; return; }
+    if (!cls || !quizDatabase[cls]) { subSel.disabled = true; return; }
     subSel.disabled = false;
-    Object.keys(quizDatabase[classSel]).forEach(sub => { subSel.innerHTML += `<option value="${sub}">${sub}</option>`; });
+    Object.keys(quizDatabase[cls]).forEach(sub => { subSel.innerHTML += `<option value="${sub}">${sub}</option>`; });
 }
 
 function updateTopics() {
-    const classSel = document.getElementById("class-select").value;
-    const subSel = document.getElementById("subject-select").value;
+    const cls = document.getElementById("class-select").value;
+    const sub = document.getElementById("subject-select").value;
     const topicSel = document.getElementById("topic-select");
     topicSel.innerHTML = '<option value="">-- Select Topic --</option>';
-    if (!subSel) { topicSel.disabled = true; return; }
+    if (!sub || !quizDatabase[cls][sub]) { topicSel.disabled = true; return; }
     topicSel.disabled = false;
-    Object.keys(quizDatabase[classSel][subSel]).forEach(topic => { topicSel.innerHTML += `<option value="${topic}">${topic}</option>`; });
+    Object.keys(quizDatabase[cls][sub]).forEach(topic => { topicSel.innerHTML += `<option value="${topic}">${topic}</option>`; });
 }
 
-let selectedQuestions = []; let currentQuestionIndex = 0; let score = 0;
+let activeQuestions = [];
+let current = 0;
+let score = 0;
+let wrong = 0;
+let answered = false;
+let results = [];
 
 function validateAndStart() {
     const name = document.getElementById("student-name").value.trim();
@@ -141,34 +337,133 @@ function validateAndStart() {
     const topic = document.getElementById("topic-select").value;
 
     if (!name || mobile.length < 10 || !cls || !sub || !topic) {
-        alert("Please fill all details correctly!"); return;
+        alert("Please fill all student details and selections correctly!"); return;
     }
-    const sourceQuestions = quizDatabase[cls][sub][topic];
-    if (!sourceQuestions) { alert("Questions for this topic are not available yet!"); return; }
-
-    selectedQuestions = [...sourceQuestions].sort(() => 0.5 - Math.random());
-    document.getElementById("setup-area").classList.add("hidden");
-    document.getElementById("quiz-area").classList.remove("hidden");
-    document.getElementById("current-quiz-title").innerText = `${sub} 🎯 ${topic}`;
-    showQuestion();
-}
-
-function showQuestion() {
-    if (currentQuestionIndex >= selectedQuestions.length) {
-        document.getElementById("quiz-area").innerHTML = `<h2>Quiz Completed! 🎉</h2><h3 style="color:#00d4ff;">Your Final Score: ${score} / ${selectedQuestions.length}</h3><button onclick="window.location.reload()">Take Another Quiz 🔄</button>`;
-        return;
+    
+    activeQuestions = quizDatabase[cls][sub][topic];
+    if (!activeQuestions || activeQuestions.length === 0) {
+        alert("No questions found in this worksheet!"); return;
     }
-    let q = selectedQuestions[currentQuestionIndex];
-    document.getElementById("question-text").innerText = `Q${currentQuestionIndex + 1}. ${q.question}`;
-    const optionsBox = document.getElementById("options-box"); optionsBox.innerHTML = "";
-    document.getElementById("score-board").innerText = `Progress: ${currentQuestionIndex + 1}/${selectedQuestions.length} | Score: ${score}`;
-    q.options.forEach(opt => { optionsBox.innerHTML += `<button class="option-btn" onclick="check('${opt.replace(/'/g, "\\'")}')">${opt}</button>`; });
+
+    document.getElementById('setup-screen').classList.add('hidden');
+    document.getElementById('progress-bar-wrap').classList.remove('hidden');
+    document.getElementById('stats-bar').classList.remove('hidden');
+    document.getElementById('quiz-area').classList.remove('hidden');
+    
+    current = 0; score = 0; wrong = 0; results = [];
+    renderQuestion();
 }
 
-function check(opt) {
-    if (opt === selectedQuestions[currentQuestionIndex].answer) { score++; alert("Sahi Jawab! ✨"); } else { alert(`Galat Uttar! ❌\nCorrect Answer: ${selectedQuestions[currentQuestionIndex].answer}`); }
-    currentQuestionIndex++; showQuestion();
+function renderQuestion() {
+  answered = false;
+  const q = activeQuestions[current];
+  const area = document.getElementById('quiz-area');
+
+  let typeLabel = '', badgeClass = '';
+  if (q.type==='assertion') { typeLabel='Assertion & Reason'; badgeClass='badge-assertion'; }
+  else if (q.type==='tf')   { typeLabel='True / False';       badgeClass='badge-tf'; }
+  else if (q.type==='fib')  { typeLabel='Fill in the Blank';  badgeClass='badge-fib'; }
+  else                       { typeLabel='MCQ';                badgeClass='badge-mcq'; }
+
+  let innerHTML = `
+    <div class="q-meta">
+      <span class="q-number">QUESTION ${current+1} / ${activeQuestions.length}</span>
+      <span class="q-type-badge ${badgeClass}">${typeLabel}</span>
+    </div>
+  `;
+
+  if (q.type === 'assertion') {
+    innerHTML += `
+      <div class="q-text">${q.text}</div>
+      <div class="assertion-box">
+        <p><span class="lbl">A:</span> ${q.assertion}</p>
+        <p><span class="lbl">R:</span> ${q.reason}</p>
+      </div>
+      <div class="options">
+        ${q.options.map((o,i) => `<button class="opt-btn" id="opt${i}" onclick="selectOpt(${i})">
+          <span class="opt-letter">${String.fromCharCode(65+i)}</span><span>${o}</span>
+        </button>`).join('')}
+      </div>
+    `;
+  } else if (q.type === 'tf' || q.type === 'mcq') {
+    innerHTML += `
+      <div class="q-text">${q.text}</div>
+      <div class="options">
+        ${q.options.map((o,i) => `<button class="opt-btn" id="opt${i}" onclick="selectOpt(${i})">
+          <span class="opt-letter">${q.type==='tf' ? (i===0?'T':'F') : String.fromCharCode(65+i)}</span>
+          <span>${o}</span>
+        </button>`).join('')}
+      </div>
+    `;
+  } else {
+    innerHTML += `
+      <div class="q-text">${q.text}</div>
+      <div class="q-subtext">${q.hint}</div>
+      <input class="fib-input" id="fib-input" type="text" placeholder="Type your answer here..." onkeydown="if(event.key==='Enter') checkFib()">
+      <button class="submit-btn" onclick="checkFib()">SUBMIT SOLUTION</button>
+    `;
+  }
+
+  area.innerHTML = `<div class="q-card">${innerHTML}<div id="feedback"></div></div>`;
+  document.getElementById('progress-bar').style.width = ((current/activeQuestions.length)*100)+'%';
+  document.getElementById('q-counter').textContent = (current+1)+'/'+activeQuestions.length;
 }
-</script>
-</body>
-</html>
+
+function selectOpt(idx) {
+  if (answered) return;
+  answered = true;
+  const q = activeQuestions[current];
+  const correct = idx === q.answer;
+
+  q.options.forEach((_,i) => {
+    const btn = document.getElementById('opt'+i);
+    btn.disabled = true;
+    if (i === q.answer) btn.classList.add('reveal-correct');
+  });
+
+  const chosen = document.getElementById('opt'+idx);
+  chosen.classList.remove('reveal-correct');
+  chosen.classList.add(correct ? 'selected-correct' : 'selected-wrong');
+
+  if (correct) { score++; triggerAppreciation(); } else { wrong++; triggerBlast(); }
+  results.push({ q: current, correct });
+  updateStats();
+  showFeedback(correct, q.options[q.answer], q.explain);
+}
+
+function checkFib() {
+  if (answered) return;
+  const q = activeQuestions[current];
+  const input = document.getElementById('fib-input');
+  const val = input.value.trim().toLowerCase();
+  const ans = q.answer.toLowerCase();
+  const correct = val === ans || val.replace(/\s/g,'') === ans.replace(/\s/g,'');
+
+  answered = true;
+  input.disabled = true;
+  input.classList.add(correct ? 'correct' : 'wrong');
+
+  if (correct) { score++; triggerAppreciation(); } else { wrong++; triggerBlast(); }
+  results.push({ q: current, correct });
+  updateStats();
+  showFeedback(correct, q.answer, q.explain);
+}
+
+function showFeedback(correct, correctAns, explain) {
+  const fb = document.getElementById('feedback');
+  const app = ['🔥 SUPERB!', '⚡ BRILLIANT!', '🌟 EXCELLENT!', '🎯 SPOT ON!'];
+  const bls = ['💥 BOOM! WRONG', '❌ INCORRECT', '🔴 OOPS! MISTAKE'];
+  const emoji = correct ? app[Math.floor(Math.random()*app.length)] : bls[Math.floor(Math.random()*bls.length)];
+
+  fb.innerHTML = `
+    <div class="feedback-banner ${correct ? 'correct-fb' : 'wrong-fb'}">
+      <span class="fb-emoji">${emoji}</span>
+      ${!correct ? `<div>Correct Answer: <span style="font-weight:bold;color:var(--green)">${correctAns}</span></div>` : ''}
+      <div class="fb-explain">${explain}</div>
+    </div>
+    <button class="next-btn" onclick="nextQuestion()">${current < activeQuestions.length - 1 ? 'NEXT CHALLENGE ➡️' : 'VIEW DETAILED ANALYSIS 📊'}</button>
+  `;
+}
+
+function nextQuestion() {
+  current++;
