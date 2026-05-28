@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acharya - Quiz Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #0f172a; color: #f8fafc; padding: 20px; margin: 0; }
+        .container { max-width: 700px; margin: 40px auto; background: #1e293b; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        h2, h3 { text-align: center; color: #00d4ff; }
+        select, input, button { width: 100%; padding: 12px; margin: 12px 0; border-radius: 8px; border: 1px solid #475569; background: #334155; color: white; font-size: 16px; box-sizing: border-box; }
+        select:focus, input:focus { border-color: #00d4ff; outline: none; }
+        button { background: #00d4ff; color: #0f172a; border: none; cursor: pointer; font-weight: bold; transition: 0.2s; }
+        button:hover { background: #00b4d8; transform: translateY(-2px); }
+        .hidden { display: none; }
+        .option-btn { background: #334155; text-align: left; border: 1px solid #475569; font-weight: normal; color: #f8fafc; margin: 8px 0; transition: 0.2s; display: block; width: 100%; padding: 12px; border-radius: 8px; }
+        .option-btn:hover { background: #475569; padding-left: 18px; }
+        .back-btn { background: transparent; color: #00d4ff; width: auto; padding: 5px 10px; font-size: 14px; margin: 0; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <button class="back-btn" onclick="window.location.href='index.html'"><i class="fas fa-arrow-left"></i> Main Site</button>
+    <h2>🏆 Acharya Digital Assessment Portal</h2>
+    <hr style="border-color: #475569;">
+
+    <div id="setup-area">
+        <h3>Student Registration & Topic Selection</h3>
+        <input type="text" id="student-name" placeholder="👨‍🎓 Enter Full Name" required>
+        <input type="tel" id="student-mobile" placeholder="📱 10-Digit WhatsApp Number" required>
+        
+        <label for="class-select">Choose Class:</label>
+        <select id="class-select" onchange="updateSubjects()">
+            <option value="">-- Select Class --</option>
+            <option value="9">Class 9th</option>
+            <option value="10">Class 10th</option>
+        </select>
+
+        <label for="subject-select">Choose Subject:</label>
+        <select id="subject-select" onchange="updateTopics()" disabled>
+            <option value="">-- Select Subject --</option>
+        </select>
+
+        <label for="topic-select">Choose Topic/Chapter:</label>
+        <select id="topic-select" disabled>
+            <option value="">-- Select Topic --</option>
+        </select>
+
+        <button onclick="validateAndStart()">Start Challenge 🚀</button>
+    </div>
+
+    <div id="quiz-area" class="hidden">
+        <h3 id="current-quiz-title" style="color: #38bdf8;"></h3>
+        <div id="question-box" style="text-align: left; margin-top: 20px;">
+            <p id="question-text" style="font-size: 18px; font-weight: bold; line-height: 1.6;"></p>
+            <div id="options-box"></div>
+        </div>
+        <p id="score-board" style="font-weight: bold; margin-top: 20px; color: #00d4ff; text-align: right;"></p>
+    </div>
+</div>
+
+<script>
+// YAHAN AAP APNE SAARE QUESTIONS SUB-TOPIC WISE ADD KAR SAKTE HAIN
+const quizDatabase = {
+    "9": {
+        "Physics": {
+            "Force and Laws of Motion": [
+                {
+                    "question": "Which law of motion gives the quantitative definition of force?",
+                    "options": ["First Law", "Second Law", "Third Law", "Law of Gravitation"],
+                    "answer": "Second Law"
+                },
+                {
+                    "question": "Action and reaction forces act on the same body.",
+                    "options": ["True", "False"],
+                    "answer": "False"
+                }
+            ],
+            "Motion": [
+                {
+                    "question": "Slope of a velocity-time graph gives:",
+                    "options": ["Distance", "Displacement", "Acceleration", "Speed"],
+                    "answer": "Acceleration"
+                }
+            ]
+        },
+        "Mathematics": {
+            "Number Systems": [
+                {
+                    "question": "Every rational number is a real number.",
+                    "options": ["True", "False"],
+                    "answer": "True"
+                }
+            ]
+        }
+    },
+    "10": {
+        "Science": {
+            "Light Reflection": [
+                {
+                    "question": "Focal length of a plane mirror is:",
+                    "options": ["Zero", "Infinity", "25 cm", "-25 cm"],
+                    "answer": "Infinity"
+                }
+            ]
+        }
+    }
+};
+
+function updateSubjects() {
+    const classSel = document.getElementById("class-select").value;
+    const subSel = document.getElementById("subject-select");
+    const topicSel = document.getElementById("topic-select");
+    subSel.innerHTML = '<option value="">-- Select Subject --</option>';
+    topicSel.innerHTML = '<option value="">-- Select Topic --</option>';
+    topicSel.disabled = true;
+    if (!classSel) { subSel.disabled = true; return; }
+    subSel.disabled = false;
+    Object.keys(quizDatabase[classSel]).forEach(sub => { subSel.innerHTML += `<option value="${sub}">${sub}</option>`; });
+}
+
+function updateTopics() {
+    const classSel = document.getElementById("class-select").value;
+    const subSel = document.getElementById("subject-select").value;
+    const topicSel = document.getElementById("topic-select");
+    topicSel.innerHTML = '<option value="">-- Select Topic --</option>';
+    if (!subSel) { topicSel.disabled = true; return; }
+    topicSel.disabled = false;
+    Object.keys(quizDatabase[classSel][subSel]).forEach(topic => { topicSel.innerHTML += `<option value="${topic}">${topic}</option>`; });
+}
+
+let selectedQuestions = []; let currentQuestionIndex = 0; let score = 0;
+
+function validateAndStart() {
+    const name = document.getElementById("student-name").value.trim();
+    const mobile = document.getElementById("student-mobile").value.trim();
+    const cls = document.getElementById("class-select").value;
+    const sub = document.getElementById("subject-select").value;
+    const topic = document.getElementById("topic-select").value;
+
+    if (!name || mobile.length < 10 || !cls || !sub || !topic) {
+        alert("Please fill all details correctly!"); return;
+    }
+    const sourceQuestions = quizDatabase[cls][sub][topic];
+    if (!sourceQuestions) { alert("Questions for this topic are not available yet!"); return; }
+
+    selectedQuestions = [...sourceQuestions].sort(() => 0.5 - Math.random());
+    document.getElementById("setup-area").classList.add("hidden");
+    document.getElementById("quiz-area").classList.remove("hidden");
+    document.getElementById("current-quiz-title").innerText = `${sub} 🎯 ${topic}`;
+    showQuestion();
+}
+
+function showQuestion() {
+    if (currentQuestionIndex >= selectedQuestions.length) {
+        document.getElementById("quiz-area").innerHTML = `<h2>Quiz Completed! 🎉</h2><h3 style="color:#00d4ff;">Your Final Score: ${score} / ${selectedQuestions.length}</h3><button onclick="window.location.reload()">Take Another Quiz 🔄</button>`;
+        return;
+    }
+    let q = selectedQuestions[currentQuestionIndex];
+    document.getElementById("question-text").innerText = `Q${currentQuestionIndex + 1}. ${q.question}`;
+    const optionsBox = document.getElementById("options-box"); optionsBox.innerHTML = "";
+    document.getElementById("score-board").innerText = `Progress: ${currentQuestionIndex + 1}/${selectedQuestions.length} | Score: ${score}`;
+    q.options.forEach(opt => { optionsBox.innerHTML += `<button class="option-btn" onclick="check('${opt.replace(/'/g, "\\'")}')">${opt}</button>`; });
+}
+
+function check(opt) {
+    if (opt === selectedQuestions[currentQuestionIndex].answer) { score++; alert("Sahi Jawab! ✨"); } else { alert(`Galat Uttar! ❌\nCorrect Answer: ${selectedQuestions[currentQuestionIndex].answer}`); }
+    currentQuestionIndex++; showQuestion();
+}
+</script>
+</body>
+</html>
