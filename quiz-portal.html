@@ -5,465 +5,463 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Acharya Digital Assessment Portal</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <style>
-  :root {
-    --bg: #060b18;
-    --card: #0d1a2e;
-    --border: #1a3a5c;
-    --accent: #00d4ff;
-    --green: #00ff88;
-    --red: #ff3355;
-    --yellow: #ffd700;
-    --text: #c8e0f0;
-    --dim: #5a7a9a;
+  :root { --bg:#060b18;--card:#0d1a2e;--border:#1a3a5c;--accent:#00d4ff;--green:#00ff88;--red:#ff3355;--yellow:#ffd700;--text:#c8e0f0;--dim:#5a7a9a; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;min-height:100vh;overflow-x:hidden;}
+  body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(0,100,200,0.08) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(0,212,255,0.06) 0%,transparent 50%);pointer-events:none;}
+  h2{font-family:'Orbitron',sans-serif;color:var(--accent);text-shadow:0 0 20px rgba(0,212,255,0.5);text-align:center;font-size:clamp(0.85rem,3vw,1.2rem);}
+  header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+  .back-btn{background:transparent;border:1px solid var(--border);color:var(--accent);padding:7px 14px;border-radius:6px;cursor:pointer;font-family:'Orbitron',sans-serif;font-size:0.75rem;}
+  .back-btn:hover{background:rgba(0,212,255,0.1);}
+
+  /* SETUP */
+  .setup-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px 24px;max-width:520px;margin:36px auto;box-shadow:0 0 30px rgba(0,0,0,0.4);}
+  .setup-card h3{font-family:'Orbitron',sans-serif;color:var(--accent);margin-bottom:20px;text-align:center;font-size:1rem;letter-spacing:1px;}
+  .field-label{display:block;margin-top:14px;margin-bottom:6px;font-size:0.78rem;color:var(--dim);letter-spacing:1px;text-transform:uppercase;}
+
+  /* KEY FIX: inputs and selects — no disabled, always styled */
+  .portal-input, .portal-select{
+    width:100%;
+    background:#081422 !important;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:11px 14px;
+    color:var(--text) !important;
+    font-family:'Rajdhani',sans-serif;
+    font-size:0.98rem;
+    outline:none;
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    cursor:pointer;
+    transition:border-color 0.2s;
   }
+  .portal-input:focus,.portal-select:focus{border-color:var(--accent);}
+  .portal-select option{background:#0d1a2e;color:var(--text);}
+  .select-wrap{position:relative;}
+  .select-wrap::after{content:'▾';position:absolute;right:13px;top:50%;transform:translateY(-50%);color:var(--accent);pointer-events:none;}
 
-  * { margin:0; padding:0; box-sizing:border-box; }
+  .start-btn{background:linear-gradient(135deg,#0077aa,#00d4ff);color:#000;border:none;border-radius:8px;padding:13px 24px;font-family:'Orbitron',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;letter-spacing:1px;width:100%;margin-top:20px;transition:opacity 0.2s;}
+  .start-btn:hover{opacity:0.85;}
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Rajdhani', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+  /* PROGRESS */
+  #progress-bar-wrap{height:4px;background:var(--border);position:sticky;top:0;z-index:10;}
+  #progress-bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--green));transition:width 0.4s ease;box-shadow:0 0 10px var(--accent);}
+  #stats-bar{display:flex;justify-content:center;gap:22px;padding:11px 20px;font-size:0.84rem;background:rgba(13,26,46,0.9);border-bottom:1px solid var(--border);flex-wrap:wrap;}
+  .stat{display:flex;align-items:center;gap:5px;}
+  .stat-val{font-family:'Orbitron',sans-serif;font-size:0.95rem;}
+  .stat-val.green{color:var(--green);}
+  .stat-val.red{color:var(--red);}
+  .stat-val.yellow{color:var(--yellow);}
 
-  body::before {
-    content:'';
-    position: fixed; inset:0;
-    background: radial-gradient(ellipse at 20% 50%, rgba(0,100,200,0.08) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 20%, rgba(0,212,255,0.06) 0%, transparent 50%);
-    pointer-events: none;
-  }
+  /* QUIZ */
+  #quiz-area{max-width:720px;margin:28px auto;padding:0 14px 60px;}
+  .q-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px 22px 20px;box-shadow:0 0 30px rgba(0,0,0,0.4);position:relative;overflow:hidden;animation:slideIn 0.3s ease;}
+  .q-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);}
+  @keyframes slideIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+  .q-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px;font-size:0.78rem;text-transform:uppercase;color:var(--dim);}
+  .q-number{font-family:'Orbitron',sans-serif;color:var(--accent);font-size:0.82rem;}
+  .q-type-badge{padding:3px 9px;border-radius:20px;font-size:0.7rem;font-weight:600;}
+  .badge-assertion{background:rgba(255,215,0,0.12);color:var(--yellow);border:1px solid rgba(255,215,0,0.3);}
+  .badge-tf{background:rgba(0,255,136,0.1);color:var(--green);border:1px solid rgba(0,255,136,0.3);}
+  .badge-fib{background:rgba(0,212,255,0.1);color:var(--accent);border:1px solid rgba(0,212,255,0.3);}
+  .badge-mcq{background:rgba(180,100,255,0.12);color:#c084fc;border:1px solid rgba(180,100,255,0.3);}
+  .q-text{font-size:1.08rem;line-height:1.7;color:#daeeff;margin-bottom:8px;}
+  .q-subtext{font-size:0.88rem;color:var(--dim);margin-bottom:16px;font-style:italic;}
+  .assertion-box{background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.2);border-radius:8px;padding:12px 14px;margin-bottom:14px;line-height:1.65;}
+  .assertion-box p{margin-bottom:5px;}
+  .lbl{font-family:'Orbitron',sans-serif;font-size:0.72rem;color:var(--yellow);margin-right:5px;}
+  .options{display:flex;flex-direction:column;gap:9px;}
+  .opt-btn{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:11px 14px;cursor:pointer;text-align:left;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:0.98rem;display:flex;gap:9px;width:100%;transition:all 0.18s;align-items:flex-start;}
+  .opt-btn:hover:not(:disabled){border-color:var(--accent);background:rgba(0,212,255,0.06);color:#fff;}
+  .opt-btn.selected-correct{border-color:var(--green);background:rgba(0,255,136,0.1);color:var(--green);}
+  .opt-btn.selected-wrong{border-color:var(--red);background:rgba(255,51,85,0.1);color:var(--red);}
+  .opt-btn.reveal-correct{border-color:var(--green);background:rgba(0,255,136,0.07);color:var(--green);}
+  .opt-letter{font-family:'Orbitron',sans-serif;font-size:0.72rem;min-width:20px;height:20px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid currentColor;flex-shrink:0;margin-top:2px;}
+  .fib-input-el{width:100%;background:#081422;border:1px solid var(--border);border-radius:8px;padding:11px 14px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:1rem;outline:none;margin-bottom:10px;transition:border-color 0.2s;}
+  .fib-input-el:focus{border-color:var(--accent);}
+  .fib-input-el.correct{border-color:var(--green);background:rgba(0,255,136,0.07);color:var(--green);}
+  .fib-input-el.wrong{border-color:var(--red);background:rgba(255,51,85,0.07);color:var(--red);}
+  .submit-btn{background:linear-gradient(135deg,#0077aa,#00d4ff);color:#000;border:none;border-radius:8px;padding:11px 22px;font-family:'Orbitron',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;width:100%;}
+  .feedback-banner{margin-top:16px;border-radius:10px;padding:13px 14px;font-size:0.93rem;animation:popIn 0.3s cubic-bezier(0.34,1.56,0.64,1);}
+  @keyframes popIn{from{opacity:0;transform:scale(0.93);}to{opacity:1;transform:scale(1);}}
+  .feedback-banner.correct-fb{background:rgba(0,255,136,0.08);border:1px solid rgba(0,255,136,0.3);color:var(--green);}
+  .feedback-banner.wrong-fb{background:rgba(255,51,85,0.08);border:1px solid rgba(255,51,85,0.3);color:#ff8090;}
+  .fb-emoji{font-size:1.7rem;display:block;margin-bottom:5px;}
+  .fb-explain{color:var(--text);font-size:0.86rem;margin-top:5px;line-height:1.5;}
+  .next-btn{margin-top:14px;background:transparent;border:1px solid var(--accent);color:var(--accent);border-radius:8px;padding:10px;font-family:'Orbitron',sans-serif;cursor:pointer;width:100%;font-size:0.82rem;transition:background 0.2s;letter-spacing:1px;}
+  .next-btn:hover{background:rgba(0,212,255,0.1);}
+  .blast-overlay{position:fixed;inset:0;pointer-events:none;z-index:100;}
+  .blast-particle{position:absolute;border-radius:50%;animation:blastFly 0.9s ease-out forwards;}
+  @keyframes blastFly{from{opacity:1;transform:scale(1) translate(0,0);}to{opacity:0;transform:scale(0.3) translate(var(--tx),var(--ty));}}
 
-  h1, h2 {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--accent);
-    text-shadow: 0 0 20px rgba(0,212,255,0.5);
-    text-align: center;
-  }
+  /* REPORT */
+  #report-card{max-width:680px;margin:28px auto;padding:0 14px 60px;}
+  .report-header{text-align:center;padding:28px 24px;background:var(--card);border:1px solid var(--border);border-radius:16px 16px 0 0;}
+  .report-grade{font-family:'Orbitron',sans-serif;font-size:4rem;font-weight:900;margin:10px 0 6px;}
+  .report-grade.A{color:var(--green);text-shadow:0 0 30px rgba(0,255,136,0.5);}
+  .report-grade.B{color:var(--accent);text-shadow:0 0 30px rgba(0,212,255,0.5);}
+  .report-grade.C{color:var(--yellow);text-shadow:0 0 30px rgba(255,215,0,0.5);}
+  .report-grade.D{color:var(--red);text-shadow:0 0 30px rgba(255,51,85,0.5);}
+  .report-body{background:var(--card);border:1px solid var(--border);border-top:none;border-radius:0 0 16px 16px;padding:18px 20px;}
+  .report-stats{display:grid;grid-template-columns:repeat(3,1fr);text-align:center;padding-bottom:18px;margin-bottom:18px;border-bottom:1px solid var(--border);}
+  .rstat-val{font-family:'Orbitron',sans-serif;font-size:1.5rem;font-weight:bold;display:block;}
+  .rstat-lbl{font-size:0.72rem;color:var(--dim);text-transform:uppercase;}
+  .breakdown-row{display:flex;align-items:center;gap:10px;margin-bottom:7px;font-size:0.87rem;}
+  .br-type{min-width:115px;color:var(--dim);}
+  .br-bar-wrap{flex:1;height:5px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden;}
+  .br-bar{height:100%;border-radius:3px;}
+  .br-num{min-width:38px;text-align:right;font-family:'Orbitron',sans-serif;font-size:0.73rem;}
+  .rl-item{display:flex;gap:9px;margin-bottom:7px;font-size:0.84rem;align-items:flex-start;}
+  .rl-num{font-family:'Orbitron',sans-serif;font-size:0.7rem;color:var(--dim);min-width:26px;padding-top:2px;}
+  .rl-q{flex:1;color:var(--text);}
+  .rl-result{font-size:0.77rem;padding:2px 7px;border-radius:4px;white-space:nowrap;}
+  .rl-result.ok{background:rgba(0,255,136,0.1);color:var(--green);}
+  .rl-result.bad{background:rgba(255,51,85,0.1);color:var(--red);}
+  .section-title{font-family:'Orbitron',sans-serif;font-size:0.75rem;color:var(--dim);letter-spacing:2px;text-transform:uppercase;margin:16px 0 10px;padding-top:14px;border-top:1px solid var(--border);}
+  .report-msg{font-size:0.93rem;color:var(--text);padding:10px 14px;background:rgba(255,255,255,0.03);border-radius:8px;margin-top:10px;line-height:1.6;}
+  .restart-btn{display:block;width:100%;background:linear-gradient(135deg,#003355,#006699);border:1px solid var(--accent);color:var(--accent);border-radius:10px;padding:12px;font-family:'Orbitron',sans-serif;cursor:pointer;margin-top:18px;letter-spacing:1px;font-size:0.85rem;}
 
-  header {
-    padding: 20px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .back-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--accent);
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.8rem;
-  }
-  .back-btn:hover { background: rgba(0,212,255,0.1); }
-
-  /* Registration Form Styles */
-  .setup-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 30px;
-    max-width: 550px;
-    margin: 40px auto;
-    box-shadow: 0 0 30px rgba(0,0,0,0.4);
-  }
-  .setup-card h3 {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--accent);
-    margin-bottom: 20px;
-    text-align: center;
-    font-size: 1.1rem;
-  }
-  label {
-    display: block;
-    margin-top: 14px;
-    font-size: 0.9rem;
-    color: var(--dim);
-    letter-spacing: 1px;
-  }
-  input, select {
-    width: 100%;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 12px 16px;
-    color: var(--text);
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 1rem;
-    outline: none;
-    margin-top: 6px;
-    box-sizing: border-box;
-  }
-  input:focus, select:focus { border-color: var(--accent); }
-
-  /* Progress & Stats */
-  #progress-bar-wrap { height: 4px; background: var(--border); position: sticky; top: 0; z-index: 10; }
-  #progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--green)); transition: width 0.4s ease; box-shadow: 0 0 10px var(--accent); }
-  #stats-bar { display: flex; justify-content: center; gap: 30px; padding: 12px 20px; font-size: 0.85rem; background: rgba(13,26,46,0.8); border-bottom: 1px solid var(--border); }
-  .stat { display: flex; align-items: center; gap: 6px; }
-  .stat-val { font-family: 'Orbitron', sans-serif; font-size: 1rem; }
-  .stat-val.green { color: var(--green); }
-  .stat-val.red { color: var(--red); }
-  .stat-val.yellow { color: var(--yellow); }
-
-  /* Quiz Area */
-  #quiz-area { max-width: 720px; margin: 30px auto; padding: 0 16px 60px; }
-  .q-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 26px 24px 22px; box-shadow: 0 0 30px rgba(0,0,0,0.4); position: relative; overflow: hidden; }
-  .q-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; font-size: 0.8rem; text-transform: uppercase; color: var(--dim); }
-  .q-number { font-family: 'Orbitron', sans-serif; color: var(--accent); }
-  .q-type-badge { padding: 3px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 600; }
-  .badge-assertion { background: rgba(255,215,0,0.12); color: var(--yellow); border: 1px solid rgba(255,215,0,0.3); }
-  .badge-tf        { background: rgba(0,255,136,0.1);  color: var(--green);  border: 1px solid rgba(0,255,136,0.3); }
-  .badge-fib       { background: rgba(0,212,255,0.1);  color: var(--accent); border: 1px solid rgba(0,212,255,0.3); }
-  .badge-mcq       { background: rgba(180,100,255,0.12); color: #c084fc; border: 1px solid rgba(180,100,255,0.3); }
-
-  .q-text { font-size: 1.15rem; line-height: 1.7; color: #daeeff; margin-bottom: 8px; }
-  .q-subtext { font-size: 0.9rem; color: var(--dim); margin-bottom: 18px; font-style: italic; }
-  .assertion-box { background: rgba(255,215,0,0.05); border: 1px solid rgba(255,215,0,0.2); border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; }
-  .lbl { font-family: 'Orbitron', sans-serif; font-size: 0.75rem; color: var(--yellow); margin-right: 6px; }
-
-  /* Options */
-  .options { display: flex; flex-direction: column; gap: 10px; }
-  .opt-btn { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; cursor: pointer; text-align: left; color: var(--text); font-family: 'Rajdhani', sans-serif; font-size: 1rem; display: flex; gap: 10px; width: 100%; }
-  .opt-btn:hover:not(:disabled) { border-color: var(--accent); background: rgba(0,212,255,0.06); color: #fff; }
-  .opt-btn.selected-correct { border-color: var(--green); background: rgba(0,255,136,0.1); color: var(--green); }
-  .opt-btn.selected-wrong { border-color: var(--red); background: rgba(255,51,85,0.1); color: var(--red); }
-  .opt-btn.reveal-correct { border-color: var(--green); background: rgba(0,255,136,0.07); color: var(--green); }
-  .opt-letter { font-family: 'Orbitron', sans-serif; font-size: 0.75rem; min-width: 22px; height: 22px; display: flex; align-items:center; justify-content:center; border-radius: 50%; border: 1px solid currentColor; }
-
-  /* FIB Elements */
-  .fib-input { margin-bottom: 12px; }
-  .fib-input.correct { border-color: var(--green); background: rgba(0,255,136,0.07); color: var(--green); }
-  .fib-input.wrong   { border-color: var(--red);   background: rgba(255,51,85,0.07);  color: var(--red); }
-
-  .submit-btn, .start-btn { background: linear-gradient(135deg, #0077aa, #00d4ff); color: #000; border: none; border-radius: 8px; padding: 12px 24px; font-family: 'Orbitron', sans-serif; font-size: 0.85rem; font-weight: 700; cursor: pointer; letter-spacing: 1px; width: 100%; margin-top: 15px; }
-  .submit-btn:hover, .start-btn:hover { opacity: 0.85; }
-
-  /* Feedback */
-  .feedback-banner { margin-top: 18px; border-radius: 10px; padding: 14px 16px; font-size: 0.95rem; }
-  .feedback-banner.correct-fb { background: rgba(0,255,136,0.08); border: 1px solid rgba(0,255,136,0.3); color: var(--green); }
-  .feedback-banner.wrong-fb { background: rgba(255,51,85,0.08); border: 1px solid rgba(255,51,85,0.3); color: #ff8090; }
-  .fb-emoji { font-size: 1.8rem; display: block; margin-bottom: 6px; }
-  .fb-title { font-family: 'Orbitron', sans-serif; font-size: 0.9rem; }
-  .fb-explain { color: var(--text); font-size: 0.88rem; margin-top: 6px; }
-  .next-btn { margin-top: 16px; background: transparent; border: 1px solid var(--accent); color: var(--accent); border-radius: 8px; padding: 10px; font-family: 'Orbitron', sans-serif; cursor: pointer; width: 100%; }
-
-  /* Blast particles */
-  .blast-overlay { position: fixed; inset:0; pointer-events: none; z-index: 100; }
-  .blast-particle { position: absolute; width: 8px; height: 8px; border-radius: 50%; animation: blastFly 0.9s ease-out forwards; }
-  @keyframes blastFly { from { opacity:1; transform: scale(1) translate(0,0); } to   { opacity:0; transform: scale(0.3) translate(var(--tx), var(--ty)); } }
-
-  /* Report Card */
-  #report-card { max-width: 680px; margin: 30px auto; padding: 0 16px 60px; }
-  .report-header { text-align: center; padding: 32px; background: var(--card); border: 1px solid var(--border); border-radius: 16px 16px 0 0; }
-  .report-grade { font-family: 'Orbitron', sans-serif; font-size: 4rem; font-weight: 900; margin: 12px 0; }
-  .report-grade.A { color: var(--green); text-shadow: 0 0 30px rgba(0,255,136,0.5); }
-  .report-grade.B { color: var(--accent); text-shadow: 0 0 30px rgba(0,212,255,0.5); }
-  .report-grade.C { color: var(--yellow); text-shadow: 0 0 30px rgba(255,215,0,0.5); }
-  .report-grade.D { color: var(--red); text-shadow: 0 0 30px rgba(255,51,85,0.5); }
-  .report-body { background: var(--card); border: 1px solid var(--border); border-top: none; border-radius: 0 0 16px 16px; padding: 20px; }
-  .report-stats { display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
-  .rstat-val { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; font-weight: bold; display: block; }
-  .rstat-lbl { font-size: 0.75rem; color: var(--dim); text-transform: uppercase; }
-  .breakdown-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 0.88rem; }
-  .br-type { min-width: 120px; color: var(--dim); }
-  .br-bar-wrap { flex:1; height:6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow:hidden; }
-  .br-bar { height:100%; border-radius: 3px; }
-  .br-num { min-width: 40px; text-align:right; font-family:'Orbitron'; font-size:0.75rem; }
-  .restart-btn { display: block; width: 100%; background: linear-gradient(135deg, #003355, #006699); border: 1px solid var(--accent); color: var(--accent); border-radius: 10px; padding: 13px; font-family: 'Orbitron', sans-serif; cursor: pointer; margin-top: 20px; letter-spacing: 1px; }
-
-  .hidden { display: none !important; }
+  .hidden{display:none!important;}
 </style>
 </head>
 <body>
 
 <header>
-  <button class="back-btn" onclick="window.location.href='index.html'"><i class="fas fa-arrow-left"></i> MAIN SITE</button>
+  <button class="back-btn" onclick="window.location.href='index.html'">← MAIN SITE</button>
   <h2>🏆 ACHARYA ASSESSMENT PORTAL</h2>
-  <div style="width: 80px;"></div>
+  <div style="width:80px"></div>
 </header>
 
 <div id="setup-screen">
   <div class="setup-card">
-    <h3>🚀 Student Registration & Topic Selection</h3>
-    
-    <input type="text" id="student-name" placeholder="👨‍🎓 Enter Student Full Name" required>
-    <input type="tel" id="student-mobile" placeholder="📱 10-Digit WhatsApp Number" required>
-    
-    <label>CHOOSE CLASS</label>
-    <select id="class-select" onchange="updateSubjects()">
+    <h3>🚀 Student Registration &amp; Topic Selection</h3>
+
+    <span class="field-label">STUDENT NAME</span>
+    <input class="portal-input" type="text" id="student-name" placeholder="Enter Full Name">
+
+    <span class="field-label">WHATSAPP NUMBER</span>
+    <input class="portal-input" type="tel" id="student-mobile" placeholder="10-Digit Mobile Number" maxlength="10">
+
+    <span class="field-label">CHOOSE CLASS</span>
+    <div class="select-wrap">
+      <select class="portal-select" id="class-select" onchange="updateSubjects()">
         <option value="">-- Select Class --</option>
         <option value="9">Class 9th</option>
         <option value="10">Class 10th</option>
-    </select>
+      </select>
+    </div>
 
-    <label>CHOOSE SUBJECT</label>
-    <select id="subject-select" onchange="updateTopics()" disabled>
+    <span class="field-label">CHOOSE SUBJECT</span>
+    <div class="select-wrap">
+      <select class="portal-select" id="subject-select" onchange="updateTopics()">
         <option value="">-- Select Subject --</option>
-    </select>
+      </select>
+    </div>
 
-    <label>CHOOSE CHAPTER / WORKSHEET</label>
-    <select id="topic-select" disabled>
+    <span class="field-label">CHOOSE CHAPTER / WORKSHEET</span>
+    <div class="select-wrap">
+      <select class="portal-select" id="topic-select">
         <option value="">-- Select Topic --</option>
-    </select>
+      </select>
+    </div>
 
     <button class="start-btn" onclick="validateAndStart()">START CHALLENGE ▶</button>
   </div>
 </div>
 
-<div id="progress-bar-wrap" class="hidden">
-  <div id="progress-bar" style="width:0%"></div>
-</div>
+<div id="progress-bar-wrap" class="hidden"><div id="progress-bar" style="width:0%"></div></div>
 <div id="stats-bar" class="hidden">
-  <div class="stat">PROGRESS <span class="stat-val yellow" id="q-counter">1/25</span></div>
+  <div class="stat">Q <span class="stat-val yellow" id="q-counter">1</span></div>
   <div class="stat">✓ <span class="stat-val green" id="correct-count">0</span></div>
   <div class="stat">✗ <span class="stat-val red" id="wrong-count">0</span></div>
-  <div class="stat">SCORE <span class="stat-val" id="score-pct" style="color:var(--accent)">0%</span></div>
+  <div class="stat">Score <span class="stat-val" id="score-pct" style="color:var(--accent)">0%</span></div>
 </div>
 
 <div id="quiz-area" class="hidden"></div>
-
 <div id="report-card" class="hidden"></div>
-
 <div id="blast-overlay" class="blast-overlay"></div>
 
 <script>
-// =========================================================================
-// 📑 APNI SAARI WORKSHEETS KA DATA IS DATABASE MEIN RAKHEIN (PURANA BHI RAHEGA)
-// =========================================================================
+// ================================================
+// QUIZ DATABASE
+// ================================================
 const quizDatabase = {
   "9": {
     "Physics": {
       "Motion (Chapter 1)": [
-        {
-          type: 'assertion',
-          text: 'Read the assertion and reason carefully.',
-          assertion: 'A body can have zero velocity but non-zero acceleration.',
-          reason: 'At the highest point of a vertically thrown ball, velocity is zero but gravitational acceleration still acts on it.',
-          options: ['Both A and R are true, and R is the correct explanation of A.', 'Both A and R are true, but R is NOT the correct explanation of A.', 'A is true but R is false.', 'A is false but R is true.'],
-          answer: 0,
-          explain: 'At the topmost point, v = 0 but g = 9.8 m/s² downward still acts. R explains A.'
-        },
-        {
-          type: 'tf',
-          text: 'True or False: Distance is a vector quantity.',
-          options: ['True', 'False'],
-          answer: 1,
-          explain: 'Distance is a scalar quantity. Displacement is the vector one.'
-        },
-        {
-          type: 'fib',
-          text: 'Fill in the blank: SI unit of acceleration is ________.',
-          answer: 'm/s²',
-          hint: '(metres per second squared)',
-          explain: 'Acceleration = velocity/time = m/s².'
-        },
-        {
-          type: 'mcq',
-          text: 'A car travels 30 km north, then 40 km east. What is its displacement?',
-          options: ['70 km', '50 km', '10 km', '35 km'],
-          answer: 1,
-          explain: 'Displacement = √(30² + 40²) = 50 km.'
-        }
+        { type:'assertion', text:'Read the assertion and reason carefully.',
+          assertion:'A body can have zero velocity but non-zero acceleration.',
+          reason:'At the highest point of a vertically thrown ball, velocity is zero but gravitational acceleration still acts on it.',
+          options:['Both A and R true; R correctly explains A.','Both A and R true; R does NOT explain A.','A true, R false.','A false, R true.'],
+          answer:0, explain:'At topmost point v=0 but g=9.8 m/s² downward still acts. R explains A.' },
+        { type:'assertion', text:'Read the assertion and reason carefully.',
+          assertion:'Displacement can be zero even if distance is non-zero.',
+          reason:'Displacement is shortest path; distance is total path length.',
+          options:['Both A and R true; R correctly explains A.','Both A and R true; R does NOT explain A.','A true, R false.','A false, R true.'],
+          answer:0, explain:'Walking a full circle — distance>0 but displacement=0. R correctly explains A.' },
+        { type:'assertion', text:'Read the assertion and reason carefully.',
+          assertion:'Uniform circular motion is an accelerated motion.',
+          reason:'In uniform circular motion, speed is constant but direction of velocity changes continuously.',
+          options:['Both A and R true; R correctly explains A.','Both A and R true; R does NOT explain A.','A true, R false.','A false, R true.'],
+          answer:0, explain:'Changing direction = changing velocity vector = acceleration exists (centripetal).' },
+        { type:'tf', text:'True or False: Distance is a vector quantity.',
+          options:['True','False'], answer:1, explain:'Distance is SCALAR. Displacement is the vector quantity.' },
+        { type:'tf', text:'True or False: Area under a velocity-time graph gives displacement.',
+          options:['True','False'], answer:0, explain:'Area under v-t graph = ∫v dt = displacement. Standard result.' },
+        { type:'tf', text:'True or False: Equations of motion are valid only for uniform acceleration.',
+          options:['True','False'], answer:0, explain:'v=u+at, s=ut+½at², v²=u²+2as — all derived for constant acceleration.' },
+        { type:'fib', text:'Fill in the blank: Slope of velocity-time graph represents ________ of the object.',
+          answer:'acceleration', hint:'(rate of change of velocity)', explain:'Slope of v-t graph = Δv/Δt = acceleration.' },
+        { type:'fib', text:'Fill in the blank: SI unit of acceleration is ________.',
+          answer:'m/s²', hint:'(metres per second squared)', explain:'Acceleration = (m/s)/s = m/s².' },
+        { type:'fib', text:'Fill in the blank: Third equation of motion is v² = u² + ________.',
+          answer:'2as', hint:'(expression with a and s)', explain:'v² = u² + 2as — third kinematic equation.' },
+        { type:'mcq', text:'A car travels 30 km north then 40 km east. Its displacement is:',
+          options:['70 km','50 km','10 km','35 km'], answer:1, explain:'√(30²+40²) = √2500 = 50 km (Pythagoras).' },
+        { type:'mcq', text:'A body starts from rest, reaches 20 m/s in 4 s. Its acceleration is:',
+          options:['80 m/s²','5 m/s²','4 m/s²','2.5 m/s²'], answer:1, explain:'a = (v-u)/t = (20-0)/4 = 5 m/s².' },
+        { type:'mcq', text:'Odometer of a car measures:',
+          options:['Displacement','Speed','Distance travelled','Velocity'], answer:2, explain:'Odometer records total distance (path length), not displacement.' },
+        { type:'mcq', text:'At the highest point of a vertically thrown stone:',
+          options:['Both v and a are zero.','v=0; a=9.8 m/s² downward.','v is maximum; a is zero.','Both non-zero.'],
+          answer:1, explain:'v=0 at top momentarily but g=9.8 m/s² always acts downward.' }
       ],
       "Force and Laws of Motion": [
-        {
-          type: 'mcq',
-          text: 'Which law of motion gives the quantitative definition of force?',
-          options: ['First Law', 'Second Law', 'Third Law', 'Law of Gravitation'],
-          answer: 1,
-          explain: 'Newton\'s second law gives F = ma.'
-        }
+        { type:'mcq', text:'Which law gives the quantitative definition of force?',
+          options:['First Law','Second Law','Third Law','Law of Gravitation'], answer:1, explain:'F = ma — Newton\'s Second Law gives force quantitatively.' },
+        { type:'tf', text:'True or False: Newton\'s First Law is also called the Law of Inertia.',
+          options:['True','False'], answer:0, explain:'An object continues in its state unless an external force acts — this is inertia.' },
+        { type:'fib', text:'Fill in the blank: SI unit of force is ________.',
+          answer:'newton', hint:'(named after a famous scientist)', explain:'Force = kg·m/s² = Newton (N).' },
+        { type:'assertion', text:'Read the assertion and reason carefully.',
+          assertion:'A rocket works on Newton\'s third law.',
+          reason:'Gases are expelled backward at high speed, pushing the rocket forward.',
+          options:['Both A and R true; R correctly explains A.','Both A and R true; R does NOT explain A.','A true, R false.','A false, R true.'],
+          answer:0, explain:'Action = gases backward. Reaction = rocket forward. Classic 3rd law.' }
+      ]
+    },
+    "Maths": {
+      "Number Systems": [
+        { type:'mcq', text:'Which is an irrational number?',
+          options:['√4','√9','√2','√16'], answer:2, explain:'√2 = 1.414... (non-terminating, non-repeating) → irrational.' },
+        { type:'tf', text:'True or False: Every integer is a rational number.',
+          options:['True','False'], answer:0, explain:'n = n/1 → ratio of integers → rational. TRUE.' },
+        { type:'fib', text:'Fill in the blank: Decimal expansion of a rational number is either ________ or repeating.',
+          answer:'terminating', hint:'(opposite of non-terminating)', explain:'Rationals: terminate (0.5) or repeat (0.333...).' }
       ]
     }
   },
   "10": {
     "Science": {
-      "Light Reflection": [
-        {
-          type: 'tf',
-          text: 'True or False: Focal length of a plane mirror is infinity.',
-          options: ['True', 'False'],
-          answer: 0,
-          explain: 'A plane mirror has no curvature, so its focal length is infinite.'
-        }
+      "Light — Reflection & Refraction": [
+        { type:'tf', text:'True or False: Focal length of a plane mirror is infinity.',
+          options:['True','False'], answer:0, explain:'Plane mirror: no curvature → radius of curvature = ∞ → f = ∞.' },
+        { type:'mcq', text:'Object placed at focus of concave mirror forms image at:',
+          options:['At F','At infinity','At C','Between F and C'], answer:1, explain:'Object at F → reflected rays are parallel → image at infinity.' },
+        { type:'fib', text:'Fill in the blank: Mirror formula: 1/v + 1/u = ________.',
+          answer:'1/f', hint:'(involving focal length f)', explain:'1/v + 1/u = 1/f is the mirror formula.' }
+      ],
+      "Electricity": [
+        { type:'mcq', text:'Ohm\'s Law V ∝ I is valid when:',
+          options:['Temperature changes','Temperature is constant','Resistance changes','None'], answer:1, explain:'V=IR holds when physical conditions (especially temperature) are constant.' },
+        { type:'fib', text:'Fill in the blank: SI unit of electrical resistance is ________.',
+          answer:'ohm', hint:'(symbol: Ω)', explain:'Resistance measured in Ohms (Ω), named after Georg Simon Ohm.' }
+      ]
+    },
+    "Maths": {
+      "Quadratic Equations": [
+        { type:'mcq', text:'Discriminant of ax²+bx+c=0 is:',
+          options:['b²+4ac','b²-4ac','√(b²-4ac)','2a'], answer:1, explain:'D = b²-4ac. D>0: two real roots; D=0: one root; D<0: no real roots.' },
+        { type:'tf', text:'True or False: x²-5x+6=0 has roots 2 and 3.',
+          options:['True','False'], answer:0, explain:'Sum=2+3=5✓, Product=2×3=6✓. Roots are 2 and 3. TRUE.' }
       ]
     }
   }
 };
 
-// --- Dropdown Management Script ---
+// ================================================
+// DROPDOWN LOGIC — FIXED (no disabled attribute)
+// ================================================
 function updateSubjects() {
-    const cls = document.getElementById("class-select").value;
-    const subSel = document.getElementById("subject-select");
-    const topicSel = document.getElementById("topic-select");
-    subSel.innerHTML = '<option value="">-- Select Subject --</option>';
-    topicSel.innerHTML = '<option value="">-- Select Topic --</option>';
-    topicSel.disabled = true;
-    if (!cls || !quizDatabase[cls]) { subSel.disabled = true; return; }
-    subSel.disabled = false;
-    Object.keys(quizDatabase[cls]).forEach(sub => { subSel.innerHTML += `<option value="${sub}">${sub}</option>`; });
+  const cls = document.getElementById('class-select').value;
+  const subSel = document.getElementById('subject-select');
+  const topSel = document.getElementById('topic-select');
+
+  subSel.innerHTML = '<option value="">-- Select Subject --</option>';
+  topSel.innerHTML = '<option value="">-- Select Topic --</option>';
+
+  if (!cls || !quizDatabase[cls]) return;
+  Object.keys(quizDatabase[cls]).forEach(sub => {
+    subSel.innerHTML += '<option value="'+sub+'">'+sub+'</option>';
+  });
 }
 
 function updateTopics() {
-    const cls = document.getElementById("class-select").value;
-    const sub = document.getElementById("subject-select").value;
-    const topicSel = document.getElementById("topic-select");
-    topicSel.innerHTML = '<option value="">-- Select Topic --</option>';
-    if (!sub || !quizDatabase[cls][sub]) { topicSel.disabled = true; return; }
-    topicSel.disabled = false;
-    Object.keys(quizDatabase[cls][sub]).forEach(topic => { topicSel.innerHTML += `<option value="${topic}">${topic}</option>`; });
+  const cls = document.getElementById('class-select').value;
+  const sub = document.getElementById('subject-select').value;
+  const topSel = document.getElementById('topic-select');
+
+  topSel.innerHTML = '<option value="">-- Select Topic --</option>';
+  if (!cls || !sub || !quizDatabase[cls] || !quizDatabase[cls][sub]) return;
+  Object.keys(quizDatabase[cls][sub]).forEach(t => {
+    topSel.innerHTML += '<option value="'+t+'">'+t+'</option>';
+  });
 }
 
-let activeQuestions = [];
-let current = 0;
-let score = 0;
-let wrong = 0;
-let answered = false;
-let results = [];
+// ================================================
+// QUIZ ENGINE
+// ================================================
+let activeQ=[], cur=0, sc=0, wr=0, done=false, results=[], sInfo={};
 
 function validateAndStart() {
-    const name = document.getElementById("student-name").value.trim();
-    const mobile = document.getElementById("student-mobile").value.trim();
-    const cls = document.getElementById("class-select").value;
-    const sub = document.getElementById("subject-select").value;
-    const topic = document.getElementById("topic-select").value;
+  const name   = document.getElementById('student-name').value.trim();
+  const mobile = document.getElementById('student-mobile').value.trim();
+  const cls    = document.getElementById('class-select').value;
+  const sub    = document.getElementById('subject-select').value;
+  const topic  = document.getElementById('topic-select').value;
 
-    if (!name || mobile.length < 10 || !cls || !sub || !topic) {
-        alert("Please fill all student details and selections correctly!"); return;
-    }
-    
-    activeQuestions = quizDatabase[cls][sub][topic];
-    if (!activeQuestions || activeQuestions.length === 0) {
-        alert("No questions found in this worksheet!"); return;
-    }
+  if (!name)             { alert('Please enter student name!'); return; }
+  if (mobile.length<10)  { alert('Please enter valid 10-digit mobile number!'); return; }
+  if (!cls)              { alert('Please select class!'); return; }
+  if (!sub)              { alert('Please select subject!'); return; }
+  if (!topic)            { alert('Please select topic / chapter!'); return; }
 
-    document.getElementById('setup-screen').classList.add('hidden');
-    document.getElementById('progress-bar-wrap').classList.remove('hidden');
-    document.getElementById('stats-bar').classList.remove('hidden');
-    document.getElementById('quiz-area').classList.remove('hidden');
-    
-    current = 0; score = 0; wrong = 0; results = [];
-    renderQuestion();
+  activeQ = quizDatabase[cls][sub][topic];
+  if (!activeQ || activeQ.length===0) { alert('No questions in this worksheet!'); return; }
+
+  sInfo = {name,mobile,cls,sub,topic};
+  cur=0; sc=0; wr=0; results=[];
+
+  document.getElementById('setup-screen').classList.add('hidden');
+  document.getElementById('progress-bar-wrap').classList.remove('hidden');
+  document.getElementById('stats-bar').classList.remove('hidden');
+  document.getElementById('quiz-area').classList.remove('hidden');
+  renderQ();
 }
 
-function renderQuestion() {
-  answered = false;
-  const q = activeQuestions[current];
+function renderQ() {
+  done = false;
+  const q = activeQ[cur];
   const area = document.getElementById('quiz-area');
+  const tMap = {assertion:['Assertion & Reason','badge-assertion'],tf:['True / False','badge-tf'],fib:['Fill in the Blank','badge-fib'],mcq:['MCQ','badge-mcq']};
+  const [tLabel,tBadge] = tMap[q.type]||['MCQ','badge-mcq'];
 
-  let typeLabel = '', badgeClass = '';
-  if (q.type==='assertion') { typeLabel='Assertion & Reason'; badgeClass='badge-assertion'; }
-  else if (q.type==='tf')   { typeLabel='True / False';       badgeClass='badge-tf'; }
-  else if (q.type==='fib')  { typeLabel='Fill in the Blank';  badgeClass='badge-fib'; }
-  else                       { typeLabel='MCQ';                badgeClass='badge-mcq'; }
+  let body = '<div class="q-meta"><span class="q-number">Q '+(cur+1)+' / '+activeQ.length+'</span><span class="q-type-badge '+tBadge+'">'+tLabel+'</span></div>';
 
-  let innerHTML = `
-    <div class="q-meta">
-      <span class="q-number">QUESTION ${current+1} / ${activeQuestions.length}</span>
-      <span class="q-type-badge ${badgeClass}">${typeLabel}</span>
-    </div>
-  `;
-
-  if (q.type === 'assertion') {
-    innerHTML += `
-      <div class="q-text">${q.text}</div>
-      <div class="assertion-box">
-        <p><span class="lbl">A:</span> ${q.assertion}</p>
-        <p><span class="lbl">R:</span> ${q.reason}</p>
-      </div>
-      <div class="options">
-        ${q.options.map((o,i) => `<button class="opt-btn" id="opt${i}" onclick="selectOpt(${i})">
-          <span class="opt-letter">${String.fromCharCode(65+i)}</span><span>${o}</span>
-        </button>`).join('')}
-      </div>
-    `;
-  } else if (q.type === 'tf' || q.type === 'mcq') {
-    innerHTML += `
-      <div class="q-text">${q.text}</div>
-      <div class="options">
-        ${q.options.map((o,i) => `<button class="opt-btn" id="opt${i}" onclick="selectOpt(${i})">
-          <span class="opt-letter">${q.type==='tf' ? (i===0?'T':'F') : String.fromCharCode(65+i)}</span>
-          <span>${o}</span>
-        </button>`).join('')}
-      </div>
-    `;
+  if (q.type==='assertion') {
+    body += '<div class="q-text">'+q.text+'</div><div class="assertion-box"><p><span class="lbl">A:</span>'+q.assertion+'</p><p style="margin-top:5px"><span class="lbl">R:</span>'+q.reason+'</p></div><div class="options">'+q.options.map((o,i)=>'<button class="opt-btn" id="opt'+i+'" onclick="selOpt('+i+')"><span class="opt-letter">'+String.fromCharCode(65+i)+'</span><span>'+o+'</span></button>').join('')+'</div>';
+  } else if (q.type==='mcq'||q.type==='tf') {
+    body += '<div class="q-text">'+q.text+'</div><div class="options">'+q.options.map((o,i)=>'<button class="opt-btn" id="opt'+i+'" onclick="selOpt('+i+')"><span class="opt-letter">'+(q.type==='tf'?(i===0?'T':'F'):String.fromCharCode(65+i))+'</span><span>'+o+'</span></button>').join('')+'</div>';
   } else {
-    innerHTML += `
-      <div class="q-text">${q.text}</div>
-      <div class="q-subtext">${q.hint}</div>
-      <input class="fib-input" id="fib-input" type="text" placeholder="Type your answer here..." onkeydown="if(event.key==='Enter') checkFib()">
-      <button class="submit-btn" onclick="checkFib()">SUBMIT SOLUTION</button>
-    `;
+    body += '<div class="q-text">'+q.text+'</div><div class="q-subtext">'+(q.hint||'')+'</div><input class="fib-input-el" type="text" id="fib-in" placeholder="Type your answer here..." onkeydown="if(event.key===\'Enter\')chkFib()"><button class="submit-btn" onclick="chkFib()">CHECK ANSWER</button>';
   }
 
-  area.innerHTML = `<div class="q-card">${innerHTML}<div id="feedback"></div></div>`;
-  document.getElementById('progress-bar').style.width = ((current/activeQuestions.length)*100)+'%';
-  document.getElementById('q-counter').textContent = (current+1)+'/'+activeQuestions.length;
+  area.innerHTML = '<div class="q-card">'+body+'<div id="feedback"></div></div>';
+  document.getElementById('progress-bar').style.width=(cur/activeQ.length*100)+'%';
+  document.getElementById('q-counter').textContent=(cur+1)+'/'+activeQ.length;
 }
 
-function selectOpt(idx) {
-  if (answered) return;
-  answered = true;
-  const q = activeQuestions[current];
-  const correct = idx === q.answer;
-
-  q.options.forEach((_,i) => {
-    const btn = document.getElementById('opt'+i);
-    btn.disabled = true;
-    if (i === q.answer) btn.classList.add('reveal-correct');
-  });
-
-  const chosen = document.getElementById('opt'+idx);
-  chosen.classList.remove('reveal-correct');
-  chosen.classList.add(correct ? 'selected-correct' : 'selected-wrong');
-
-  if (correct) { score++; triggerAppreciation(); } else { wrong++; triggerBlast(); }
-  results.push({ q: current, correct });
-  updateStats();
-  showFeedback(correct, q.options[q.answer], q.explain);
+function selOpt(idx) {
+  if (done) return;
+  done = true;
+  const q = activeQ[cur];
+  const ok = idx===q.answer;
+  q.options.forEach((_,i)=>{ const b=document.getElementById('opt'+i); b.disabled=true; if(i===q.answer)b.classList.add('reveal-correct'); });
+  const ch = document.getElementById('opt'+idx);
+  ch.classList.remove('reveal-correct');
+  ch.classList.add(ok?'selected-correct':'selected-wrong');
+  if(ok){sc++;appreciate();}else{wr++;blast();}
+  results.push({q:cur,ok,text:q.assertion||q.text});
+  updateSt();
+  showFB(ok, q.options[q.answer], q.explain);
 }
 
-function checkFib() {
-  if (answered) return;
-  const q = activeQuestions[current];
-  const input = document.getElementById('fib-input');
-  const val = input.value.trim().toLowerCase();
-  const ans = q.answer.toLowerCase();
-  const correct = val === ans || val.replace(/\s/g,'') === ans.replace(/\s/g,'');
-
-  answered = true;
-  input.disabled = true;
-  input.classList.add(correct ? 'correct' : 'wrong');
-
-  if (correct) { score++; triggerAppreciation(); } else { wrong++; triggerBlast(); }
-  results.push({ q: current, correct });
-  updateStats();
-  showFeedback(correct, q.answer, q.explain);
+function chkFib() {
+  if (done) return;
+  const q = activeQ[cur];
+  const inp = document.getElementById('fib-in');
+  const val = inp.value.trim().toLowerCase().replace(/\s/g,'');
+  const ans = q.answer.toLowerCase().replace(/\s/g,'');
+  const ok = val===ans;
+  done=true; inp.disabled=true; inp.classList.add(ok?'correct':'wrong');
+  if(ok){sc++;appreciate();}else{wr++;blast();}
+  results.push({q:cur,ok,text:q.text});
+  updateSt();
+  showFB(ok, q.answer, q.explain);
 }
 
-function showFeedback(correct, correctAns, explain) {
-  const fb = document.getElementById('feedback');
-  const app = ['🔥 SUPERB!', '⚡ BRILLIANT!', '🌟 EXCELLENT!', '🎯 SPOT ON!'];
-  const bls = ['💥 BOOM! WRONG', '❌ INCORRECT', '🔴 OOPS! MISTAKE'];
-  const emoji = correct ? app[Math.floor(Math.random()*app.length)] : bls[Math.floor(Math.random()*bls.length)];
-
-  fb.innerHTML = `
-    <div class="feedback-banner ${correct ? 'correct-fb' : 'wrong-fb'}">
-      <span class="fb-emoji">${emoji}</span>
-      ${!correct ? `<div>Correct Answer: <span style="font-weight:bold;color:var(--green)">${correctAns}</span></div>` : ''}
-      <div class="fb-explain">${explain}</div>
-    </div>
-    <button class="next-btn" onclick="nextQuestion()">${current < activeQuestions.length - 1 ? 'NEXT CHALLENGE ➡️' : 'VIEW DETAILED ANALYSIS 📊'}</button>
-  `;
+function showFB(ok, ans, exp) {
+  const apps=['🔥 SUPERB!','⚡ BRILLIANT!','🌟 EXCELLENT!','🎯 SPOT ON!','🚀 PERFECT!'];
+  const bls=['💥 WRONG!','❌ INCORRECT!','🔴 OOPS! MISTAKE'];
+  const emoji=ok?apps[Math.floor(Math.random()*apps.length)]:bls[Math.floor(Math.random()*bls.length)];
+  document.getElementById('feedback').innerHTML='<div class="feedback-banner '+(ok?'correct-fb':'wrong-fb')+'"><span class="fb-emoji">'+emoji+'</span>'+(ok?'':'<div style="margin-bottom:4px">Correct: <strong style="color:var(--green)">'+ans+'</strong></div>')+'<div class="fb-explain">'+exp+'</div></div><button class="next-btn" onclick="nxt()">'+(cur<activeQ.length-1?'NEXT QUESTION →':'SEE REPORT CARD 📊')+'</button>';
 }
 
-function nextQuestion() {
-  current++;
+function nxt() {
+  cur++;
+  if(cur>=activeQ.length){showReport();return;}
+  renderQ();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function updateSt() {
+  document.getElementById('correct-count').textContent=sc;
+  document.getElementById('wrong-count').textContent=wr;
+  document.getElementById('score-pct').textContent=Math.round(sc/(cur+1)*100)+'%';
+}
+
+function appreciate() {
+  const ov=document.getElementById('blast-overlay');
+  ['#00ff88','#00d4ff','#ffd700'].forEach(c=>{for(let i=0;i<6;i++){const p=document.createElement('div');p.className='blast-particle';const a=Math.random()*360,d=90+Math.random()*160;p.style.cssText='left:'+(38+Math.random()*24)+'%;top:'+(30+Math.random()*35)+'%;background:'+c+';--tx:'+Math.cos(a*Math.PI/180)*d+'px;--ty:'+(Math.sin(a*Math.PI/180)*d-55)+'px;width:'+(4+Math.random()*5)+'px;height:'+(4+Math.random()*5)+'px;animation-duration:'+(0.7+Math.random()*0.4)+'s';ov.appendChild(p);setTimeout(()=>p.remove(),1200);}});
+}
+
+function blast() {
+  const ov=document.getElementById('blast-overlay');
+  ['#ff3355','#ff6600'].forEach(c=>{for(let i=0;i<6;i++){const p=document.createElement('div');p.className='blast-particle';const a=Math.random()*360,d=60+Math.random()*120;p.style.cssText='left:'+(38+Math.random()*24)+'%;top:'+(30+Math.random()*35)+'%;background:'+c+';border-radius:2px;--tx:'+Math.cos(a*Math.PI/180)*d+'px;--ty:'+(Math.sin(a*Math.PI/180)*d-35)+'px;width:'+(5+Math.random()*4)+'px;height:'+(5+Math.random()*4)+'px;animation-duration:'+(0.6+Math.random()*0.3)+'s';ov.appendChild(p);setTimeout(()=>p.remove(),1000);}});
+}
+
+function showReport() {
+  document.getElementById('progress-bar').style.width='100%';
+  document.getElementById('quiz-area').classList.add('hidden');
+  const tot=activeQ.length, pct=Math.round(sc/tot*100);
+  let grade,gc,msg;
+  if(pct>=88){grade='A+';gc='A';msg='🌟 Outstanding! Excellent command over this topic!';}
+  else if(pct>=72){grade='A';gc='A';msg='⚡ Great work! Minor revision will make you perfect.';}
+  else if(pct>=56){grade='B';gc='B';msg='👍 Good effort! Revise explanations and concept applications.';}
+  else if(pct>=40){grade='C';gc='C';msg='📖 Needs more practice. Re-read NCERT and redo this worksheet.';}
+  else{grade='D';gc='D';msg='🔴 Significant revision needed. Focus on basics first.';}
+
+  const types=['assertion','tf','fib','mcq'],tN=['Assertion/Reason','True/False','Fill in Blank','MCQ'];
+  const tSc=[0,0,0,0],tTot=[0,0,0,0];
+  activeQ.forEach(q=>{const ti=types.indexOf(q.type);if(ti>=0)tTot[ti]++;});
+  results.forEach(r=>{const ti=types.indexOf(activeQ[r.q].type);if(ti>=0&&r.ok)tSc[ti]++;});
+
+  const bRows=types.map((t,i)=>{
+    if(tTot[i]===0)return'';
+    const p2=Math.round(tSc[i]/tTot[i]*100);
+    const col=p2>=70?'var(--green)':p2>=50?'var(--accent)':'var(--red)';
+    return'<div class="breakdown-row"><span class="br-type">'+tN[i]+'</span><div class="br-bar-wrap"><div class="br-bar" style="width:'+p2+'%;background:'+col+'"></div></div><span class="br-num" style="color:'+col+'">'+tSc[i]+'/'+tTot[i]+'</span></div>';
+  }).join('');
+
+  const qList=results.map(r=>{
+    const qt=(activeQ[r.q].assertion||activeQ[r.q].text||'').slice(0,58)+'…';
+    return'<div class="rl-item"><span class="rl-num">Q'+(r.q+1)+'</span><span class="rl-q">'+qt+'</span><span class="rl-result '+(r.ok?'ok':'bad')+'">'+(r.ok?'✓ Correct':'✗ Wrong')+'</span></div>';
+  }).join('');
+
+  document.getElementById('report-card').classList.remove('hidden');
+  document.getElementById('report-card').innerHTML='<div class="report-header"><div style="font-family:Orbitron,sans-serif;font-size:0.75rem;color:var(--dim);letter-spacing:2px">REPORT CARD</div><div style="color:var(--dim);font-size:0.85rem;margin:5px 0">'+sInfo.name+' &nbsp;|&nbsp; '+sInfo.sub+' — '+sInfo.topic+'</div><div class="report-grade '+gc+'">'+grade+'</div><div style="color:var(--dim)">Score: <span style="color:var(--text);font-weight:600">'+sc+'/'+tot+'</span> &nbsp;|&nbsp; <span style="color:var(--text);font-weight:600">'+pct+'%</span></div><div class="report-msg">'+msg+'</div></div><div class="report-body"><div class="report-stats"><div><span class="rstat-val" style="color:var(--green)">'+sc+'</span><span class="rstat-lbl">Correct</span></div><div><span class="rstat-val" style="color:var(--red)">'+wr+'</span><span class="rstat-lbl">Wrong</span></div><div><span class="rstat-val" style="color:var(--accent)">'+pct+'%</span><span class="rstat-lbl">Score</span></div></div><div class="section-title">Performance by Type</div>'+bRows+'<div class="section-title">Question-wise Result</div>'+qList+'<button class="restart-btn" onclick="restart()">↺ TRY AGAIN</button></div>';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function restart() {
+  cur=0;sc=0;wr=0;results=[];
+  document.getElementById('report-card').classList.add('hidden');
+  document.getElementById('quiz-area').classList.remove('hidden');
+  renderQ();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
