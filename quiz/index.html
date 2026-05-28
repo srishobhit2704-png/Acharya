@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,73 +6,132 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Force Chapter Ultimate Quiz</title>
+<title>Force Chapter Mega Quiz</title>
 
 <style>
 
-body{
+*{
     margin:0;
-    padding:20px;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
     font-family:Arial, sans-serif;
-    background:linear-gradient(to right,#dfe9f3,#ffffff);
+    background:linear-gradient(135deg,#dfe9f3,#ffffff);
+    padding:20px;
 }
 
 .container{
-    max-width:1000px;
+    max-width:1100px;
     margin:auto;
     background:white;
+    border-radius:20px;
     padding:25px;
-    border-radius:15px;
-    box-shadow:0 0 15px rgba(0,0,0,0.15);
+    box-shadow:0 0 20px rgba(0,0,0,0.15);
 }
 
 h1{
     text-align:center;
     color:#0b4f9c;
+    margin-bottom:20px;
+}
+
+h2{
+    color:#0b4f9c;
+    margin-bottom:15px;
 }
 
 input{
     width:100%;
-    padding:12px;
-    margin-top:10px;
-    border-radius:8px;
+    padding:14px;
+    margin-top:12px;
+    border-radius:10px;
     border:1px solid #ccc;
     font-size:16px;
 }
 
 button{
-    padding:12px 20px;
+    padding:14px 25px;
     border:none;
-    border-radius:8px;
+    border-radius:10px;
     background:#0b4f9c;
     color:white;
-    font-size:16px;
+    font-size:17px;
     cursor:pointer;
     margin-top:20px;
+    transition:0.3s;
 }
 
 button:hover{
     background:#08366b;
 }
 
+#quiz,
+#submitBtn,
+#reportCard{
+    display:none;
+}
+
+.top-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+    flex-wrap:wrap;
+}
+
+.timer{
+    background:#ffeb3b;
+    padding:10px 18px;
+    border-radius:10px;
+    font-weight:bold;
+    font-size:18px;
+}
+
+.progress-container{
+    width:100%;
+    height:20px;
+    background:#ddd;
+    border-radius:10px;
+    overflow:hidden;
+    margin-top:15px;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:#0b4f9c;
+    transition:0.3s;
+}
+
 .question-box{
     margin-top:25px;
-    padding:20px;
-    border-radius:12px;
     background:#fafafa;
     border:1px solid #ddd;
+    border-radius:15px;
+    padding:20px;
     position:relative;
     overflow:hidden;
 }
 
-.question-type{
-    color:#777;
+.question-number{
+    background:#0b4f9c;
+    color:white;
+    display:inline-block;
+    padding:6px 12px;
+    border-radius:8px;
+    margin-bottom:10px;
     font-size:14px;
+}
+
+.question-type{
+    color:#666;
     margin-bottom:10px;
 }
 
 .question{
-    font-size:19px;
+    font-size:20px;
     margin-bottom:15px;
     line-height:1.6;
 }
@@ -79,15 +139,17 @@ button:hover{
 .option{
     display:block;
     background:#eeeeee;
+    padding:14px;
     margin:10px 0;
-    padding:12px;
-    border-radius:8px;
+    border-radius:10px;
     cursor:pointer;
     transition:0.3s;
+    font-size:16px;
 }
 
 .option:hover{
     background:#d8e8ff;
+    transform:scale(1.02);
 }
 
 .correct{
@@ -107,61 +169,81 @@ button:hover{
     100%{transform:translateX(0);}
 }
 
-.blast{
+.feedback{
+    margin-top:12px;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.firework{
     position:absolute;
-    font-size:40px;
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    background:gold;
     animation:explode 0.8s forwards;
 }
 
 @keyframes explode{
     0%{
+        transform:scale(0);
         opacity:1;
-        transform:scale(0.5);
     }
     100%{
+        transform:scale(8);
         opacity:0;
-        transform:scale(3);
     }
 }
 
-.praise{
-    color:green;
-    font-weight:bold;
-    margin-top:10px;
-    animation:pop 0.5s;
+.blast{
+    position:absolute;
+    font-size:45px;
+    animation:blastAnim 0.8s forwards;
 }
 
-@keyframes pop{
+@keyframes blastAnim{
     0%{
         transform:scale(0.5);
+        opacity:1;
     }
     100%{
-        transform:scale(1);
+        transform:scale(3);
+        opacity:0;
     }
-}
-
-#quiz,
-#submitBtn,
-#reportCard{
-    display:none;
 }
 
 .report-card{
     margin-top:30px;
-    padding:25px;
-    border-radius:15px;
     background:#f5faff;
     border:2px solid #0b4f9c;
-}
-
-.report-card h2{
-    color:#0b4f9c;
+    border-radius:15px;
+    padding:25px;
 }
 
 .grade{
-    font-size:26px;
+    font-size:30px;
+    color:#0b4f9c;
+    margin-top:15px;
     font-weight:bold;
+}
+
+.rank{
     margin-top:10px;
+    font-size:22px;
+    color:#ff9800;
+    font-weight:bold;
+}
+
+@media(max-width:768px){
+
+    .question{
+        font-size:18px;
+    }
+
+    .option{
+        font-size:15px;
+    }
+
 }
 
 </style>
@@ -172,19 +254,15 @@ button:hover{
 
 <div class="container">
 
-<h1>Force Chapter Ultimate Quiz</h1>
-
-<!-- =========================
-STUDENT FORM
-========================= -->
+<h1>🔥 Force Chapter Mega Quiz 🔥</h1>
 
 <div id="studentForm">
 
     <h2>Student Details</h2>
 
-    <input type="text" id="studentName" placeholder="Enter Name">
+    <input type="text" id="studentName" placeholder="Enter Your Name">
 
-    <input type="text" id="studentClass" placeholder="Enter Class">
+    <input type="text" id="studentClass" placeholder="Enter Your Class">
 
     <input type="text" id="studentSchool" placeholder="Enter School Name">
 
@@ -196,19 +274,32 @@ STUDENT FORM
 
 </div>
 
-<!-- =========================
-QUIZ
-========================= -->
+<div id="quizSection">
+
+<div class="top-bar">
+
+<div class="timer">
+⏳ Time Left: <span id="time">30:00</span>
+</div>
+
+<div>
+Answered:
+<span id="answeredCount">0</span>/50
+</div>
+
+</div>
+
+<div class="progress-container">
+<div class="progress-bar" id="progressBar"></div>
+</div>
 
 <div id="quiz"></div>
 
 <button id="submitBtn" onclick="submitQuiz()">
-    Submit Quiz
+Submit Quiz
 </button>
 
-<!-- =========================
-REPORT CARD
-========================= -->
+</div>
 
 <div id="reportCard" class="report-card"></div>
 
@@ -216,9 +307,9 @@ REPORT CARD
 
 <script>
 
-/* =====================================================
-UNIQUE QUESTION BANK
-===================================================== */
+/* =========================================
+QUESTION BANK
+========================================= */
 
 const questionBank = [
 
@@ -238,131 +329,93 @@ answer:"Gravitational Force"
 
 {
 type:"MCQ",
-question:"Which law explains rocket propulsion?",
-options:["Newton's First Law","Newton's Second Law","Newton's Third Law","Law of Gravitation"],
-answer:"Newton's Third Law"
+question:"Seat belts are used because of:",
+options:["Friction","Inertia","Pressure","Velocity"],
+answer:"Inertia"
 },
 
 {
 type:"MCQ",
-question:"What happens to friction on polishing surfaces?",
-options:["Increases","Decreases","Remains same","Becomes zero"],
-answer:"Decreases"
+question:"Which friction is minimum?",
+options:["Static Friction","Sliding Friction","Rolling Friction","Fluid Friction"],
+answer:"Rolling Friction"
 },
 
 {
 type:"MCQ",
-question:"Which quantity changes when force acts on a body?",
-options:["Momentum","Density","Temperature","Volume"],
-answer:"Momentum"
+question:"Newton's Third Law is related to:",
+options:["Action-Reaction","Momentum","Gravity","Pressure"],
+answer:"Action-Reaction"
 },
 
 {
-type:"True False",
-question:"Balanced forces can change the shape of an object.",
-options:["True","False"],
-answer:"True"
-},
-
-{
-type:"True False",
-question:"Weight remains same everywhere.",
-options:["True","False"],
-answer:"False"
-},
-
-{
-type:"True False",
-question:"Friction always opposes motion.",
-options:["True","False"],
-answer:"True"
-},
-
-{
-type:"True False",
-question:"Momentum is a scalar quantity.",
-options:["True","False"],
-answer:"False"
-},
-
-{
-type:"Fill in the Blanks",
-question:"The SI unit of force is ______.",
+type:"MCQ",
+question:"The SI unit of force is:",
 options:["Newton","Joule","Pascal","Watt"],
 answer:"Newton"
 },
 
 {
-type:"Fill in the Blanks",
-question:"Force = Mass × ______.",
-options:["Velocity","Acceleration","Distance","Pressure"],
+type:"MCQ",
+question:"Force = Mass × ?",
+options:["Velocity","Acceleration","Pressure","Distance"],
 answer:"Acceleration"
 },
 
 {
-type:"Fill in the Blanks",
-question:"The tendency to resist change is called ______.",
-options:["Inertia","Velocity","Pressure","Density"],
-answer:"Inertia"
+type:"MCQ",
+question:"Why do athletes bend before running?",
+options:["To sleep","To gain momentum","To reduce weight","To reduce pressure"],
+answer:"To gain momentum"
 },
 
 {
-type:"Assertion Reason",
-question:"Assertion: Friction produces heat.<br><br>Reason: Friction opposes motion.",
-options:[
-"Both true and reason is correct explanation",
-"Both true but reason is not correct explanation",
-"Assertion true but reason false",
-"Assertion false but reason true"
-],
-answer:"Both true and reason is correct explanation"
+type:"MCQ",
+question:"A cricket player pulls his hands backward while catching ball to:",
+options:["Increase force","Decrease time","Increase time","Increase speed"],
+answer:"Increase time"
 },
 
 {
-type:"Assertion Reason",
-question:"Assertion: Heavier objects have greater inertia.<br><br>Reason: Inertia depends on mass.",
-options:[
-"Both true and reason is correct explanation",
-"Both true but reason is not correct explanation",
-"Assertion true but reason false",
-"Assertion false but reason true"
-],
-answer:"Both true and reason is correct explanation"
+type:"MCQ",
+question:"Which force helps us walk?",
+options:["Gravity","Magnetism","Friction","Pressure"],
+answer:"Friction"
 }
 
 ];
 
-/* =====================================================
-CREATE MORE UNIQUE QUESTIONS
-===================================================== */
+/* =========================================
+AUTO GENERATE GOOD QUESTIONS
+========================================= */
 
-const extraConcepts = [
-"Impulse",
-"Pressure",
-"Air Resistance",
-"Centripetal Force",
-"Static Friction",
-"Kinetic Friction",
-"Rolling Friction",
-"Action Reaction",
+const concepts = [
+"Inertia",
+"Momentum",
+"Friction",
 "Balanced Force",
-"Unbalanced Force"
+"Unbalanced Force",
+"Gravity",
+"Pressure",
+"Acceleration",
+"Action Reaction",
+"Air Resistance"
 ];
 
-for(let i=0;i<186;i++){
+for(let i=1;i<=190;i++){
 
-    let concept = extraConcepts[i % extraConcepts.length];
+    let concept = concepts[i % concepts.length];
 
     questionBank.push({
 
         type:"MCQ",
 
-        question:`Advanced Question ${i+1}: Which statement is correct about ${concept}?`,
+        question:`Q${i}: Which statement is true about ${concept}?`,
 
         options:[
         `${concept} affects motion`,
-        `${concept} destroys matter`,
-        `${concept} creates energy`,
+        `${concept} creates matter`,
+        `${concept} destroys energy`,
         `${concept} stops gravity`
         ],
 
@@ -372,9 +425,23 @@ for(let i=0;i<186;i++){
 
 }
 
-/* =====================================================
-RANDOM 50 QUESTIONS
-===================================================== */
+/* =========================================
+VARIABLES
+========================================= */
+
+let quizQuestions = [];
+
+let streak = 0;
+
+let answered = 0;
+
+let timer;
+
+let totalSeconds = 1800;
+
+/* =========================================
+SHUFFLE
+========================================= */
 
 function shuffle(array){
 
@@ -383,22 +450,25 @@ function shuffle(array){
         const j=Math.floor(Math.random()*(i+1));
 
         [array[i],array[j]]=[array[j],array[i]];
+
     }
 
     return array;
+
 }
 
-const quizQuestions = shuffle([...questionBank]).slice(0,50);
-
-/* =====================================================
+/* =========================================
 START QUIZ
-===================================================== */
+========================================= */
 
 function startQuiz(){
 
     let name=document.getElementById("studentName").value;
+
     let className=document.getElementById("studentClass").value;
+
     let school=document.getElementById("studentSchool").value;
+
     let mobile=document.getElementById("studentMobile").value;
 
     if(
@@ -408,9 +478,13 @@ function startQuiz(){
         mobile===""
     ){
 
-        alert("Please fill all details");
+        alert("Please Fill All Details");
+
         return;
+
     }
+
+    quizQuestions = shuffle([...questionBank]).slice(0,50);
 
     document.getElementById("studentForm").style.display="none";
 
@@ -420,20 +494,13 @@ function startQuiz(){
 
     loadQuiz();
 
+    startTimer();
+
 }
 
-/* =====================================================
+/* =========================================
 LOAD QUIZ
-===================================================== */
-
-const praiseWords=[
-"Excellent!",
-"Great Job!",
-"Outstanding!",
-"Superb!",
-"Fantastic!",
-"Brilliant!"
-];
+========================================= */
 
 function loadQuiz(){
 
@@ -445,15 +512,19 @@ function loadQuiz(){
 
         let html=`
 
-        <div class="question-box" id="box${index}">
+        <div class="question-box">
 
-            <div class="question-type">
-                ${q.type}
-            </div>
+        <div class="question-number">
+        Question ${index+1}
+        </div>
 
-            <div class="question">
-                Q${index+1}. ${q.question}
-            </div>
+        <div class="question-type">
+        ${q.type}
+        </div>
+
+        <div class="question">
+        ${q.question}
+        </div>
 
         `;
 
@@ -463,14 +534,14 @@ function loadQuiz(){
 
             <label class="option">
 
-                <input
-                    type="radio"
-                    name="q${index}"
-                    value="${option}"
-                    onclick="checkAnswer(${index},this,'${q.answer}')"
-                >
+            <input
+            type="radio"
+            name="q${index}"
+            value="${option}"
+            onclick="checkAnswer(${index},this,'${q.answer}')"
+            >
 
-                ${option}
+            ${option}
 
             </label>
 
@@ -480,9 +551,10 @@ function loadQuiz(){
 
         html+=`
 
-        <div id="feedback${index}"></div>
+        <div id="feedback${index}" class="feedback"></div>
 
         </div>
+
         `;
 
         quiz.innerHTML+=html;
@@ -491,39 +563,95 @@ function loadQuiz(){
 
 }
 
-/* =====================================================
+/* =========================================
 CHECK ANSWER
-===================================================== */
+========================================= */
 
 function checkAnswer(index,element,correctAnswer){
 
-    let feedback=document.getElementById(`feedback${index}`);
+    const feedback=document.getElementById(`feedback${index}`);
 
     feedback.innerHTML="";
 
-    let parent=element.parentElement;
+    const parent=element.parentElement;
+
+    document.querySelectorAll(`input[name="q${index}"]`)
+    .forEach(el=>{
+
+        el.disabled=true;
+
+    });
+
+    answered++;
+
+    document.getElementById("answeredCount").innerText=answered;
+
+    document.getElementById("progressBar").style.width=
+    (answered/50)*100 + "%";
 
     if(element.value===correctAnswer){
 
+        streak++;
+
         parent.classList.add("correct");
 
-        let praise=praiseWords[
-            Math.floor(Math.random()*praiseWords.length)
+        const praiseWords=[
+
+        "🔥 Excellent!",
+        "🚀 Outstanding!",
+        "🏆 Brilliant!",
+        "⚡ Superb!",
+        "🎯 Perfect!",
+        "👑 Legend!",
+        "💥 Amazing!",
+        "🔥 Great Job!"
+
         ];
 
-        feedback.innerHTML=`
-        <div class="praise">
-            ✅ ${praise}
-        </div>
-        `;
+        let praise=
+        praiseWords[Math.floor(Math.random()*praiseWords.length)];
+
+        let special="";
+
+        if(streak===3){
+
+            special="<br>🔥 HATTRICK!";
+
+        }
+
+        if(streak===5){
+
+            special="<br>👑 UNSTOPPABLE!";
+
+        }
+
+        feedback.innerHTML=
+        praise + special;
+
+        const fire=document.createElement("div");
+
+        fire.className="firework";
+
+        parent.appendChild(fire);
+
+        setTimeout(()=>{
+
+            fire.remove();
+
+        },800);
 
     }
 
     else{
 
+        streak=0;
+
         parent.classList.add("wrong");
 
-        let blast=document.createElement("div");
+        feedback.innerHTML=
+        "❌ Wrong Answer";
+
+        const blast=document.createElement("div");
 
         blast.className="blast";
 
@@ -532,28 +660,71 @@ function checkAnswer(index,element,correctAnswer){
         parent.appendChild(blast);
 
         setTimeout(()=>{
+
             blast.remove();
+
         },800);
 
     }
 
 }
 
-/* =====================================================
+/* =========================================
+TIMER
+========================================= */
+
+function startTimer(){
+
+    timer=setInterval(()=>{
+
+        totalSeconds--;
+
+        let minutes=
+        Math.floor(totalSeconds/60);
+
+        let seconds=
+        totalSeconds%60;
+
+        if(seconds<10){
+
+            seconds="0"+seconds;
+
+        }
+
+        document.getElementById("time")
+        .innerText=
+        minutes+":"+seconds;
+
+        if(totalSeconds<=0){
+
+            clearInterval(timer);
+
+            submitQuiz();
+
+        }
+
+    },1000);
+
+}
+
+/* =========================================
 SUBMIT QUIZ
-===================================================== */
+========================================= */
 
 function submitQuiz(){
+
+    clearInterval(timer);
 
     let score=0;
 
     quizQuestions.forEach((q,index)=>{
 
-        let selected=document.querySelector(
-            `input[name="q${index}"]:checked`
+        const selected=document.querySelector(
+        `input[name="q${index}"]:checked`
         );
 
-        if(selected && selected.value===q.answer){
+        if(selected &&
+        selected.value===q.answer){
 
             score++;
 
@@ -562,30 +733,53 @@ function submitQuiz(){
     });
 
     let grade="";
+    let rank="";
 
     if(score>=45){
+
         grade="A+";
+        rank="🏆 Topper";
+
     }
+
     else if(score>=40){
+
         grade="A";
+        rank="🔥 Excellent";
+
     }
+
     else if(score>=30){
+
         grade="B";
+        rank="👍 Very Good";
+
     }
+
     else if(score>=20){
+
         grade="C";
+        rank="🙂 Good";
+
     }
+
     else{
+
         grade="Needs Improvement";
+        rank="📚 Practice More";
+
     }
 
-    let studentName=document.getElementById("studentName").value;
+    let studentName=
+    document.getElementById("studentName").value;
 
-    document.getElementById("reportCard").style.display="block";
+    document.getElementById("reportCard")
+    .style.display="block";
 
-    document.getElementById("reportCard").innerHTML=`
+    document.getElementById("reportCard")
+    .innerHTML=`
 
-    <h2>Final Report Card</h2>
+    <h2>🎓 Final Report Card</h2>
 
     <p><strong>Name:</strong> ${studentName}</p>
 
@@ -598,7 +792,11 @@ function submitQuiz(){
     <p><strong>Percentage:</strong> ${score*2}%</p>
 
     <div class="grade">
-        Grade: ${grade}
+    Grade: ${grade}
+    </div>
+
+    <div class="rank">
+    ${rank}
     </div>
 
     `;
@@ -611,3 +809,4 @@ function submitQuiz(){
 
 </body>
 </html>
+```
