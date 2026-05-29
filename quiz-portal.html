@@ -1,30 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acharya Quiz Zone - Learn & Grow</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+// Navigation Menu Toggle
+function toggleMenu() {
+    const nav = document.getElementById("nav");
+    if (nav) nav.classList.toggle("show");
+}
 
-    <header>
-        <div class="logo">Acharya Quiz Zone</div>
-        <button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
-        <nav id="nav">
-            <a href="../index.html">Home</a>
-            <a href="quiz-portal.html" class="active">Quiz Portal</a>
-        </nav>
-    </header>
+// Quiz System
+async function loadQuizFromAPI() {
+    const quizContainer = document.getElementById("quiz-container");
+    if (!quizContainer) return;
 
-    <main>
-        <div id="quiz-container">
-            <h1>Select Your Quiz</h1>
-            <p>Click below to start learning!</p>
-            <button onclick="loadQuizFromAPI()" class="start-btn">Start 10 Random Questions</button>
+    quizContainer.innerHTML = "<p style='text-align:center;'>Loading questions...</p>";
+    
+    const apiUrl = "https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple";
+
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        
+        if (data.results && data.results.length > 0) {
+            window.quizData = data.results;
+            displayQuestion(0);
+        } else {
+            quizContainer.innerHTML = "<p>No questions found.</p>";
+        }
+    } catch (error) {
+        quizContainer.innerHTML = "<p>Failed to load. Check internet.</p>";
+    }
+}
+
+function displayQuestion(index) {
+    const quizContainer = document.getElementById("quiz-container");
+    const qData = window.quizData[index];
+
+    if (!qData) {
+        quizContainer.innerHTML = "<h3>Quiz Completed!</h3><button onclick='location.reload()' class='start-btn'>Restart</button>";
+        return;
+    }
+
+    const options = [...qData.incorrect_answers, qData.correct_answer].sort(() => Math.random() - 0.5);
+
+    quizContainer.innerHTML = `
+        <div class="quiz-box">
+            <h3>${qData.question}</h3>
+            <div class="options">
+                ${options.map(opt => `
+                    <button onclick="checkAnswer('${opt.replace(/'/g, "\\'")}', '${qData.correct_answer.replace(/'/g, "\\'")}', ${index})">
+                        ${opt}
+                    </button>
+                `).join('')}
+            </div>
         </div>
-    </main>
+    `;
+}
 
-    <script src="../script.js"></script>
-</body>
-</html>
+function checkAnswer(selected, correct, currentIndex) {
+    if (selected === correct) { alert("Correct! 🎉"); } 
+    else { alert("Wrong! Correct: " + correct); }
+    displayQuestion(currentIndex + 1);
+}
