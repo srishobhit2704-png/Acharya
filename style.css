@@ -1,31 +1,93 @@
-/* Design for Quiz Portal */
+/* --- Global Theme Setup --- */
+:root {
+    --bg-dark: #0a1628;
+    --card-bg: #0d1b2a;
+    --border-color: #1b3a5c;
+    --text-white: #ffffff;
+    --text-gray: #8899a6;
+    --blue-accent: #00d4ff;
+    --purple-accent: #7b2cbf;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-white);
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Quiz Portal Container (Matching Homepage Cards) --- */
 #quiz-container {
     max-width: 600px;
     margin: 50px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 40px;
+    border-radius: 16px;
     text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
 }
+
+#quiz-container h1 {
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, var(--blue-accent), var(--purple-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* --- Buttons --- */
 .start-btn { 
-    padding: 15px 30px; 
-    background: #28a745; 
+    padding: 15px 40px; 
+    background: linear-gradient(135deg, var(--blue-accent), var(--purple-accent));
     color: white; 
     border: none; 
-    border-radius: 5px; 
+    border-radius: 30px; 
     cursor: pointer; 
     font-size: 18px; 
+    font-weight: 600;
+    margin-top: 20px;
+    transition: 0.3s;
 }
+
+.start-btn:hover { transform: translateY(-5px); }
+
+/* --- Quiz Options/Questions --- */
+.quiz-box h3 { margin-bottom: 25px; line-height: 1.5; }
+
 .options button { 
     display: block; 
     width: 100%; 
-    margin: 10px 0; 
-    padding: 12px; 
-    background: #007bff; 
-    color: white; 
-    border: none; 
-    border-radius: 5px; 
+    margin: 12px 0; 
+    padding: 15px; 
+    background: var(--bg-dark); 
+    color: var(--text-white); 
+    border: 1px solid var(--border-color); 
+    border-radius: 12px; 
     cursor: pointer; 
+    font-size: 16px;
+    transition: 0.3s;
 }
-.options button:hover { background: #0056b3; }
+
+.options button:hover { 
+    border-color: var(--blue-accent);
+    background: rgba(0, 212, 255, 0.1);
+}
+
+/* --- Header & Nav (For Quiz Portal) --- */
+header {
+    background: var(--card-bg);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+nav a {
+    color: var(--text-gray);
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+nav a.active { color: var(--blue-accent); font-weight: bold; }
