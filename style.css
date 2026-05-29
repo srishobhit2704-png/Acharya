@@ -1,122 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Acharya Home Tutors Lucknow</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<header class="top-header">
-  <div class="logo">A</div>
-  <a href="contact.html" class="login-btn">Apply / Enquiry</a>
-</header>
-
-<nav class="navbar">
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="teachers.html">Teachers</a>
-  <a href="contact.html">Contact</a>
-</nav>
-
-<section class="hero-banner">
-  <div class="hero-text">
-    <p>FREE WORKSHEET</p>
-    <h1>Maths & Science Practice Sheets</h1>
-    <h2>Class 6 to 10 Students</h2>
-    <a href="contact.html">Get Worksheet</a>
-  </div>
-</section>
-
-<div class="dots">
-  <span class="active"></span><span></span><span></span><span></span><span></span>
-</div>
-
-<section class="intro">
-  <h1>Lucknow's <span>Trusted & Affordable</span><br>Home Tuition Platform</h1>
-  <p>Find experienced tutors for school, board exams, JEE, NEET and homework support.</p>
-  <a href="contact.html" class="main-btn">Get Started</a>
-</section>
-
-<section class="features">
-  <div class="feature-card">
-    <h2>Daily Practice</h2>
-    <p>Worksheets and regular study support</p>
-  </div>
-  <div class="feature-card">
-    <h2>Expert Tutors</h2>
-    <p>Experienced teachers for all subjects</p>
-  </div>
-  <div class="feature-card">
-    <h2>1-to-1 Tuition</h2>
-    <p>Personal attention at your home</p>
-  </div>
-  <div class="feature-card">
-    <h2>Demo Class</h2>
-    <p>Try before final confirmation</p>
-  </div>
-</section>
-
-<section class="categories">
-  <h2>Exam Categories</h2>
-  <p>Choose the class or exam you are preparing for</p>
-
-  <div class="category-card">
-    <h3>School Boards</h3>
-    <div>
-      <span>CBSE</span>
-      <span>ICSE</span>
-      <span>UP Board</span>
-    </div>
-    <a href="contact.html">Explore Category →</a>
-  </div>
-
-  <div class="category-card">
-    <h3>JEE Preparation</h3>
-    <div>
-      <span>Class 11</span>
-      <span>Class 12</span>
-      <span>Dropper</span>
-    </div>
-    <a href="contact.html">Explore Category →</a>
-  </div>
-
-  <div class="category-card">
-    <h3>NEET Preparation</h3>
-    <div>
-      <span>Physics</span>
-      <span>Chemistry</span>
-      <span>Biology</span>
-    </div>
-    <a href="contact.html">Explore Category →</a>
-  </div>
-
-  <div class="category-card">
-    <h3>Pre Foundation</h3>
-    <div>
-      <span>Class 6</span>
-      <span>Class 7</span>
-      <span>Class 8</span>
-      <span>Class 9</span>
-      <span>Class 10</span>
-    </div>
-    <a href="contact.html">Explore Category →</a>
-  </div>
-</section>
-
-<section class="reviews">
-  <h2>Student & Parent Reviews</h2>
-  <div class="review-card">"Very professional teachers and excellent support."</div>
-  <div class="review-card">"My child's marks improved within 2 months."</div>
-</section>
-
-<footer>
-  <p>© 2026 Acharya Home Tutors Lucknow</p>
-  <p>Call: 9369072114 | Email: srishobhit777@gmail.com</p>
-</footer>
-
-<a href="https://wa.me/919369072114" class="floating-whatsapp">☎</a>
-
-</body>
-</html>
+/* Design for Quiz Portal */
+#quiz-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+.start-btn { 
+    padding: 15px 30px; 
+    background: #28a745; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 18px; 
+}
+.options button { 
+    display: block; 
+    width: 100%; 
+    margin: 10px 0; 
+    padding: 12px; 
+    background: #007bff; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+}
+.options button:hover { background: #0056b3; }
