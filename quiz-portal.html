@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="refresh" content="0; url=quiz/" />
-  <title>Redirecting to Quiz Zone…</title>
-  <script>window.location.replace("quiz/");</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acharya Quiz Zone - Learn & Grow</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <p>Redirecting to <a href="quiz/">Acharya Quiz Zone</a>…</p>
+
+    <header>
+        <div class="logo">Acharya Quiz Zone</div>
+        <button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
+        <nav id="nav">
+            <a href="../index.html">Home</a>
+            <a href="quiz-portal.html" class="active">Quiz Portal</a>
+        </nav>
+    </header>
+
+    <main>
+        <div id="quiz-container">
+            <h1>Select Your Quiz</h1>
+            <p>Click below to start learning!</p>
+            <button onclick="loadQuizFromAPI()" class="start-btn">Start 10 Random Questions</button>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
